@@ -11,7 +11,6 @@ class HelloWorldController extends HapiController {
 
     constructor(@inject(TYPES.Logger) private logger: Logger) { 
         super();
-        debugger;
     }
 
     @Route({
