@@ -6,10 +6,8 @@ import { ApiServer } from '../apiserver';
 
 const container = new Container();
 
-container.bind<Logger>(TYPES.Logger).to(Logger);
-container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer);
-container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController);
-
-debugger;
+container.bind<Logger>(TYPES.Logger).to(Logger).inSingletonScope();
+container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
+container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
 
 export { container }
