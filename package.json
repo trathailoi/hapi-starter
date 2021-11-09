@@ -21,7 +21,9 @@
     "hapi-swagger": "^14.2.4",
     "hapijs-status-monitor": "^1.0.1",
     "inversify": "^6.0.1",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.39",
     "winston": "^3.3.3"
   },
   "devDependencies": {

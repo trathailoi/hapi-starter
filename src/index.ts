@@ -4,9 +4,11 @@ import { container } from "./ioc/ioc";
 import { TYPES } from "./ioc/types";
 import { Reflector } from './decorators/reflector';
 import { ApiServer } from "./apiserver";
+import { initializeDatabase } from "./helpers/database";
 
 let server: Server;
 
 (async () => {
+    await initializeDatabase();
     await container.get<ApiServer>(TYPES.ApiServer);
 })();
