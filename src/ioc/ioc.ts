@@ -4,6 +4,7 @@ import { TYPES } from './types';
 import { HelloWorldController } from '../api/helloworld/controller';
 import { ApiServer } from '../apiserver';
 import * as Winston from 'winston';
+import { Controllers } from '../api/controllers';
 
 const container = new Container();
 // Set up logging through Winston
@@ -33,6 +34,7 @@ container.bind<Logger>(TYPES.Logger).toDynamicValue(
 ).inSingletonScope();
 
 container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
+container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope();
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
 
 export { container }

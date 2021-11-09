@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import { TYPES } from "../../ioc/types";
 import { Logger } from "../../helpers/logger";
 import { Route, RouteController } from "../../decorators/decorators";
-import { HapiController } from "../base/hapicontroller";
+import { HapiController } from "../hapicontroller";
 
 @RouteController
 @injectable()
