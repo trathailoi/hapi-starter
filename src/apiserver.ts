@@ -16,7 +16,7 @@ class ApiServer {
         this.hapiServer = new Server({
             port: 8080
         });
-
+        this.hapiServer.validator(require('@hapi/joi'));
         this.hapiServer.route(controllers.getRoutes());
         this.hapiServer.start();
     }
