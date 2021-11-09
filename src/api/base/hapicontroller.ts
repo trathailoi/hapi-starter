@@ -3,9 +3,26 @@ import { injectable } from "inversify";
 
 @injectable()
 class HapiController {
-    protected routes: Array<ServerRoute> = [];
+
+    /*
+        This static code is used to track all instances of HapiControllers so 
+        we can generate a combined set of routes for the entire application.
+    */ 
+    private static controllers: Array<HapiController> = [];
+
+    public static getRoutes(): Array<ServerRoute> {
+        let routes: Array<ServerRoute> = [];
+        HapiController.controllers.forEach(c => routes = routes.concat(...c.routes));
+        return routes;
+    }
+    
+    public routes: Array<ServerRoute> = [];
 
     constructor() {
+        //Track the controller
+        HapiController.controllers.push(this);
+
+        //We need this due to some issues with "this" and decorators.
         const routes = (this as any).__proto__.routes;
         routes.forEach((r: any) => {
             if (r.handler) {
