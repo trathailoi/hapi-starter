@@ -1,4 +1,5 @@
 import { Request, ResponseToolkit, Server, ResponseValue } from "@hapi/hapi";
+import HelloWorldController from "./api/helloworld/controller";
 
 let server: Server;
 
@@ -7,17 +8,30 @@ let server: Server;
         port: 8080
     });
 
+    const testController = new HelloWorldController();
+
     server.route([
         {
             method: 'GET',
             path: '/api/helloworld',
             options: {
-                handler: (request: Request, toolkit: ResponseToolkit) => 'Hello World!',
+                handler: testController.getAll,
                 description: 'Hello World!',
                 tags: ['api', 'test'],
                 auth: false,
             }
-        }
+        },
+        {
+            method: 'GET',
+            path: '/api/helloworld/{id}',
+            options: {
+                handler: testController.getById,
+                description: 'Not implemented',
+                tags: ['api', 'test'],
+                auth: false,
+            }
+        },
+        
     ]);
 
     await server.start()
