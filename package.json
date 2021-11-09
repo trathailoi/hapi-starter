@@ -1,0 +1,27 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "Starter for Typescript/HAPI/Inversify/TypeORM",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run nodemon:build",
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "nodemon:build": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Craig Drabik",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.1",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/hapi__hapi": "^20.0.9",
+    "nodemon": "^2.0.14",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.4.3",
+    "typescript": "^4.4.0"
+  }
+}
