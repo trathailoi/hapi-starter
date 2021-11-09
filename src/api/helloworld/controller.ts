@@ -2,7 +2,9 @@ import { Request, ResponseToolkit } from "@hapi/hapi";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../../ioc/types";
 import { Logger } from "../../helpers/logger";
+import { RouteController } from "../../decorators/decorators";
 
+@RouteController
 @injectable()
 class HelloWorldController {
     constructor(
