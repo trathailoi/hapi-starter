@@ -1,9 +1,9 @@
 import { Lifecycle, Request, ResponseToolkit } from "@hapi/hapi";
 import { inject, injectable } from "inversify";
-import { TYPES } from "../../ioc/types";
-import { Logger } from "../../helpers/logger";
-import { HapiRoute } from "../../decorators/decorators";
-import { HapiController } from "../hapicontroller";
+import { TYPES } from "../ioc/types";
+import { Logger } from "../helpers/logger";
+import { HapiRoute } from "../decorators/decorators";
+import { HapiController } from "./hapi-controller";
 import * as Joi from '@hapi/joi';
 import * as Boom from "@hapi/boom";
 
@@ -12,11 +12,12 @@ class HelloWorldController extends HapiController {
 
     constructor(@inject(TYPES.Logger) private logger: Logger) { 
         super();
+        this.logger.info('Created controller HelloWorldController');
     }
 
     @HapiRoute({
         method: 'GET',
-        path: '/api/helloworld',
+        path: 'helloworld',
         options: {
             description: 'Hello World!',
             tags: ['api', 'test'],
@@ -30,7 +31,7 @@ class HelloWorldController extends HapiController {
 
     @HapiRoute({
         method: 'GET',
-        path: '/api/helloworld/{id}',
+        path: 'helloworld/{id}',
         options: {
             validate: {
                 params: {

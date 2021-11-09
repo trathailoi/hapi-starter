@@ -1,13 +1,18 @@
 import { ServerRoute } from "@hapi/hapi";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../ioc/types";
-import { HapiController } from "./hapicontroller";
-import { HelloWorldController } from "./helloworld/controller";
+import { CarController } from "./car-controller";
+import { HapiController } from "./hapi-controller";
+import { HelloWorldController } from "./helloworld-controller";
 
 @injectable()
 class Controllers {
+
     @inject(TYPES.HelloWorldController) 
-    public helloWorldController?: HelloWorldController;
+    private helloWorldController?: HelloWorldController;
+
+    @inject(TYPES.CarController)
+    private carController?: CarController;
 
     /**
      * Wraps the static getRoutes() method on HapiController.  This makes more sense

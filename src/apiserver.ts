@@ -22,6 +22,7 @@ class ApiServer {
         Promise.all(plugins.map((p: any) => this.hapiServer.register(p)))
             .then(() => {
                 this.hapiServer.start();
+                this.logger.info('Server started.');
             });
     }
 

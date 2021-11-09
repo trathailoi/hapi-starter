@@ -1,12 +1,14 @@
 import { Container } from 'inversify';
 import { Logger } from '../helpers/logger';
 import { TYPES } from './types';
-import { HelloWorldController } from '../api/helloworld/controller';
+import { HelloWorldController } from '../api/helloworld-controller';
 import { ApiServer } from '../apiserver';
 import { Controllers } from '../api/controllers';
 import { getConnection, Repository } from 'typeorm';
 import { Car } from '../entity/Car';
 import * as Winston from 'winston';
+import { CarService } from '../service/carservice';
+import { CarController } from '../api/car-controller';
 
 const container = new Container();
 
@@ -47,9 +49,14 @@ container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope(
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
+container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope();
 
 // TypeORM repositories
 container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(
   () => createRepository<Car>(Car)
 )
+
+// Services
+container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
+
 export { container }

@@ -10,9 +10,15 @@ class HapiController {
     */ 
     private static controllers: Array<HapiController> = [];
 
+    private static basePath = '/api/'
     public static getRoutes(): Array<ServerRoute> {
         let routes: Array<ServerRoute> = [];
-        HapiController.controllers.forEach(c => routes = routes.concat(...c.routes));
+        HapiController.controllers.forEach(
+            c => routes = routes.concat(...c.routes.map(r => {
+                r.path = this.basePath + r.path;
+                return r;
+            }))
+        );
         return routes;
     }
     

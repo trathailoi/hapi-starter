@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit, Server, ResponseValue } from "@hapi/hapi";
-import { HelloWorldController } from "./api/helloworld/controller";
+import { HelloWorldController } from "./api/helloworld-controller";
 import { container } from "./ioc/ioc";
 import { TYPES } from "./ioc/types";
 import { Reflector } from './decorators/reflector';
