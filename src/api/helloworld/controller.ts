@@ -1,8 +1,13 @@
 import { Request, ResponseToolkit } from "@hapi/hapi";
-import Logger from "../../helpers/logger";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../../ioc/types";
+import { Logger } from "../../helpers/logger";
 
-export default class HelloWorldController {
-    private logger: Logger = new Logger();
+@injectable()
+class HelloWorldController {
+    constructor(
+        @inject(TYPES.Logger) private logger: Logger
+    ) { }
 
     public getAll(request: Request, toolkit: ResponseToolkit) {
         this.logger.info('getAll invoked');
@@ -14,3 +19,5 @@ export default class HelloWorldController {
         return toolkit.response().code(501);
     }
 }
+
+export { HelloWorldController }

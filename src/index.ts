@@ -1,5 +1,8 @@
 import { Request, ResponseToolkit, Server, ResponseValue } from "@hapi/hapi";
-import HelloWorldController from "./api/helloworld/controller";
+import { HelloWorldController } from "./api/helloworld/controller";
+import { container } from "./ioc/ioc";
+
+import { TYPES } from "./ioc/types";
 
 let server: Server;
 
@@ -8,7 +11,7 @@ let server: Server;
         port: 8080
     });
 
-    const testController = new HelloWorldController();
+    const testController = container.get<HelloWorldController>(TYPES.HelloWorldController);
 
     server.route([
         {
