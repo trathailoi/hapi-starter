@@ -1,6 +1,6 @@
 import { inject, injectable } from "inversify";
 import { Car } from "../entity/Car";
-import { Logger } from "../helpers/logger";
+import { Logger } from "winston";
 import { TYPES } from "../ioc/types";
 import { Repository } from "typeorm";
 import { CrudService } from "./crudservice";

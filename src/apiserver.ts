@@ -1,7 +1,7 @@
 import { Server, ServerRegisterPluginObject } from "@hapi/hapi";
 import { inject, injectable } from "inversify";
 import { Controllers } from "./api/controllers";
-import { Logger } from "./helpers/logger";
+import { Logger } from "winston";
 import { plugins } from "./helpers/plugins";
 import { TYPES } from "./ioc/types";
 

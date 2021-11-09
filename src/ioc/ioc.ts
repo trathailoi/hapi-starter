@@ -1,5 +1,5 @@
 import { Container } from 'inversify';
-import { Logger } from '../helpers/logger';
+import { Logger } from 'winston';
 import { TYPES } from './types';
 import { HelloWorldController } from '../api/helloworld-controller';
 import { ApiServer } from '../apiserver';

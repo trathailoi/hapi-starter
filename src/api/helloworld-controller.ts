@@ -1,7 +1,7 @@
 import { Lifecycle, Request, ResponseToolkit } from "@hapi/hapi";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../ioc/types";
-import { Logger } from "../helpers/logger";
+import { Logger } from "winston";
 import { HapiRoute } from "../decorators/decorators";
 import { HapiController } from "./hapi-controller";
 import * as Joi from '@hapi/joi';

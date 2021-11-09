@@ -1,5 +1,6 @@
 import { ServerRoute } from "@hapi/hapi";
 import { injectable } from "inversify";
+import "reflect-metadata";
 
 @injectable()
 class HapiController {

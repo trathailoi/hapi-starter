@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { Logger } from "../helpers/logger";
+import { Logger } from "winston";
 import { DeleteResult, Repository } from "typeorm";
 
 @injectable()
