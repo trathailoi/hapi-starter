@@ -1,7 +1,8 @@
-import { Server } from "@hapi/hapi";
+import { Server, ServerRegisterPluginObject } from "@hapi/hapi";
 import { inject, injectable } from "inversify";
 import { Controllers } from "./api/controllers";
 import { Logger } from "./helpers/logger";
+import { plugins } from "./helpers/plugins";
 import { TYPES } from "./ioc/types";
 
 @injectable()
@@ -18,7 +19,16 @@ class ApiServer {
         });
         this.hapiServer.validator(require('@hapi/joi'));
         this.hapiServer.route(controllers.getRoutes());
-        this.hapiServer.start();
+        Promise.all(plugins.map((p: any) => this.hapiServer.register(p)))
+            .then(() => {
+                this.hapiServer.start();
+            });
+    }
+
+    private registerPlugin(descriptor: any): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.hapiServer.register(descriptor).then(() => resolve(true));
+        }) 
     }
 }
 

@@ -15,7 +15,11 @@
   "dependencies": {
     "@hapi/boom": "^9.1.4",
     "@hapi/hapi": "^20.2.1",
+    "@hapi/inert": "^6.0.4",
     "@hapi/joi": "^17.1.1",
+    "@hapi/vision": "^6.1.0",
+    "hapi-swagger": "^14.2.4",
+    "hapijs-status-monitor": "^1.0.1",
     "inversify": "^6.0.1",
     "reflect-metadata": "^0.1.13",
     "winston": "^3.3.3"
@@ -23,6 +27,7 @@
   "devDependencies": {
     "@types/hapi__hapi": "^20.0.9",
     "@types/hapi__joi": "^17.1.7",
+    "@types/hapi__vision": "^5.5.3",
     "nodemon": "^2.0.14",
     "ts-node": "^8.3.0",
     "tslint": "^5.4.3",
