@@ -15,7 +15,7 @@ let server: Server;
             method: 'GET',
             path: '/api/helloworld',
             options: {
-                handler: testController.getAll,
+                handler: testController.getAll.bind(testController),
                 description: 'Hello World!',
                 tags: ['api', 'test'],
                 auth: false,
@@ -25,7 +25,7 @@ let server: Server;
             method: 'GET',
             path: '/api/helloworld/{id}',
             options: {
-                handler: testController.getById,
+                handler: testController.getById.bind(testController),
                 description: 'Not implemented',
                 tags: ['api', 'test'],
                 auth: false,
