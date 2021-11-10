@@ -1,4 +1,8 @@
 
+/**
+ * Add metadata here for any plugins you want to register with HAPI.  Anything 
+ * configured here will be automatically registered with HAPI at start-up.
+ */
 const plugins = [
     {
         options: {
