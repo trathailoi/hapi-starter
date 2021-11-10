@@ -5,7 +5,7 @@ import { HelloWorldController } from '../api/helloworld-controller';
 import { ApiServer } from '../apiserver';
 import { Controllers } from '../api/controllers';
 import { getConnection, Repository } from 'typeorm';
-import { Car } from '../entity/Car';
+import { Car } from '../entity/car';
 import * as Winston from 'winston';
 import { CarService } from '../service/carservice';
 import { CarController } from '../api/car-controller';

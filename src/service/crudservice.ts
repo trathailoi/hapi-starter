@@ -11,8 +11,9 @@ class CrudService<T> {
         return this.repository.findOne(id);
     }
 
-    public async find(where?: any): Promise<Array<T> | undefined> {
-        return this.repository.find({ where });
+    public async findAll(): Promise<Array<T>> {
+        const result = await this.repository.find();
+        return result;
     }
 
     public async save(entity: T): Promise<T | undefined> {

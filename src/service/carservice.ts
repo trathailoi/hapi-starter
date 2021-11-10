@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { Car } from "../entity/Car";
+import { Car } from "../entity/car";
 import { Logger } from "winston";
 import { TYPES } from "../ioc/types";
 import { Repository } from "typeorm";
@@ -13,7 +13,7 @@ class CarService extends CrudService<Car> {
     ) { 
         super(repository, logger);
         this.logger.info('Created service CarService');
-    }
+    }    
 }
 
 export { CarService }
