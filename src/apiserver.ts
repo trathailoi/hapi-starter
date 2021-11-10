@@ -4,9 +4,10 @@ import { Controllers } from "./api/controllers";
 import { Logger } from "winston";
 import { plugins } from "./helpers/plugins";
 import { TYPES } from "./ioc/types";
-import { CarService } from "./service/carservice";
-import { container } from "./ioc/ioc";
 
+/**
+ * This class encapsulates the HAPI server instance, and is responsible for startup and configuration
+ */
 @injectable()
 class ApiServer {
     private hapiServer: Server;
@@ -20,28 +21,24 @@ class ApiServer {
             port: 8080
         });
         this.hapiServer.validator(require('@hapi/joi'));
+
+        /**
+         * Here we are using our injected controllers class to generate all of the 
+         * HAPI route configuration data.  You do not need to do anything other than
+         * add metadata to your route handlers in your controller and add your controller
+         * to the controllers class in order to add a route
+         */        
         this.hapiServer.route(controllers.getRoutes());
+
+        /**
+         * Register HAPI Plugins.  If you want to add a plugin, add its metadata 
+         * to the plugins class.  You do not need to manually register plugins.
+         */
         Promise.all(plugins.map((p: any) => this.hapiServer.register(p)))
             .then(() => {
                 this.hapiServer.start();
                 this.logger.info('Server started.');
             });
-
-        //THis is a test
-        /*
-        const carService: CarService = container.get<CarService>(TYPES.CarService);
-        this.logger.debug('Testing cars');
-        carService.findAll().then(value => {
-            this.logger.debug('Retrieved cars');
-            console.log(JSON.stringify(value));
-        });
-        */
-    }
-
-    private registerPlugin(descriptor: any): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
-            this.hapiServer.register(descriptor).then(() => resolve(true));
-        }) 
     }
 }
 

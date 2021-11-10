@@ -7,7 +7,7 @@ import { HapiController } from "./hapi-controller";
 import { CarService } from "../service/carservice";
 import * as Joi from '@hapi/joi';
 import * as Boom from "@hapi/boom";
-import { Car } from "src/entity/car";
+
 
 @injectable()
 class CarController extends HapiController {
@@ -30,18 +30,9 @@ class CarController extends HapiController {
         }
     })
     public async getAll(request: Request, toolkit: ResponseToolkit) {
-            //try {
-                this.logger.info('Cars getAll invoked');
-                this.logger.info('Beginning async');
-                const cars = await this.carService.findAll();
-                //await testAsync();
-                this.logger.info('Ended async');
-                return [];
-            /*} catch (e) {
-                debugger;
-                this.logger.error(JSON.stringify(e));
-                throw (e);
-            }*/
+        this.logger.info('Cars getAll invoked');
+        const cars = await this.carService.findAll();
+        return cars;
     }
 
     @HapiRoute({
@@ -62,10 +53,6 @@ class CarController extends HapiController {
         this.logger.info('Cars getById invoked');
         throw Boom.notImplemented();
     }
-}
-
-async function testAsync() {
-    return new Promise((resolve, reject) => setTimeout(() => resolve(true), 500));
 }
 
 export { CarController }
