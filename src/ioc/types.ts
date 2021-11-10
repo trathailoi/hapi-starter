@@ -1,3 +1,7 @@
+/**
+ * The types structure is just a list of symbols for use by Inversify.
+ * Each class managed by Inversify will have an entry in this list.
+ */
 const TYPES = {
     Logger: Symbol.for('Logger'),
     ApiServer: Symbol.for('ApiServer'),
