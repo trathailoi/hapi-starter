@@ -31,8 +31,8 @@ const container = new Container();
  * parameters.  This is the first thing we need, as we can't configure Winston without
  * a log level.
  * 
- * In this case, we use .toDynamicValue() to help Inversify correctly create a preconfigured
- * instance of Configue.  It doesn't have enough informatino on its own to do that.
+ * In this case, we use .toConstantValue() because we are already manually creating an
+ * instance of Configuue since we need it locally.
  */
 const configOpts = {
   defer: false,
@@ -45,14 +45,10 @@ const configOpts = {
   ]
 };
 const configue = new Configue(configOpts);
-console.log(configue.get('database.port'));
-
 container.bind<typeof Configue>(TYPES.Configue).toConstantValue(configue);
 
-// We immediately need an instance of Configue so we can continue
 /**
  * Configure Winston for logging
- * TODO: Externalize Winston configuration
  */
 container.bind<Logger>(TYPES.Logger).toDynamicValue(
     () => {
@@ -70,7 +66,7 @@ container.bind<Logger>(TYPES.Logger).toDynamicValue(
                 }`;
               })
             ),
-            level: process.env.LOG_LEVEL,
+            level: configue.get('logging.level'),
           });
       
           return Winston.createLogger({
