@@ -13,12 +13,13 @@ class ApiServer {
     private hapiServer: Server;
 
     constructor(
+        @inject(TYPES.Configue) private configue: any,
         @inject(TYPES.Logger) private logger: Logger,
         @inject(TYPES.Controllers) controllers: Controllers
     ) {
         // Configure HAPI server
         this.hapiServer = new Server({
-            port: 8080
+            port: configue.get('hapi.port', 8080)
         });
         this.hapiServer.validator(require('@hapi/joi'));
 
