@@ -3,6 +3,7 @@
  * Each class managed by Inversify will have an entry in this list.
  */
 const TYPES = {
+    Configue: Symbol.for('Configue'),
     Logger: Symbol.for('Logger'),
     ApiServer: Symbol.for('ApiServer'),
     Controllers: Symbol.for('Controllers'),

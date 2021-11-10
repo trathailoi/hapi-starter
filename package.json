@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run nodemon:build",
-    "build": "tsc",
-    "start": "node dist/src/index.js",
-    "nodemon:build": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "build": "tsc && npm run copy-files",
+    "copy-files": "copyfiles -u 1 ./src/**/*.yaml ./dist/",
+    "start": "npm run build && node dist/index.js",
+    "nodemon:build": "npm run copy-files && nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Craig Drabik",
@@ -18,6 +19,7 @@
     "@hapi/inert": "^6.0.4",
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.1.0",
+    "configue": "^1.3.6",
     "hapi-swagger": "^14.2.4",
     "hapijs-status-monitor": "^1.0.1",
     "inversify": "^6.0.1",
@@ -30,7 +32,9 @@
     "@types/hapi__hapi": "^20.0.9",
     "@types/hapi__joi": "^17.1.7",
     "@types/hapi__vision": "^5.5.3",
+    "copyfiles": "^2.4.1",
     "nodemon": "^2.0.14",
+    "rimraf": "^3.0.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.4.3",
     "typescript": "^4.4.0"

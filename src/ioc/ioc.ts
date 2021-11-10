@@ -9,6 +9,7 @@ import { Car } from '../entity/car';
 import * as Winston from 'winston';
 import { CarService } from '../service/carservice';
 import { CarController } from '../api/car-controller';
+const Configue = require('configue');
 
 /**
  * This file contains all of the Inversify configuration code.  This is the only
@@ -24,13 +25,31 @@ import { CarController } from '../api/car-controller';
  */
 const container = new Container();
 
-/**
- * Utility function to create TypeORM repositories from their types through generics
- */
-function createRepository<T>(c: { new (): T }): Repository<T> {
-  return getConnection().getRepository(c);
-}
 
+/**
+ * Next, we're going to initialize Configue to help us with externalizing configuration 
+ * parameters.  This is the first thing we need, as we can't configure Winston without
+ * a log level.
+ * 
+ * In this case, we use .toDynamicValue() to help Inversify correctly create a preconfigured
+ * instance of Configue.  It doesn't have enough informatino on its own to do that.
+ */
+const configOpts = {
+  defer: false,
+  disable: { argv: true },
+  files: [
+    { 
+      file: './dist/config/config.yaml',
+      format: require('nconf-yaml')
+    }
+  ]
+};
+const configue = new Configue(configOpts);
+console.log(configue.get('database.port'));
+
+container.bind<typeof Configue>(TYPES.Configue).toConstantValue(configue);
+
+// We immediately need an instance of Configue so we can continue
 /**
  * Configure Winston for logging
  * TODO: Externalize Winston configuration
@@ -102,5 +121,12 @@ container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(
 
 // Services
 container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
+
+/**
+ * Utility function to create TypeORM repositories from their types through generics
+ */
+ function createRepository<T>(c: { new (): T }): Repository<T> {
+  return getConnection().getRepository(c);
+}
 
 export { container }
