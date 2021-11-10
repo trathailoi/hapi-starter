@@ -4,7 +4,9 @@ import { createConnection } from 'typeorm';
 
 
 
-// Database Setup
+/**
+ * This class is responsible for intiializing a connection to the database through TypeORM.
+ */
 // TODO: Externalize connection properties
 async function initializeDatabase() {
     //const entities = [path.normalize(__dirname + '/../entity/*.{ts,js}')];
