@@ -45,3 +45,4 @@ I've put together a walkthrough of each of the aspects of the architecture and e
 1. [How do I add a new controller?](add-controller.md)
 1. [How do I add a new HAPI route?](add-hapi-route.md)
 
+You can find the code referenced in the walkthroughs in the feature/cars-walkthrough branch.
