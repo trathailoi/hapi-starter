@@ -22,7 +22,7 @@ class CarController extends HapiController {
 
     /**
      * Here we are also injecting the car service to manage interactions with the database
-     * in addition to the logger.  You can inject as many dependencies as you need.
+     * in addition to the logger and mapper.  You can inject as many dependencies as you need.
      */
     constructor(
         @inject(TYPES.Logger) private logger: Logger,
