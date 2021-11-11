@@ -171,7 +171,11 @@ class CarController extends HapiController {
     public async deleteCar(request: Request, toolkit: ResponseToolkit) {
         this.logger.info('Cars delete car invoked');
         const result = await this.carService.delete(request.params.id);
-        return toolkit.response().code(200);
+        if (result.affected === 0) {
+            return toolkit.response().code(404);
+        } else {
+            return toolkit.response().code(200);
+        }
     }
 }
 
