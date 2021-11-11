@@ -14,6 +14,11 @@ class CarService extends CrudService<Car> {
         super(repository, logger);
         this.logger.info('Created service CarService');
     }    
+
+    public async findByMake(make: string): Promise<Array<Car>> {
+        const result = await this.repository.find({ where: { make } })
+        return result;
+    }
 }
 
 export { CarService }

@@ -58,17 +58,16 @@ class Car {
 
     @Column('varchar', {
         nullable: false,
-        length: 40,
-        name: 'vin'
-    })
-    vin?: string;
-
-    @Column('varchar', {
-        nullable: false,
         length: 10,
         name: 'color'
     })
     color?: string;    
+    
+    @Column('int', {
+        nullable: false,
+        name: 'entrynumber'
+    })
+    entryNumber?: number;
 }
 
 export { Car }
