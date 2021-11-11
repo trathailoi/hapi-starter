@@ -5,10 +5,7 @@ import { HelloWorldController } from '../api/helloworld-controller';
 import { ApiServer } from '../apiserver';
 import { Controllers } from '../api/controllers';
 import { getConnection, Repository } from 'typeorm';
-import { Car } from '../entity/car';
 import * as Winston from 'winston';
-import { CarService } from '../service/carservice';
-import { CarController } from '../api/car-controller';
 import { Mapper } from '../helpers/mapper';
 const Configue = require('configue');
 
@@ -102,23 +99,6 @@ container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope(
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
-container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope();
-
-// TypeORM repositories
-/**
- * Bindings for repositories are a little different.  We have a convenience method to create
- * TypeORM repositories from an entity class - calling createRepository with the "Car" entity
- * creates an entity that brokers database calls to the "Car" table.
- * 
- * This syntax simply lets us pass a function that creates an instance of a dependency in cases 
- * where Inversify doesn't have enough information to create the instance itself.
- */
-container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(
-  () => createRepository<Car>(Car)
-).inSingletonScope()
-
-// Services
-container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

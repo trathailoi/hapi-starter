@@ -1,7 +1,6 @@
 import 'automapper-ts';
 import { injectable } from 'inversify';
-import { Car } from '../entity/car';
-import { CarModel } from '../model/car';
+
 /**
  * Wrapper around automapper, for dependency injection convenience (static/global variables bad)
  */
@@ -42,11 +41,7 @@ class Mapper {
     }
 
     constructor() {
-        this.createDefaultBiDiMap(
-            CarModel, 
-            Car, 
-            ['id', 'make', 'model', 'color', 'entryNumber']
-        );
+        // Add code here to configure mappings
     }
 
     public map(source: any, destination: any, value: any): any {
