@@ -42,6 +42,6 @@ I've put together a walkthrough of each of the aspects of the architecture and e
 1. [What is a DTO/controller/entity/service/etc and why do we use them?](what-is-this.md)
 1. [How do I work with entities and services (database objects)?](working-with-entities-services.md)
 1. [How do I work with models (data transfer objects), and how do I convert between models and entities?](working-with-models.md)
-1. [How do I add a new HAPI route?](add-hapi-route.md)
 1. [How do I add a new controller?](add-controller.md)
+1. [How do I add a new HAPI route?](add-hapi-route.md)
 
