@@ -19,7 +19,8 @@ async function initializeDatabase(config: any) {
         password: config.get('database.password'),
         database: config.get('database.database', 'sevenmiles'),
         entities: entities,
-        synchronize: config.get('database.synchronize', true)
+        synchronize: config.get('database.synchronize', true),
+        logging: config.get('database.logging', false)
     });
 }
 

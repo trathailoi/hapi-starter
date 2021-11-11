@@ -8,7 +8,8 @@ class CrudService<T> {
     constructor(protected repository: Repository<T>, protected logger: Logger) { }
 
     public async findById(id: number): Promise<T | undefined> {
-        return this.repository.findOne(id);
+        const result = await this.repository.findOne(id);
+        return result;
     }
 
     public async findAll(): Promise<Array<T>> {
@@ -17,11 +18,13 @@ class CrudService<T> {
     }
 
     public async save(entity: T): Promise<T | undefined> {
-        return this.repository.save(entity);
+        const result = await this.repository.save(entity);
+        return result;
     }
 
     public async delete(id: number): Promise<DeleteResult> {
-        return this.repository.delete(id);
+        const result = await this.repository.delete(id);
+        return result;
     }
 }
 

@@ -1,0 +1,173 @@
+basePath: /
+info:
+  title: Cars API
+  version: '1.0'
+paths:
+  /cars/:
+    get:
+      operationId: getAllCars
+      tags:
+        - Car
+      description: Get all cars
+      summary: Get all cars
+      responses:
+        '200':
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/Car'
+            type: array
+      produces:
+        - application/json
+      consumes:
+        - application/json
+    post:
+      operationId: addCar
+      tags:
+        - Car
+      description: Adds a car
+      summary: Adds a car
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Car'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+        
+  /cars/make/{make}:
+    get:
+      operationId: getCarsByMake
+      tags:
+        - Car
+      description: Get all cars of a specific make
+      summary: Get all cars of a specific make
+      parameters:
+        - name: make
+          in: path
+          type: string
+          description: Make to query for
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/Car'
+            type: array
+      produces:
+        - application/json
+      consumes:
+        - application/json
+
+  /cars/{id}:
+    get:
+      operationId: getCarById
+      tags:
+        - Car
+      description: Get an car
+      summary: Get an car
+      parameters:
+        - name: id
+          in: path
+          type: number
+          description: Car ID to retrieve
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Car'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+    put:
+      operationId: updateCar
+      tags: 
+        - Car
+      description: Updates a car
+      summary: Updates a car
+      parameters:
+        - name: id
+          in: path
+          type: number
+          description: Car ID to retrieve
+          required: true
+        - name: car
+          in: body
+          description: Car data to update.
+          schema:
+            $ref: '#/definitions/Car'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Car'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+    delete:
+      operationId: deleteCar
+      tags:
+        - Car
+      description: Delete a car
+      summary: Delete a car
+      parameters:
+        - name: id
+          in: path
+          type: number
+          description: Car ID to delete
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Car'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+        
+definitions:
+  Car:
+    type: object
+    properties:
+      id:
+        type: number
+        description: Id of Car
+        example:
+          - '123456789'
+      make:
+        type: string
+        description: Make of the car
+        example:
+          - 'Porsche'
+      model:
+        type: string
+        description: Model of the car
+        example:
+          - '911 RSR'
+      color:
+        type: string
+        description: Color
+        example:
+          - 'red'
+          - 'black'
+      entryNumber:
+        type: number
+        description: Entry (car) number
+        example:
+          - '912'
+    required:
+      - make
+      - model
+      - color
+      - entryNumber
+    description: Represents a race car
+swagger: '2.0'
+externalDocs:
+  url: http://localhost:3000/api-docs/swagger

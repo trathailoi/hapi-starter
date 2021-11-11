@@ -9,6 +9,7 @@ import { Car } from '../entity/car';
 import * as Winston from 'winston';
 import { CarService } from '../service/carservice';
 import { CarController } from '../api/car-controller';
+import { Mapper } from '../helpers/mapper';
 const Configue = require('configue');
 
 /**
@@ -95,6 +96,7 @@ container.bind<Logger>(TYPES.Logger).toDynamicValue(
  * part of the declaration tells Inversify that we want everyone who needs an ApiServer to
  * get the same instance of ApiServer.
  */
+container.bind<Mapper>(TYPES.Mapper).to(Mapper).inSingletonScope();
 container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
 container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope();
 

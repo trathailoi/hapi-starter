@@ -5,6 +5,7 @@
 const TYPES = {
     Configue: Symbol.for('Configue'),
     Logger: Symbol.for('Logger'),
+    Mapper: Symbol.for('Mapper'),
     ApiServer: Symbol.for('ApiServer'),
     Controllers: Symbol.for('Controllers'),
     HelloWorldController: Symbol.for('HelloWorldController'),

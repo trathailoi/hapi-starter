@@ -9,6 +9,7 @@ database:
   password: Passw0rd!
   database: sevenmiles
   synchronize: true
+  logging: true
 
 logging:
   level: debug
