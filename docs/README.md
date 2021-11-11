@@ -35,9 +35,13 @@ Once you have your dependencies installed, follow these steps:
 
 The starter code is pretty well documented so please do look at the code as you follow along with the additional documentation in the next section.
 
-## Additional Documentation
+## Tutorial
 
-- [What is a DTO/controller/entity/service/etc and why do we use them?](what-is-this.md)
-- [How do I add a new HAPI route?](add-hapi-route.md)
-- [How do I add a new controller?](add-controller.md)
-- [How do I work with entities and services (database objects)?](working-with-entities-services.md)
+I've put together a walkthrough of each of the aspects of the architecture and explained what they are, how they're used, and how to create them.
+
+1. [What is a DTO/controller/entity/service/etc and why do we use them?](what-is-this.md)
+1. [How do I work with entities and services (database objects)?](working-with-entities-services.md)
+1. [How do I work with models (data transfer objects), and how do I convert between models and entities?](working-with-models.md)
+1. [How do I add a new HAPI route?](add-hapi-route.md)
+1. [How do I add a new controller?](add-controller.md)
+
