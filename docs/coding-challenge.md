@@ -64,3 +64,5 @@ You should look for opportunities to break up the data objects into multiple sma
 ## What if I need help?
 
 Send me an email!  YOu can also ask one of your teammates. Although I want everyone to try this exercise on their own so that you all get to be familiar with the architecture, please do lean on each other for help!
+
+Remember, there's no grade or wrong answers here.  This is just an exercise to get you up to speed on the new approach we're going to be using going forward.  Have fun!
