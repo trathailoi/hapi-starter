@@ -1,4 +1,3 @@
-import { Car } from '../entity/car';
 import { createConnection } from 'typeorm';
 
 
@@ -8,8 +7,8 @@ import { createConnection } from 'typeorm';
  */
 // TODO: Externalize connection properties
 async function initializeDatabase(config: any) {
-    //const entities = [path.normalize(__dirname + '/../entity/*.{ts,js}')];
-    const entities = [Car];
+    //Add entities here
+    const entities: Array<any> = [];
     
     await createConnection({
         type: config.get('database.type', 'postgres'),
