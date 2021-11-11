@@ -52,3 +52,7 @@ In order to run the starter, you'll need:
 - PostgreSQL (there's a script to run a Docker-ized PostgreSQL instance in the database folder).
 
 Check out the project and run ```npm i``` to install dependencies.  You can build and run the code using ```npm run nodemon:build``` which will compile all the TypeScript and run the application using nodemon.  Nodemon will watch for changes in .ts files and rebuild/rerun the application as you code.  You can navigate to (http://localhost:8080/api/helloworld) to verify that the API is working.
+
+## The Challenge!
+
+I've prepared a coding challenge for the team.  Everyone should try this exercise individually.  Fork the repository, and then check out the [coding challenge documentation](coding-challenge.md) for your tasks!
