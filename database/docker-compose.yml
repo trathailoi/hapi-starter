@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: sevenmiles
+      POSTGRES_PASSWORD: Passw0rd!
+      # POSTGRES_DB: postgres
+    # volumes:
+    #   - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
