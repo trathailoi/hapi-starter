@@ -9,6 +9,10 @@ import * as Winston from 'winston';
 import { Mapper } from '../helpers/mapper';
 const Configue = require('configue');
 
+import { Address } from '../entity/Address';
+import { AddressService } from '../service/addressservice';
+import { AddressController } from '../api/address-controller';
+
 /**
  * This file contains all of the Inversify configuration code.  This is the only
  * place that we should have hard dependencies on any controllers, services, and
@@ -97,8 +101,15 @@ container.bind<Mapper>(TYPES.Mapper).to(Mapper).inSingletonScope();
 container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
 container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope();
 
+// Repositories
+container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
+
+// Services
+container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
+
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
+container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

@@ -9,6 +9,9 @@ const TYPES = {
     ApiServer: Symbol.for('ApiServer'),
     Controllers: Symbol.for('Controllers'),
     HelloWorldController: Symbol.for('HelloWorldController'),
+    AddressController: Symbol.for('AddressController'),
+    AddressRepository: Symbol.for('AddressRepository'),
+    AddressService: Symbol.for('AddressService'),
 }
 
 export { TYPES }
