@@ -1,0 +1,1434 @@
+---
+openapi: 3.0.0
+info:
+  title: The race cars
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/annguyen9w/hapi-starter/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://localhost:8080/api
+paths:
+  /classes:
+    get:
+      tags:
+      - Class
+      summary: Get all class
+      operationId: getClasses
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+              example:
+              - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                name: LM P1
+              - id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                name: LM P2
+              - id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                name: LM GTE Pro
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - Class
+      summary: Update an existing class
+      operationId: updateClass
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Class'
+            example:
+              id: 40e6215d-b5c6-4896-987c-f30f3678f608
+              name: LM P1
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Class not found
+    post:
+      tags:
+      - Class
+      summary: Add a new class to the store
+      operationId: addClass
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Class'
+            example:
+              name: LM GTE AM
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /classes/{classId}:
+    get:
+      tags:
+      - Class
+      summary: Find class by ID
+      operationId: getClassById
+      parameters:
+      - name: classId
+        in: path
+        description: ID of class to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+              example:
+                id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                name: LM GTE Pro
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Class not found
+    delete:
+      tags:
+      - Class
+      summary: Delete a class
+      operationId: deleteClass
+      parameters:
+      - name: classId
+        in: path
+        description: Class id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Class not found
+  /addresses:
+    get:
+      tags:
+      - Address
+      summary: Get all address
+      operationId: getAddresses
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+              example:
+              - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                street: 4858 Milford Street
+                city: Concord
+                state: New Hampshire
+                zipcode: "03301"
+                country: US
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - Address
+      summary: Update an existing address
+      operationId: updateAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+            example:
+              id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              street: 4858 Milford Street
+              city: Concord
+              state: New Hampshire
+              zipcode: "03301"
+              country: US
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Address not found
+    post:
+      tags:
+      - Address
+      summary: Add a new address to the store
+      operationId: addAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+            example:
+              street: 4858 Milford Street
+              city: Concord
+              state: New Hampshire
+              zipcode: "03301"
+              country: US
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /addresses/{addressId}:
+    get:
+      tags:
+      - Address
+      summary: Find address by ID
+      operationId: getAddressById
+      parameters:
+      - name: addressId
+        in: path
+        description: ID of address to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+              example:
+                id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                street: 4858 Milford Street
+                city: Concord
+                state: New Hampshire
+                zipcode: "03301"
+                country: US
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Address not found
+    delete:
+      tags:
+      - Address
+      summary: Delete a address
+      operationId: deleteAddress
+      parameters:
+      - name: addressId
+        in: path
+        description: Address id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Address not found
+  /drivers:
+    get:
+      tags:
+      - Driver
+      summary: Get all driver
+      operationId: getDrivers
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+              example:
+              - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                firstName: Nguyen
+                lastName: An
+                nationality: Viet Nam
+                homeAddress:
+                  id": 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  street: 163/12 Giap Van Cuong
+                  city: Nha Trang
+                  state: Khanh Hoa
+                  zipcode: "65000"
+                  country: Viet Nam
+                managementAddress:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  street: A1 - Vinh Diem Trung
+                  city: Nha Trang
+                  state: Khanh Hoa
+                  zipcode: "65000"
+                  country: Viet Nam
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - Driver
+      summary: Update an existing driver
+      operationId: updateDriver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverRequestBody'
+            example:
+              id: 40e6215d-b5c6-4896-987c-f30f3678f608
+              firstName: Nguyen
+              lastName: An
+              nationality: Viet Nam
+              homeAddress: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              managementAddress: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Driver not found
+    post:
+      tags:
+      - Driver
+      summary: Add a new driver to the store
+      operationId: addDriver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverRequestBody'
+            example:
+              firstName: Nguyen
+              lastName: An
+              nationality: Viet Nam
+              homeAddress: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              managementAddress: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /drivers/{driverId}:
+    get:
+      tags:
+      - Driver
+      summary: Find driver by ID
+      operationId: getDriverById
+      parameters:
+      - name: driverId
+        in: path
+        description: ID of driver to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+              example:
+                id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                firstName: Nguyen
+                lastName: An
+                nationality: Viet Nam
+                homeAddress:
+                  id": 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  street: 163/12 Giap Van Cuong
+                  city: Nha Trang
+                  state: Khanh Hoa
+                  zipcode: "65000"
+                  country: Viet Nam
+                managementAddress:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  street: A1 - Vinh Diem Trung
+                  city: Nha Trang
+                  state: Khanh Hoa
+                  zipcode: "65000"
+                  country: Viet Nam
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Driver not found
+    delete:
+      tags:
+      - Driver
+      summary: Delete a driver
+      operationId: deleteDriver
+      parameters:
+      - name: driverId
+        in: path
+        description: Driver id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Driver not found
+  /teams:
+    get:
+      tags:
+      - Team
+      summary: Get all team
+      operationId: getTeams
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+              example:
+              - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                name: T1
+                nationality: USA
+                businessAddress:
+                  id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  street: 4157 Peck Court
+                  city: Irvine
+                  state: California
+                  zipcode: "92714"
+                  country: US
+                cars:
+                - id: 40e6215d-b5c6-4896-987c-f30f3678f609
+                  make: Ferrari
+                  model: 488 GTE-LM
+                  class:
+                    id: 6ecd8c99-4036-403d-bf84-cf8400f67837
+                    name: GTE-Pro
+                  team: 40e6215d-b5c6-4896-987c-f30f3678f608
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - Team
+      summary: Update an existing team
+      operationId: updateTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamRequestBody'
+            example:
+              id: 40e6215d-b5c6-4896-987c-f30f3678f608
+              name: T1
+              nationality: USA
+              businessAddress: 6ecd8c99-4036-403d-bf84-cf8400f67836
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Team not found
+    post:
+      tags:
+      - Team
+      summary: Add a new team to the store
+      operationId: addTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamRequestBody'
+            example:
+              name: T1
+              nationality: USA
+              businessAddress: 6ecd8c99-4036-403d-bf84-cf8400f67836
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /teams/{teamId}:
+    get:
+      tags:
+      - Team
+      summary: Find team by ID
+      operationId: getTeamById
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              example:
+                id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                name: T1
+                nationality: USA
+                businessAddress:
+                  id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  street: 4157 Peck Court
+                  city: Irvine
+                  state: California
+                  zipcode: "92714"
+                  country: US
+                cars:
+                - id: 40e6215d-b5c6-4896-987c-f30f3678f609
+                  make: Ferrari
+                  model: 488 GTE-LM
+                  class:
+                    id: 6ecd8c99-4036-403d-bf84-cf8400f67837
+                    name: GTE-Pro
+                  team: 40e6215d-b5c6-4896-987c-f30f3678f608
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Team not found
+    delete:
+      tags:
+      - Team
+      summary: Delete a team
+      operationId: deleteTeam
+      parameters:
+      - name: teamId
+        in: path
+        description: Team id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Team not found
+  /cars:
+    get:
+      tags:
+      - Car
+      summary: Get all car
+      operationId: getCars
+      parameters:
+      - name: make
+        in: query
+        description: Make values that need to be considered for filter
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Ferrari
+      - name: model
+        in: query
+        description: Model values that need to be considered for filter
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: 488 GTE-LM
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+              example:
+              - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                make: Ferrari
+                model: 488 GTE-LM
+                class:
+                  id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  name: GTE-Pro
+                team:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  name: T1
+                  nationality: USA
+                  businessAddress:
+                    id: 0e37df36-f698-11e6-8dd4-cb9ced3df976
+                    street: 4954 Patterson Street
+                    city: Houston
+                    state: Texas
+                    zipcode: "77063"
+                    country: US
+                  cars:
+                  - 40e6215d-b5c6-4896-987c-f30f3678f608
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - Car
+      summary: Update an existing car
+      operationId: updateCar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarRequestBody'
+            example:
+              id: 40e6215d-b5c6-4896-987c-f30f3678f608
+              make: Ferrari
+              model: 488 GTE-LM
+              class: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              team: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Car not found
+    post:
+      tags:
+      - Car
+      summary: Add a new car to the store
+      operationId: addCar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarRequestBody'
+            example:
+              make: Ferrari
+              model: 488 GTE-LM
+              class: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              team: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /cars/{carId}:
+    get:
+      tags:
+      - Car
+      summary: Find car by ID
+      operationId: getCarById
+      parameters:
+      - name: carId
+        in: path
+        description: ID of car to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+              example:
+                id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                make: Ferrari
+                model: 488 GTE-LM
+                class:
+                  id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  name: GTE-Pro
+                team:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  name: T1
+                  nationality: USA
+                  businessAddress:
+                    id: 0e37df36-f698-11e6-8dd4-cb9ced3df976
+                    street: 4954 Patterson Street
+                    city: Houston
+                    state: Texas
+                    zipcode: "77063"
+                    country: US
+                  cars:
+                  - 40e6215d-b5c6-4896-987c-f30f3678f608
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Car not found
+    delete:
+      tags:
+      - Car
+      summary: Delete a car
+      operationId: deleteCar
+      parameters:
+      - name: carId
+        in: path
+        description: Car id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Car not found
+  /races:
+    get:
+      tags:
+      - Race
+      summary: Get all race
+      operationId: getRaces
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Race'
+              example:
+              - id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                name: LE MANS
+                cars:
+                - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                  race:
+                    id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                    name: LE MANS
+                    cars:
+                    - 40e6215d-b5c6-4896-987c-f30f3678f608
+                  car:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                    make: Ferrari
+                    model: 488 GTE-LM
+                    class:
+                      id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                      name: GTE-Pro
+                    team:
+                      id: 6ecd8c99-403d-bf84-4036-cf8400f67836
+                      name: T1
+                      nationality: USA
+                      businessAddress:
+                        id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        street: 4157 Peck Court
+                        city: Irvine
+                        state: California
+                        zipcode: 92714
+                        country: US
+                      cars:
+                      - 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  driver:
+                    id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                    firstName: Nguyen
+                    lastName: An
+                    nationality: Viet Nam
+                    homeAddress:
+                      id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                      street: 163/12 Giap Van Cuong
+                      city: Nha Trang
+                      state: Khanh Hoa
+                      zipcode: 65000
+                      country: Viet Nam
+                    managementAddress:
+                      id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                      street: A1 - Vinh Diem Trung
+                      city: Nha Trang
+                      state: Khanh Hoa
+                      zipcode: 65000
+                      country: Viet Nam
+                  class:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                    name: GTE-Pro
+                  raceNumber: 34
+                  startPosition: 1
+                  finishPosition: 16
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - Race
+      summary: Update an existing race
+      operationId: updateRace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaceRequestBody'
+            example:
+              id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              name: LE MANS
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Race not found
+    post:
+      tags:
+      - Race
+      summary: Add a new race to the store
+      operationId: addRace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaceRequestBody'
+            example:
+              name: LE MANS
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /races/{raceId}:
+    get:
+      tags:
+      - Race
+      summary: Find race by ID
+      operationId: getRaceById
+      parameters:
+      - name: raceId
+        in: path
+        description: ID of race to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 6ecd8c99-4036-403d-bf84-cf8400f67836
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Race'
+              example:
+                id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                name: LE MANS
+                cars:
+                - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                  race:
+                    id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                    name: LE MANS
+                    cars:
+                    - 40e6215d-b5c6-4896-987c-f30f3678f608
+                  car:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                    make: Ferrari
+                    model: 488 GTE-LM
+                    class:
+                      id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                      name: GTE-Pro
+                    team:
+                      id: 6ecd8c99-403d-bf84-4036-cf8400f67836
+                      name: T1
+                      nationality: USA
+                      businessAddress:
+                        id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        street: 4157 Peck Court
+                        city: Irvine
+                        state: California
+                        zipcode: 92714
+                        country: US
+                      cars:
+                      - 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  driver:
+                    id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                    firstName: Nguyen
+                    lastName: An
+                    nationality: Viet Nam
+                    homeAddress:
+                      id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                      street: 163/12 Giap Van Cuong
+                      city: Nha Trang
+                      state: Khanh Hoa
+                      zipcode: 65000
+                      country: Viet Nam
+                    managementAddress:
+                      id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                      street: A1 - Vinh Diem Trung
+                      city: Nha Trang
+                      state: Khanh Hoa
+                      zipcode: 65000
+                      country: Viet Nam
+                  class:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                    name: GTE-Pro
+                  raceNumber: 34
+                  startPosition: 1
+                  finishPosition: 16
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Race not found
+    delete:
+      tags:
+      - Race
+      summary: Delete a race
+      operationId: deleteRace
+      parameters:
+      - name: raceId
+        in: path
+        description: Race id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 6ecd8c99-4036-403d-bf84-cf8400f67836
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Race not found
+  /race-cars:
+    get:
+      tags:
+      - RaceCar
+      summary: Get all race_car
+      operationId: getRaceCar
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RaceCar'
+              example:
+              - id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                race:
+                  id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  name: LE MANS
+                  cars:
+                  - 40e6215d-b5c6-4896-987c-f30f3678f608
+                car:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  make: Ferrari
+                  model: 488 GTE-LM
+                  class:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                    name: GTE-Pro
+                  team:
+                    id: 6ecd8c99-403d-bf84-4036-cf8400f67836
+                    name: T1
+                    nationality: USA
+                    businessAddress:
+                      id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      street: 4157 Peck Court
+                      city: Irvine
+                      state: California
+                      zipcode: "92714"
+                      country: US
+                    cars:
+                    - 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                driver:
+                  id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                  firstName: Nguyen
+                  lastName: An
+                  nationality: Viet Nam
+                  homeAddress:
+                    id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                    street: 163/12 Giap Van Cuong
+                    city: Nha Trang
+                    state: Khanh Hoa
+                    zipcode: "65000"
+                    country: Viet Nam
+                  managementAddress:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                    street: A1 - Vinh Diem Trung
+                    city: Nha Trang
+                    state: Khanh Hoa
+                    zipcode: "65000"
+                    country: Viet Nam
+                class:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                  name: GTE-Pro
+                raceNumber: 34
+                startPosition: 1
+                finishPosition: 16
+        "400":
+          description: Invalid input
+    put:
+      tags:
+      - RaceCar
+      summary: Update an existing race_car
+      operationId: updateRaceCar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaceCarRequestBody'
+            example:
+              id: 40e6215d-b5c6-4896-987c-f30f3678f608
+              race: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              car: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+              driver: 40e6215d-b5c6-4896-987c-f30f3678f608
+              class: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+              raceNumber: 34
+              startPosition: 1
+              finishPosition: 16
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: RaceCar not found
+    post:
+      tags:
+      - RaceCar
+      summary: Add a new race_car to the store
+      operationId: addRaceCar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaceCarRequestBody'
+            example:
+              race: 6ecd8c99-4036-403d-bf84-cf8400f67836
+              car: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+              driver: 40e6215d-b5c6-4896-987c-f30f3678f608
+              class: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+              raceNumber: 34
+              startPosition: 1
+              finishPosition: 16
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+  /race-cars/{raceCarId}:
+    get:
+      tags:
+      - RaceCar
+      summary: Find race_car by ID
+      operationId: getRaceCarById
+      parameters:
+      - name: raceCarId
+        in: path
+        description: ID of race_car to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaceCar'
+              example:
+                id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                race:
+                  id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                  name: LE MANS
+                  cars:
+                  - 40e6215d-b5c6-4896-987c-f30f3678f608
+                car:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                  make: Ferrari
+                  model: 488 GTE-LM
+                  class:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                    name: GTE-Pro
+                  team:
+                    id: 6ecd8c99-403d-bf84-4036-cf8400f67836
+                    name: T1
+                    nationality: USA
+                    businessAddress:
+                      id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      street: 4157 Peck Court
+                      city: Irvine
+                      state: California
+                      zipcode: "92714"
+                      country: US
+                    cars:
+                    - 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                driver:
+                  id: 40e6215d-b5c6-4896-987c-f30f3678f608
+                  firstName: Nguyen
+                  lastName: An
+                  nationality: Viet Nam
+                  homeAddress:
+                    id: 6ecd8c99-4036-403d-bf84-cf8400f67836
+                    street: 163/12 Giap Van Cuong
+                    city: Nha Trang
+                    state: Khanh Hoa
+                    zipcode: "65000"
+                    country: Viet Nam
+                  managementAddress:
+                    id: 3f333df6-90a4-4fda-8dd3-9485d27cee36
+                    street: A1 - Vinh Diem Trung
+                    city: Nha Trang
+                    state: Khanh Hoa
+                    zipcode: "65000"
+                    country: Viet Nam
+                class:
+                  id: 3f333df6-90a4-4fda-8dd3-9485d27cee34
+                  name: GTE-Pro
+                raceNumber: 34
+                startPosition: 1
+                finishPosition: 16
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: RaceCar not found
+    delete:
+      tags:
+      - RaceCar
+      summary: Delete a race_car
+      operationId: deleteRaceCar
+      parameters:
+      - name: raceCarId
+        in: path
+        description: Race_car id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 40e6215d-b5c6-4896-987c-f30f3678f608
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: RaceCar not found
+components:
+  schemas:
+    Class:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+      xml:
+        name: Class
+    Address:
+      required:
+      - city
+      - country
+      - state
+      - zipcode
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        street:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        country:
+          type: string
+      xml:
+        name: Address
+    Driver:
+      required:
+      - firstName
+      - lastName
+      - nationality
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nationality:
+          type: string
+          enum:
+          - USA
+          - Viet Nam
+        homeAddress:
+          $ref: '#/components/schemas/Address'
+        managementAddress:
+          $ref: '#/components/schemas/Address'
+      xml:
+        name: Driver
+    DriverRequestBody:
+      required:
+      - firstName
+      - lastName
+      - nationality
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nationality:
+          type: string
+          enum:
+          - USA
+          - Viet Nam
+        homeAddress:
+          type: string
+          format: uuid
+        managementAddress:
+          type: string
+          format: uuid
+    Team:
+      required:
+      - name
+      - nationality
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nationality:
+          type: string
+          enum:
+          - USA
+          - Viet Nam
+        businessAddress:
+          $ref: '#/components/schemas/Address'
+        cars:
+          type: array
+          items:
+            $ref: '#/components/schemas/Car'
+      xml:
+        name: Team
+    TeamRequestBody:
+      required:
+      - name
+      - nationality
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nationality:
+          type: string
+          enum:
+          - USA
+          - Viet Nam
+        businessAddress:
+          type: string
+          format: uuid
+    Car:
+      required:
+      - class
+      - make
+      - model
+      - team
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        make:
+          type: string
+        model:
+          type: string
+        class:
+          $ref: '#/components/schemas/Class'
+        team:
+          $ref: '#/components/schemas/Team'
+      xml:
+        name: Car
+    CarRequestBody:
+      required:
+      - class
+      - make
+      - model
+      - team
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        make:
+          type: string
+        model:
+          type: string
+        class:
+          type: string
+          format: uuid
+        team:
+          type: string
+          format: uuid
+    Race:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cars:
+          type: array
+          items:
+            $ref: '#/components/schemas/RaceCar'
+      xml:
+        name: Race
+    RaceRequestBody:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    RaceCar:
+      required:
+      - car
+      - class
+      - driver
+      - race
+      - raceNumber
+      - startPosition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        race:
+          $ref: '#/components/schemas/Race'
+        car:
+          $ref: '#/components/schemas/Car'
+        driver:
+          $ref: '#/components/schemas/Driver'
+        class:
+          $ref: '#/components/schemas/Class'
+        raceNumber:
+          type: string
+        startPosition:
+          minimum: 1
+          type: integer
+        finishPosition:
+          minimum: 1
+          type: integer
+      xml:
+        name: RaceCar
+    RaceCarRequestBody:
+      required:
+      - car
+      - class
+      - driver
+      - race
+      - raceNumber
+      - startPosition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        race:
+          type: string
+          format: uuid
+        car:
+          type: string
+          format: uuid
+        driver:
+          type: string
+          format: uuid
+        class:
+          type: string
+          format: uuid
+        raceNumber:
+          type: string
+        startPosition:
+          minimum: 1
+          type: integer
+        finishPosition:
+          minimum: 1
+          type: integer
