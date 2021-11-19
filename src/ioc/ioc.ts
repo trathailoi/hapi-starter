@@ -10,8 +10,20 @@ import { Mapper } from '../helpers/mapper';
 const Configue = require('configue');
 
 import { Address } from '../entity/Address';
-import { AddressService } from '../service/addressservice';
-import { AddressController } from '../api/address-controller';
+import { AddressService } from '../service/address';
+import { AddressController } from '../api/address.controller';
+
+import { Class } from '../entity/Class';
+import { ClassService } from '../service/class';
+import { ClassController } from '../api/class.controller';
+
+import { Team } from '../entity/Team';
+import { TeamService } from '../service/Team';
+import { TeamController } from '../api/team.controller';
+
+import { Driver } from '../entity/Driver';
+import { DriverService } from '../service/Driver';
+import { DriverController } from '../api/driver.controller';
 
 /**
  * This file contains all of the Inversify configuration code.  This is the only
@@ -103,13 +115,22 @@ container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope(
 
 // Repositories
 container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
+container.bind<Repository<Class>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
+container.bind<Repository<Team>>(TYPES.TeamRepository).toDynamicValue(() => createRepository<Team>(Team)).inSingletonScope()
+container.bind<Repository<Driver>>(TYPES.DriverRepository).toDynamicValue(() => createRepository<Driver>(Driver)).inSingletonScope()
 
 // Services
 container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
+container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope();
+container.bind<TeamService>(TYPES.TeamService).to(TeamService).inSingletonScope();
+container.bind<DriverService>(TYPES.DriverService).to(DriverService).inSingletonScope();
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
 container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope();
+container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope();
+container.bind<TeamController>(TYPES.TeamController).to(TeamController).inSingletonScope();
+container.bind<DriverController>(TYPES.DriverController).to(DriverController).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

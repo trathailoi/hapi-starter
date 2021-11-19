@@ -9,9 +9,22 @@ const TYPES = {
     ApiServer: Symbol.for('ApiServer'),
     Controllers: Symbol.for('Controllers'),
     HelloWorldController: Symbol.for('HelloWorldController'),
+
     AddressController: Symbol.for('AddressController'),
     AddressRepository: Symbol.for('AddressRepository'),
     AddressService: Symbol.for('AddressService'),
+
+    ClassController: Symbol.for('ClassController'),
+    ClassRepository: Symbol.for('ClassRepository'),
+    ClassService: Symbol.for('ClassService'),
+
+    TeamController: Symbol.for('TeamController'),
+    TeamRepository: Symbol.for('TeamRepository'),
+    TeamService: Symbol.for('TeamService'),
+
+    DriverController: Symbol.for('DriverController'),
+    DriverRepository: Symbol.for('DriverRepository'),
+    DriverService: Symbol.for('DriverService'),
 }
 
 export { TYPES }
