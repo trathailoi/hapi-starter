@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Common parts of the race cars API.
+  version: "1.0.0"
+  title: Common parts
+  contact:
+    email: loi.tra@9thwonder.com
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/loi.tra/my-first-API/1.0.0
+  - description: Please run the app locally on port 8080
+    url: 'http://localhost:8080/api'
+
+components:
+  schemas:
+    uuidFormat: # Can be referenced as '#/components/schemas/uuidFormat'
+      type: string
+      format: uuid
+      example: a81bc81b-dead-4e5d-abff-90865d1e13b1
+
+    Error: # Can be referenced as '#/components/schemas/Error'
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+
+  responses:
+    200Success: # Can be referenced as '#/components/responses/200'
+      description: Successful operation
+    404NotFound: # Can be referenced as '#/components/responses/404NotFound'
+      description: The specified resource was not found.
+    400BadRequest: # Can be referenced as '#/components/responses/400BadRequest'
+      description: Invalid input supplied.
+    GenericError: # Can be referenced as '#/components/responses/GenericError'
+      description: An error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    # GenericError:
+    #   $ref: '../template-api.yaml#/components/responses/GenericError'
+    #   # Can now use '#/components/responses/GenericError' instead
+

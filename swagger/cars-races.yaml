@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  description: |
+    A more complex version of the race cars API.
+  version: "1.0.0"
+  title: Cars-Races Management
+  contact:
+    email: loi.tra@9thwonder.com
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/loi.tra/my-first-API/1.0.0
+  - description: Please run the app locally on port 8080
+    url: 'http://localhost:8080/api'
+tags:
+  - name: car-race
+    description: Cars-Races
+
+paths:
+  /cars-races:
+    post:
+      tags:
+        - car-race
+      summary: Add a new car-race to the system
+      operationId: addCarRace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarRaceFormData'
+        description: form data object that contains fields to update a specific car-race in the system
+      responses:
+        default:
+          description: successful operation
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarRaceRespone'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    get:
+      tags:
+        - car-race
+      summary: Finds Cars-Races
+      description: Finds all the cars-races
+      operationId: findCars-Races
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarRaceRespone'
+  '/cars-races/{carRaceId}':
+    get:
+      tags:
+        - car-race
+      summary: Find car-race by ID
+      description: Returns a single car-race
+      operationId: getCarRaceById
+      parameters:
+        - name: carRaceId
+          in: path
+          description: ID of car-race to return
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarRaceRespone'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    patch:
+      tags:
+        - car-race
+      summary: Updates an existing car-race by ID
+      operationId: updateCarRace
+      parameters:
+        - name: carRaceId
+          in: path
+          description: ID of the car-race that needs to be updated
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarRaceFormData'
+        description: form data object that contains fields to update a specific car-race in the system
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarRaceRespone'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    delete:
+      tags:
+        - car-race
+      summary: Deletes a car-race by ID
+      operationId: deleteCarRace
+      parameters:
+        - name: carRaceId
+          in: path
+          description: CarRace id to delete
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          $ref: './common.yaml#/components/responses/200Success'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+
+components:
+  schemas:
+    CarRaceFormData: # Can be referenced as '#/components/schemas/CarRaceFormData'
+      type: object
+      required:
+        - car
+        - carNumber
+        - race
+        - driver
+        - class
+        - startPosition
+      properties:
+        car:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        carNumber:
+          type: number
+          format: int32
+          example: 1
+        race:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        driver:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        class:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        startPosition:
+          type: number
+          format: int32
+          example: 15
+        isFinished:
+          type: boolean
+          example: true
+        finishPosition:
+          type: number
+          format: int32
+          example: 3
+    CarRace: # Can be referenced as '#/components/schemas/CarRace'
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: './common.yaml#/components/schemas/uuidFormat'
+        - $ref: '#/components/schemas/CarRaceFormData'
+    CarRaceRespone: # Can be referenced as '#/components/schemas/CarRaceRespone'
+      type: object
+      properties:
+        id:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        car:
+          $ref: './car.yaml#/components/schemas/Car'
+        carNumber:
+          type: number
+          format: int32
+          example: 1
+        race:
+          $ref: './race.yaml#/components/schemas/Race'
+        driver:
+          $ref: './driver.yaml#/components/schemas/Driver'
+        class:
+          $ref: './class.yaml#/components/schemas/Class'
+        startPosition:
+          type: number
+          format: int32
+          example: 15
+        isFinished:
+          type: boolean
+          example: true
+        finishPosition:
+          type: number
+          format: int32
+          example: 3
+

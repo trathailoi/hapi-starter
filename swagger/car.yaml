@@ -1,0 +1,220 @@
+openapi: 3.0.0
+info:
+  description: |
+    A more complex version of the race cars API.
+  version: "1.0.0"
+  title: Cars Management
+  contact:
+    email: loi.tra@9thwonder.com
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/loi.tra/my-first-API/1.0.0
+  - description: Please run the app locally on port 8080
+    url: 'http://localhost:8080/api'
+tags:
+  - name: car
+    description: Cars
+
+paths:
+  /cars:
+    post:
+      tags:
+        - car
+      summary: Add a new car to the system
+      operationId: addCar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarFormData'
+        description: form data object that contains fields to update a specific car in the system
+      responses:
+        default:
+          description: successful operation
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    get:
+      tags:
+        - car
+      summary: Finds Cars
+      description: Finds all the cars
+      operationId: findCars
+      parameters:
+        - name: make
+          in: query
+          description: filter the cars returned by the make
+          schema:
+            type: string
+          examples:
+            example1:
+              value: "Ferrari"
+              summary: "Example #1"
+            example2:
+              value: "McLaren"
+              summary: "Example #2"
+            example3:
+              value: "Renault"
+              summary: "Example #3"
+            example4:
+              value: "Mercedes-Benz"
+              summary: "Example #4"
+            example5:
+              value: "Honda"
+              summary: "Example #5"
+        - name: model
+          in: query
+          description: filter the cars returned by the model
+          schema:
+            type: string
+          examples:
+            example1:
+              value: "Ford Mustang"
+              summary: "Example #1"
+            example2:
+              value: "Honda NSX"
+              summary: "Example #2"
+            example3:
+              value: "Toyota 86"
+              summary: "Example #3"
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarResponse'
+  '/cars/{carId}':
+    get:
+      tags:
+        - car
+      summary: Find car by ID
+      description: Returns a single car
+      operationId: getCarById
+      parameters:
+        - name: carId
+          in: path
+          description: ID of car to return
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    patch:
+      tags:
+        - car
+      summary: Updates an existing car by ID
+      operationId: updateCar
+      parameters:
+        - name: carId
+          in: path
+          description: ID of the car that needs to be updated
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarFormData'
+        description: form data object that contains fields to update a specific car in the system
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    delete:
+      tags:
+        - car
+      summary: Deletes a car by ID
+      operationId: deleteCar
+      parameters:
+        - name: carId
+          in: path
+          description: Car id to delete
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          $ref: './common.yaml#/components/responses/200Success'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+
+components:
+  schemas:
+    CarFormData: # Can be referenced as '#/components/schemas/CarFormData'
+      type: object
+      required:
+        - name
+        - team
+        - make
+        - model
+        - class
+      properties:
+        name:
+          type: string
+          example: A random car's name
+        team:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        make:
+          type: string
+          example: Ferrari
+        model:
+          type: string
+          example: 488 GTE-LM
+        class:
+          type: string
+          format: uuid
+          example: 12345678-abcd-ef12–345a-12345678abcd
+    Car: # Can be referenced as '#/components/schemas/Car'
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: './common.yaml#/components/schemas/uuidFormat'
+        - $ref: '#/components/schemas/CarFormData'
+    CarResponse: # Can be referenced as '#/components/schemas/CarResponse'
+      type: object
+      properties:
+        id:
+          $ref: './common.yaml#/components/schemas/uuidFormat'
+        name:
+          type: string
+          example: A random car's name
+        team:
+          $ref: './team.yaml#/components/schemas/Team'
+        make:
+          type: string
+          example: Ferrari
+        model:
+          type: string
+          example: 488 GTE-LM
+        class:
+          $ref: './class.yaml#/components/schemas/Class'

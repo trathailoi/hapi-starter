@@ -12,6 +12,11 @@ class CarRaceRela {
     @ManyToOne(() => Car)
     car?: string;
 
+    @Column('int', {
+        nullable: false
+    })
+    carNumber?: string;
+
     @ManyToOne(() => Race)
     race?: string;
 

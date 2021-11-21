@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToOne } from 'typeorm';
 import { Address } from './Address';
+import { Team } from './Team';
 
 export enum Nationality {
     USA = 'USA',
@@ -37,6 +38,9 @@ class Driver {
     @OneToOne(() => Address)
     @JoinColumn()
     managementAddress?: Address
+
+    @ManyToOne(() => Team)
+    team?: string;
 }
 
 export { Driver }

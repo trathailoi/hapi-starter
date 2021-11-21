@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  description: |
+    A more complex version of the race cars API.
+  version: "1.0.0"
+  title: Addresses Management
+  contact:
+    email: loi.tra@9thwonder.com
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/loi.tra/my-first-API/1.0.0
+  - description: Please run the app locally on port 8080
+    url: 'http://localhost:8080/api'
+tags:
+  - name: address
+    description: Addresses of teams and drivers
+
+paths:
+  /addresses:
+    post:
+      tags:
+        - address
+      summary: Add a new address to the system
+      operationId: addAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressFormData'
+        description: form data object that contains fields to update a specific address in the system
+      responses:
+        default:
+          description: successful operation
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    get:
+      tags:
+        - address
+      summary: Finds Addresses
+      description: Finds all the addresses
+      operationId: findAddresses
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+  '/addresses/{addressId}':
+    get:
+      tags:
+        - address
+      summary: Find address by ID
+      description: Returns a single address
+      operationId: getAddressById
+      parameters:
+        - name: addressId
+          in: path
+          description: ID of address to return
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    patch:
+      tags:
+        - address
+      summary: Updates an existing address by ID
+      operationId: updateAddress
+      parameters:
+        - name: addressId
+          in: path
+          description: ID of the address that needs to be updated
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressFormData'
+        description: form data object that contains fields to update a specific address in the system
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+    delete:
+      tags:
+        - address
+      summary: Deletes a address by ID
+      operationId: deleteAddress
+      parameters:
+        - name: addressId
+          in: path
+          description: Address id to delete
+          required: true
+          schema:
+            $ref: './common.yaml#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          $ref: './common.yaml#/components/responses/200Success'
+        '404':
+          $ref: './common.yaml#/components/responses/404NotFound'
+        '400':
+          $ref: './common.yaml#/components/responses/400BadRequest'
+
+components:
+  schemas:
+    AddressFormData: # Can be referenced as '#/components/schemas/AddressFormData'
+      type: object
+      required:
+        - name
+        - city
+        - state
+        - zip
+        - country
+      properties:
+        name:
+          type: string
+          example: Team A's headquarter
+        street:
+          type: string
+          example: PO BOX 21345
+        street2:
+          type: string
+          example: Street 2
+        city:
+          type: string
+          example: COLLEGE PLACE
+        state:
+          type: string
+          example: WASHINGTON
+        zip:
+          type: string
+          example: "21345"
+        country:
+          type: string
+          example: UNITED STATES
+    Address: # Can be referenced as '#/components/schemas/Address'
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: './common.yaml#/components/schemas/uuidFormat'
+        - $ref: '#/components/schemas/AddressFormData'
+

@@ -37,6 +37,14 @@ class Address {
 
     @Column('varchar', {
         nullable: false,
+        length: 10
+        // min: 5,
+        // max: 10
+    })
+    zip?: string;
+
+    @Column('varchar', {
+        nullable: false,
         length: 40
     })
     country?: string;
