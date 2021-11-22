@@ -1,6 +1,9 @@
 import 'automapper-ts';
 import { injectable } from 'inversify';
 
+import { Address } from '../entity/Address'
+import { AddressDTO } from '../dto/address'
+
 /**
  * Wrapper around automapper, for dependency injection convenience (static/global variables bad)
  */
@@ -42,6 +45,11 @@ class Mapper {
 
     constructor() {
         // Add code here to configure mappings
+        this.createDefaultBiDiMap(
+            AddressDTO, 
+            Address,
+            ['id', 'name', 'street', 'street2', 'city', 'state', 'zip', 'country']
+        )
     }
 
     public map(source: any, destination: any, value: any): any {

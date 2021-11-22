@@ -4,7 +4,7 @@ import { Class } from './Class';
 @Entity()
 class Race {
     @PrimaryGeneratedColumn('uuid')
-    id?: number;
+    id?: string;
 
     @Column('varchar', {
         nullable: false,

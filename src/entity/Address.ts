@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 class Address {
     @PrimaryGeneratedColumn('uuid')
-    id?: number;
+    id!: string;
 
     @Column('varchar', {
         nullable: false,

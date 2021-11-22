@@ -5,9 +5,9 @@ import { Driver } from './Driver';
 import { Class } from './Class';
 
 @Entity()
-class CarRaceRela {
+class RaceResult {
     @PrimaryGeneratedColumn('uuid')
-    id?: number;
+    id?: string;
 
     @ManyToOne(() => Car)
     car?: string;
@@ -42,4 +42,4 @@ class CarRaceRela {
     isFinished?: boolean;
 }
 
-export { CarRaceRela }
+export { RaceResult }

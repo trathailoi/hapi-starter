@@ -15,7 +15,7 @@ import { Team } from './Team';
 @Entity()
 class Car {
     @PrimaryGeneratedColumn('uuid')
-    id?: number;
+    id?: string;
 
     @Column('varchar', {
         nullable: false,

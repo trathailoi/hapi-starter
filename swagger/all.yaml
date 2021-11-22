@@ -238,7 +238,7 @@ paths:
     get:
       tags:
         - address
-      summary: Find address by ID
+      summary: Find an address by ID
       description: Returns a single address
       operationId: getAddressById
       parameters:
@@ -291,7 +291,7 @@ paths:
     delete:
       tags:
         - address
-      summary: Deletes a address by ID
+      summary: Delete an address by ID
       operationId: deleteAddress
       parameters:
         - name: addressId

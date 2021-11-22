@@ -9,7 +9,7 @@ export enum Nationality {
 @Entity()
 class Team {
     @PrimaryGeneratedColumn('uuid')
-    id?: number;
+    id?: string;
 
     @Column('varchar', {
         nullable: false,

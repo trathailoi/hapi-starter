@@ -10,7 +10,7 @@ export enum Nationality {
 @Entity()
 class Driver {
     @PrimaryGeneratedColumn('uuid')
-    id?: number;
+    id?: string;
 
     @Column('varchar', {
         nullable: false,

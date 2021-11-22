@@ -19,7 +19,10 @@ class ApiServer {
     ) {
         // Configure HAPI server
         this.hapiServer = new Server({
-            port: configue.get('hapi.port', 8080)
+            port: configue.get('hapi.port', 8080),
+            routes: {
+              cors: true
+            }
         });
         this.hapiServer.validator(require('@hapi/joi'));
 
