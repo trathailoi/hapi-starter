@@ -29,6 +29,10 @@ import { Car } from '../entity/Car';
 import { CarService } from '../service/car';
 import { CarController } from '../api/car.controller';
 
+import { Race } from '../entity/Race';
+import { RaceService } from '../service/race';
+import { RaceController } from '../api/race.controller';
+
 /**
  * This file contains all of the Inversify configuration code.  This is the only
  * place that we should have hard dependencies on any controllers, services, and
@@ -123,6 +127,7 @@ container.bind<Repository<Class>>(TYPES.ClassRepository).toDynamicValue(() => cr
 container.bind<Repository<Team>>(TYPES.TeamRepository).toDynamicValue(() => createRepository<Team>(Team)).inSingletonScope()
 container.bind<Repository<Driver>>(TYPES.DriverRepository).toDynamicValue(() => createRepository<Driver>(Driver)).inSingletonScope()
 container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(() => createRepository<Car>(Car)).inSingletonScope()
+container.bind<Repository<Race>>(TYPES.RaceRepository).toDynamicValue(() => createRepository<Race>(Race)).inSingletonScope()
 
 // Services
 container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
@@ -130,6 +135,7 @@ container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonSco
 container.bind<TeamService>(TYPES.TeamService).to(TeamService).inSingletonScope();
 container.bind<DriverService>(TYPES.DriverService).to(DriverService).inSingletonScope();
 container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
+container.bind<RaceService>(TYPES.RaceService).to(RaceService).inSingletonScope();
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
@@ -138,6 +144,7 @@ container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSin
 container.bind<TeamController>(TYPES.TeamController).to(TeamController).inSingletonScope();
 container.bind<DriverController>(TYPES.DriverController).to(DriverController).inSingletonScope();
 container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope();
+container.bind<RaceController>(TYPES.RaceController).to(RaceController).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

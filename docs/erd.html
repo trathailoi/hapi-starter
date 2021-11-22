@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang='en-us' xmlns='http://www.w3.org/1999/xhtml' >
 <head>
-<title>PostgreSQL</title>
+<title>The race cars</title>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
 <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
 <link rel='shortcut icon' href='https://dbschema.com/images/favicon.ico'>
@@ -39,7 +39,7 @@ tr:nth-child(even) {
 
 <a name='layout1'/><h4>Main Layout</h4>
 <div class='svgContainer'>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1008' height='1077' viewBox='0 0 1008 1077' >
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1296' height='974' viewBox='0 0 1296 974' >
   <script type='text/ecmascript'>
   <![CDATA[
   function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
@@ -259,231 +259,296 @@ tr:nth-child(even) {
      <stop offset='40%' stop-color='#EAF2FF' /> 
      <stop offset='100%' stop-color='#AABDDD' /> 
   </linearGradient>
+  <linearGradient id='tbg_3986C1' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#F8FBFF' /> 
+     <stop offset='40%' stop-color='#EAF5FF' /> 
+     <stop offset='100%' stop-color='#AAC6DD' /> 
+  </linearGradient>
 </defs>
 
 <!-- == Shape Colors == -->
 <!-- == Desktop == -->
-<rect x='1' y='1' width='1006' height='1075' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#aaa; stroke-width:1px;' />
-<rect x='1' y='1' width='1006' height='1075' rx='8' ry='8' style='fill:url(#layoutBgTr);' />
+<rect x='1' y='1' width='1294' height='972' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#aaa; stroke-width:1px;' />
+<rect x='1' y='1' width='1294' height='972' rx='8' ry='8' style='fill:url(#layoutBgTr);' />
 
 <!-- == Legend == -->
 <g transform='translate(10,10)'>
   <rect x='10' y='10' width='420' height='70' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
-  <text x='20' y='25' class='legendTitle' >PostgreSQL</text> 
+  <text x='20' y='25' class='legendTitle' >The race cars</text> 
   <a xlink:href='https://dbschema.com'><text x='20' y='39' class='legendSubTitle'><tspan>© DbSchema</tspan></text></a> 
   <text x='20' y='53' class='legendSubTitle'><tspan>Read the schema comments as mouse-over tooltips.</tspan></text> 
   <text x='20' y='67' class='legendSubTitle'><tspan>Ctrl &amp; mouse wheel to zoom, drag &amp; right-mouse button for panning.</tspan></text> 
 </g>
 
 <g transform='translate(0,110)'>
-<!-- == Group 'car' == -->
-<rect class='grp' style='fill:#E1EBFC;stroke:#9EADC7' x='112' y='45' width='864' height='498' />
-<text x='124' y='61'>car</text>
-<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='124' y='65' width='840' height='2' />
+<!-- == Group 'race_car' == -->
+<rect class='grp' style='fill:#E1EBFC;stroke:#9EADC7' x='160' y='109' width='1104' height='690' />
+<text x='172' y='125'>race_car</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='172' y='129' width='1080' height='2' />
 
 <!-- == Fk 'car_FK_7f4cde2f52b7249b96d89661bfa' == -->
-<path id='car_FK_7f4cde2f52b7249b96d89661bfa'  onmouseover="hghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','public.class.id'])" onmouseout="uhghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','public.class.id'])" transform='translate(8,0)' class='unhighlight' d='M 176,240L 176,416' >
+<path id='car_FK_7f4cde2f52b7249b96d89661bfa'  onmouseover="hghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','public.class.id'])" onmouseout="uhghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','public.class.id'])" transform='translate(8,0)' class='unhighlight' d='M 880,688L 1064,688Q 1072,688 1072,680L 1072,672' >
 	<title>Fk FK_7f4cde2f52b7249b96d89661bfa
 car ref class ( classId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 176,240L 176,416' ><title>Fk FK_7f4cde2f52b7249b96d89661bfa
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 880,688L 1064,688Q 1072,688 1072,680L 1072,672' ><title>Fk FK_7f4cde2f52b7249b96d89661bfa
 car ref class ( classId -&gt; id )</title></path>
-<text x='188' y='241' transform='rotate(90 188,241)' class='relName'>classId</text>
+<text x='889' y='683' transform='rotate(0 889,683)' class='relName'>classId</text>
 <!-- == Fk 'car_FK_848edf6915784246d3a20d20a50' == -->
-<path id='car_FK_848edf6915784246d3a20d20a50'  onmouseover="hghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId','public.team.id'])" onmouseout="uhghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId','public.team.id'])" transform='translate(8,0)' class='unhighlight' d='M 240,128L 752,128' >
+<path id='car_FK_848edf6915784246d3a20d20a50'  onmouseover="hghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId','public.team.id'])" onmouseout="uhghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId','public.team.id'])" transform='translate(8,0)' class='unhighlight' d='M 784,688L 592,688' >
 	<title>Fk FK_848edf6915784246d3a20d20a50
 car ref team ( teamId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 240,128L 752,128' ><title>Fk FK_848edf6915784246d3a20d20a50
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 784,688L 592,688' ><title>Fk FK_848edf6915784246d3a20d20a50
 car ref team ( teamId -&gt; id )</title></path>
-<text x='249' y='123' transform='rotate(0 249,123)' class='relName'>teamId</text>
+<text x='753' y='683' transform='rotate(0 753,683)' class='relName'>teamId</text>
 <!-- == Fk 'race_car_FK_9f676341f8ef0aa149628f2e33f' == -->
-<path id='race_car_FK_9f676341f8ef0aa149628f2e33f'  onmouseover="hghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId','public.car.id'])" onmouseout="uhghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId','public.car.id'])" transform='translate(8,0)' class='unhighlight' d='M 288,288L 232,288Q 224,288 224,280L 224,240' >
+<path id='race_car_FK_9f676341f8ef0aa149628f2e33f'  onmouseover="hghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId','public.car.id'])" onmouseout="uhghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId','public.car.id'])" transform='translate(8,0)' class='unhighlight' d='M 816,448L 816,640' >
 	<title>Fk FK_9f676341f8ef0aa149628f2e33f
 race_car ref car ( carId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 288,288L 232,288Q 224,288 224,280L 224,240' ><title>Fk FK_9f676341f8ef0aa149628f2e33f
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 816,448L 816,640' ><title>Fk FK_9f676341f8ef0aa149628f2e33f
 race_car ref car ( carId -&gt; id )</title></path>
-<text x='268' y='283' transform='rotate(0 268,283)' class='relName'>carId</text>
-<!-- == Fk 'race_car_FK_992d9232f72becb0195371a2183' == -->
-<path id='race_car_FK_992d9232f72becb0195371a2183'  onmouseover="hghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId','public.driver.id'])" onmouseout="uhghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId','public.driver.id'])" transform='translate(8,0)' class='unhighlight' d='M 432,384L 496,384' >
-	<title>Fk FK_992d9232f72becb0195371a2183
-race_car ref driver ( driverId -&gt; id )</title>
-</path>
-<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 432,384L 496,384' ><title>Fk FK_992d9232f72becb0195371a2183
-race_car ref driver ( driverId -&gt; id )</title></path>
-<text x='441' y='379' transform='rotate(0 441,379)' class='relName'>driverId</text>
-<!-- == Fk 'race_car_FK_4136671f0548adc4f1675287ec0' == -->
-<path id='race_car_FK_4136671f0548adc4f1675287ec0'  onmouseover="hghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId','public.race.id'])" onmouseout="uhghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId','public.race.id'])" transform='translate(8,0)' class='unhighlight' d='M 432,304L 616,304Q 624,304 624,296L 624,288' >
-	<title>Fk FK_4136671f0548adc4f1675287ec0
-race_car ref race ( raceId -&gt; id )</title>
-</path>
-<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 432,304L 616,304Q 624,304 624,296L 624,288' ><title>Fk FK_4136671f0548adc4f1675287ec0
-race_car ref race ( raceId -&gt; id )</title></path>
-<text x='441' y='299' transform='rotate(0 441,299)' class='relName'>raceId</text>
+<text x='828' y='449' transform='rotate(90 828,449)' class='relName'>carId</text>
 <!-- == Fk 'race_car_FK_cb25810626d910def38a3b935b9' == -->
-<path id='race_car_FK_cb25810626d910def38a3b935b9'  onmouseover="hghl(['race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId','public.class.id'])" onmouseout="uhghl(['race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId','public.class.id'])" transform='translate(8,0)' class='unhighlight' d='M 288,400L 200,400Q 192,400 192,408L 192,416' >
+<path id='race_car_FK_cb25810626d910def38a3b935b9'  onmouseover="hghl(['race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId','public.class.id'])" onmouseout="uhghl(['race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId','public.class.id'])" transform='translate(8,0)' class='unhighlight' d='M 864,448L 864,584Q 864,592 872,592L 1040,592' >
 	<title>Fk FK_cb25810626d910def38a3b935b9
 race_car ref class ( classId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 288,400L 200,400Q 192,400 192,408L 192,416' ><title>Fk FK_cb25810626d910def38a3b935b9
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 864,448L 864,584Q 864,592 872,592L 1040,592' ><title>Fk FK_cb25810626d910def38a3b935b9
 race_car ref class ( classId -&gt; id )</title></path>
-<text x='259' y='395' transform='rotate(0 259,395)' class='relName'>classId</text>
+<text x='876' y='449' transform='rotate(90 876,449)' class='relName'>classId</text>
+<!-- == Fk 'race_car_FK_992d9232f72becb0195371a2183' == -->
+<path id='race_car_FK_992d9232f72becb0195371a2183'  onmouseover="hghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId','public.driver.id'])" onmouseout="uhghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId','public.driver.id'])" transform='translate(8,0)' class='unhighlight' d='M 736,272L 576,272' >
+	<title>Fk FK_992d9232f72becb0195371a2183
+race_car ref driver ( driverId -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 736,272L 576,272' ><title>Fk FK_992d9232f72becb0195371a2183
+race_car ref driver ( driverId -&gt; id )</title></path>
+<text x='700' y='267' transform='rotate(0 700,267)' class='relName'>driverId</text>
+<!-- == Fk 'race_car_FK_4136671f0548adc4f1675287ec0' == -->
+<path id='race_car_FK_4136671f0548adc4f1675287ec0'  onmouseover="hghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId','public.race.id'])" onmouseout="uhghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId','public.race.id'])" transform='translate(8,0)' class='unhighlight' d='M 864,256L 864,216Q 864,208 872,208L 1024,208' >
+	<title>Fk FK_4136671f0548adc4f1675287ec0
+race_car ref race ( raceId -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot0)' marker-end='url(#arrow1u)'  class='dotted '  d='M 864,256L 864,216Q 864,208 872,208L 1024,208' ><title>Fk FK_4136671f0548adc4f1675287ec0
+race_car ref race ( raceId -&gt; id )</title></path>
+<text x='867' y='254' transform='rotate(270 867,254)' class='relName'>raceId</text>
+<!-- == Fk 'race_classes_class_FK_b303e181a4fc6e7b5026124967b' == -->
+<path id='race_classes_class_FK_b303e181a4fc6e7b5026124967b'  onmouseover="hghl(['race_classes_class_FK_b303e181a4fc6e7b5026124967b','public.race_classes_class.classId','public.class.id'])" onmouseout="uhghl(['race_classes_class_FK_b303e181a4fc6e7b5026124967b','public.race_classes_class.classId','public.class.id'])" transform='translate(8,0)' class='unhighlight' d='M 1152,432L 1152,600Q 1152,608 1144,608L 1136,608' >
+	<title>Fk FK_b303e181a4fc6e7b5026124967b
+race_classes_class ref class ( classId -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 1152,432L 1152,600Q 1152,608 1144,608L 1136,608' ><title>Fk FK_b303e181a4fc6e7b5026124967b
+race_classes_class ref class ( classId -&gt; id )</title></path>
+<text x='1164' y='433' transform='rotate(90 1164,433)' class='relName'>classId</text>
+<!-- == Fk 'race_classes_class_FK_12584f2885eb06f198f60736066' == -->
+<path id='race_classes_class_FK_12584f2885eb06f198f60736066'  onmouseover="hghl(['race_classes_class_FK_12584f2885eb06f198f60736066','public.race_classes_class.raceId','public.race.id'])" onmouseout="uhghl(['race_classes_class_FK_12584f2885eb06f198f60736066','public.race_classes_class.raceId','public.race.id'])" transform='translate(8,0)' class='unhighlight' d='M 1136,336L 1136,232Q 1136,224 1128,224L 1120,224' >
+	<title>Fk FK_12584f2885eb06f198f60736066
+race_classes_class ref race ( raceId -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 1136,336L 1136,232Q 1136,224 1128,224L 1120,224' ><title>Fk FK_12584f2885eb06f198f60736066
+race_classes_class ref race ( raceId -&gt; id )</title></path>
+<text x='1139' y='334' transform='rotate(270 1139,334)' class='relName'>raceId</text>
 <!-- == Fk 'team_FK_826a10e6287bbb4abfd17c04b14' == -->
-<path id='team_FK_826a10e6287bbb4abfd17c04b14'  onmouseover="hghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','public.address.id'])" onmouseout="uhghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','public.address.id'])" transform='translate(8,0)' class='unhighlight' d='M 880,192L 880,288' >
+<path id='team_FK_826a10e6287bbb4abfd17c04b14'  onmouseover="hghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','public.address.id'])" onmouseout="uhghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','public.address.id'])" transform='translate(8,0)' class='unhighlight' d='M 432,672L 264,672Q 256,672 256,664L 256,608' >
 	<title>Fk FK_826a10e6287bbb4abfd17c04b14
 team ref address ( businessAddressId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 880,192L 880,288' ><title>Fk FK_826a10e6287bbb4abfd17c04b14
+<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 432,672L 264,672Q 256,672 256,664L 256,608' ><title>Fk FK_826a10e6287bbb4abfd17c04b14
 team ref address ( businessAddressId -&gt; id )</title></path>
-<text x='892' y='193' transform='rotate(90 892,193)' class='relName'>businessAddressId</text>
+<text x='338' y='667' transform='rotate(0 338,667)' class='relName'>businessAddressId</text>
+<!-- == Fk 'team_classes_driver_FK_3d58dff28d0804866fcb118c69f' == -->
+<path id='team_classes_driver_FK_3d58dff28d0804866fcb118c69f'  onmouseover="hghl(['team_classes_driver_FK_3d58dff28d0804866fcb118c69f','public.team_classes_driver.driverId','public.driver.id'])" onmouseout="uhghl(['team_classes_driver_FK_3d58dff28d0804866fcb118c69f','public.team_classes_driver.driverId','public.driver.id'])" transform='translate(8,0)' class='unhighlight' d='M 512,432L 512,288' >
+	<title>Fk FK_3d58dff28d0804866fcb118c69f
+team_classes_driver ref driver ( driverId -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 512,432L 512,288' ><title>Fk FK_3d58dff28d0804866fcb118c69f
+team_classes_driver ref driver ( driverId -&gt; id )</title></path>
+<text x='515' y='430' transform='rotate(270 515,430)' class='relName'>driverId</text>
+<!-- == Fk 'team_classes_driver_FK_83569ed7735af6675b28dfac5e3' == -->
+<path id='team_classes_driver_FK_83569ed7735af6675b28dfac5e3'  onmouseover="hghl(['team_classes_driver_FK_83569ed7735af6675b28dfac5e3','public.team_classes_driver.teamId','public.team.id'])" onmouseout="uhghl(['team_classes_driver_FK_83569ed7735af6675b28dfac5e3','public.team_classes_driver.teamId','public.team.id'])" transform='translate(8,0)' class='unhighlight' d='M 512,528L 512,656' >
+	<title>Fk FK_83569ed7735af6675b28dfac5e3
+team_classes_driver ref team ( teamId -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1)' marker-end='url(#arrow1u)'    d='M 512,528L 512,656' ><title>Fk FK_83569ed7735af6675b28dfac5e3
+team_classes_driver ref team ( teamId -&gt; id )</title></path>
+<text x='524' y='529' transform='rotate(90 524,529)' class='relName'>teamId</text>
 <!-- == Fk 'driver_FK_36e30c29d63438e7560d02cc7e7' == -->
-<path id='driver_FK_36e30c29d63438e7560d02cc7e7'  onmouseover="hghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','public.address.id'])" onmouseout="uhghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','public.address.id'])" transform='translate(8,0)' class='unhighlight' d='M 688,400L 848,400' >
+<path id='driver_FK_36e30c29d63438e7560d02cc7e7'  onmouseover="hghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','public.address.id'])" onmouseout="uhghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','public.address.id'])" transform='translate(8,0)' class='unhighlight' d='M 416,288L 416,408Q 416,416 408,416L 264,416Q 256,416 256,424L 256,432' >
 	<title>Fk FK_36e30c29d63438e7560d02cc7e7
 driver ref address ( homeAddressId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 688,400L 848,400' ><title>Fk FK_36e30c29d63438e7560d02cc7e7
+<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 416,288L 416,408Q 416,416 408,416L 264,416Q 256,416 256,424L 256,432' ><title>Fk FK_36e30c29d63438e7560d02cc7e7
 driver ref address ( homeAddressId -&gt; id )</title></path>
-<text x='697' y='395' transform='rotate(0 697,395)' class='relName'>homeAddressId</text>
+<text x='428' y='289' transform='rotate(90 428,289)' class='relName'>homeAddressId</text>
 <!-- == Fk 'driver_FK_f162a75e923a024cb507e96e106' == -->
-<path id='driver_FK_f162a75e923a024cb507e96e106'  onmouseover="hghl(['driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId','public.address.id'])" onmouseout="uhghl(['driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId','public.address.id'])" transform='translate(8,0)' class='unhighlight' d='M 688,416L 848,416' >
+<path id='driver_FK_f162a75e923a024cb507e96e106'  onmouseover="hghl(['driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId','public.address.id'])" onmouseout="uhghl(['driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId','public.address.id'])" transform='translate(8,0)' class='unhighlight' d='M 384,256L 248,256Q 240,256 240,264L 240,432' >
 	<title>Fk FK_f162a75e923a024cb507e96e106
 driver ref address ( managementAddressId -&gt; id )</title>
 </path>
-<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 688,416L 848,416' ><title>Fk FK_f162a75e923a024cb507e96e106
+<path transform='translate(8,0)' marker-start='url(#foot0u)' marker-end='url(#arrow1u)'  class='dotted '  d='M 384,256L 248,256Q 240,256 240,264L 240,432' ><title>Fk FK_f162a75e923a024cb507e96e106
 driver ref address ( managementAddressId -&gt; id )</title></path>
-<text x='697' y='411' transform='rotate(0 697,411)' class='relName'>managementAddressId</text>
+<text x='263' y='251' transform='rotate(0 263,251)' class='relName'>managementAddressId</text>
 <!-- == Table 'car' == -->
-<rect id='depict_public.car' class='entity' style='stroke:none;' x='160' y='104' width='80' height='128' rx='8' ry='8' />
-<path d='M 160 132 L 160 112 Q 160 104 168 104 L 232 104 Q 240 104 240 112 L 240 132 L160 132 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='160' y='104' width='80' height='128' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.car'><text x='187' y='123' >car</text><title>Table public.car</title></a>
-  <use id='nn' x='162' y='141' xlink:href='#nn'/><a xlink:href='#public.car_make'><text id='public.car.make' x='179' y='151'>make</text><title>make
+<rect id='depict_public.car' class='entity' style='stroke:none;' x='800' y='648' width='80' height='128' rx='8' ry='8' />
+<path d='M 800 676 L 800 656 Q 800 648 808 648 L 872 648 Q 880 648 880 656 L 880 676 L800 676 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='800' y='648' width='80' height='128' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.car'><text x='827' y='667' >car</text><title>Table public.car</title></a>
+  <use id='nn' x='802' y='685' xlink:href='#nn'/><a xlink:href='#public.car_make'><text id='public.car.make' x='819' y='695'>make</text><title>make
 * varchar(40)</title></a>
-<text x='237' y='148' text-anchor='end' class='colType'>t</text>  <use id='nn' x='162' y='157' xlink:href='#nn'/><a xlink:href='#public.car_model'><text id='public.car.model' x='179' y='167'>model</text><title>model
+<text x='877' y='692' text-anchor='end' class='colType'>t</text>  <use id='nn' x='802' y='701' xlink:href='#nn'/><a xlink:href='#public.car_model'><text id='public.car.model' x='819' y='711'>model</text><title>model
 * varchar(40)</title></a>
-<text x='237' y='164' text-anchor='end' class='colType'>t</text>  <use id='unq' x='162' y='172' xlink:href='#unq'><title>Unq UQ_7f4cde2f52b7249b96d89661bfa ( classId ) </title></use><a xlink:href='#public.car_classId'><text id='public.car.classId' x='179' y='183' onmouseover="hghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.class.id'])" onmouseout="uhghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.class.id'])">classId</text><title>classId
+<text x='877' y='708' text-anchor='end' class='colType'>t</text>  <a xlink:href='#public.car_classId'><text id='public.car.classId' x='819' y='727' onmouseover="hghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.class.id'])" onmouseout="uhghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.class.id'])">classId</text><title>classId
 uuid</title></a>
-<a xlink:href='#public.car.classId'><use id='fk' x='228' y='172' xlink:href='#fk'/><title>References class ( classId -&gt; id ) </title></a>
-  <a xlink:href='#public.car_teamId'><text id='public.car.teamId' x='179' y='199' onmouseover="hghl(['car_FK_848edf6915784246d3a20d20a50','public.team.id'])" onmouseout="uhghl(['car_FK_848edf6915784246d3a20d20a50','public.team.id'])">teamId</text><title>teamId
+<a xlink:href='#public.car.classId'><use id='fk' x='868' y='716' xlink:href='#fk'/><title>References class ( classId -&gt; id ) </title></a>
+  <a xlink:href='#public.car_teamId'><text id='public.car.teamId' x='819' y='743' onmouseover="hghl(['car_FK_848edf6915784246d3a20d20a50','public.team.id'])" onmouseout="uhghl(['car_FK_848edf6915784246d3a20d20a50','public.team.id'])">teamId</text><title>teamId
 uuid</title></a>
-<a xlink:href='#public.car.teamId'><use id='fk' x='228' y='188' xlink:href='#fk'/><title>References team ( teamId -&gt; id ) </title></a>
-  <use id='nn' x='162' y='205' xlink:href='#nn'/><use id='pk' x='162' y='204' xlink:href='#pk'><title>Pk PK_55bbdeb14e0b1d7ab417d11ee6d ( id ) </title></use><a xlink:href='#public.car_id'><text id='public.car.id' x='179' y='215' onmouseover="hghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId'])" onmouseout="uhghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId'])">id</text><title>id
+<a xlink:href='#public.car.teamId'><use id='fk' x='868' y='732' xlink:href='#fk'/><title>References team ( teamId -&gt; id ) </title></a>
+  <use id='nn' x='802' y='749' xlink:href='#nn'/><use id='pk' x='802' y='748' xlink:href='#pk'><title>Pk PK_55bbdeb14e0b1d7ab417d11ee6d ( id ) </title></use><a xlink:href='#public.car_id'><text id='public.car.id' x='819' y='759' onmouseover="hghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId'])" onmouseout="uhghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.race_car.carId'])">id</text><title>id
 * uuid default uuid_generate_v4()</title></a>
-<a xlink:href='#public.car.id'><use id='ref' x='228' y='204' xlink:href='#ref'/><title>Referred by race_car ( carId -&gt; id ) </title></a>
+<a xlink:href='#public.car.id'><use id='ref' x='868' y='748' xlink:href='#ref'/><title>Referred by race_car ( carId -&gt; id ) </title></a>
 
 <!-- == Table 'class' == -->
-<rect id='depict_public.class' class='entity' style='stroke:none;' x='128' y='424' width='80' height='80' rx='8' ry='8' />
-<path d='M 128 452 L 128 432 Q 128 424 136 424 L 200 424 Q 208 424 208 432 L 208 452 L128 452 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='128' y='424' width='80' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.class'><text x='150' y='443' >class</text><title>Table public.class</title></a>
-  <use id='nn' x='130' y='461' xlink:href='#nn'/><use id='pk' x='130' y='460' xlink:href='#pk'><title>Pk PK_0b9024d21bdfba8b1bd1c300eae ( id ) </title></use><a xlink:href='#public.class_id'><text id='public.class.id' x='147' y='471' onmouseover="hghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId'])" onmouseout="uhghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId'])">id</text><title>id
+<rect id='depict_public.class' class='entity' style='stroke:none;' x='1056' y='584' width='80' height='80' rx='8' ry='8' />
+<path d='M 1056 612 L 1056 592 Q 1056 584 1064 584 L 1128 584 Q 1136 584 1136 592 L 1136 612 L1056 612 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='1056' y='584' width='80' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.class'><text x='1078' y='603' >class</text><title>Table public.class</title></a>
+  <use id='nn' x='1058' y='621' xlink:href='#nn'/><use id='pk' x='1058' y='620' xlink:href='#pk'><title>Pk PK_0b9024d21bdfba8b1bd1c300eae ( id ) </title></use><a xlink:href='#public.class_id'><text id='public.class.id' x='1075' y='631' onmouseover="hghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','race_classes_class_FK_b303e181a4fc6e7b5026124967b','public.race_classes_class.classId','race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId'])" onmouseout="uhghl(['car_FK_7f4cde2f52b7249b96d89661bfa','public.car.classId','race_classes_class_FK_b303e181a4fc6e7b5026124967b','public.race_classes_class.classId','race_car_FK_cb25810626d910def38a3b935b9','public.race_car.classId'])">id</text><title>id
 * uuid default uuid_generate_v4()</title></a>
-<a xlink:href='#public.class.id'><use id='ref' x='196' y='460' xlink:href='#ref'/><title>Referred by car ( classId -&gt; id ) 
+<a xlink:href='#public.class.id'><use id='ref' x='1124' y='620' xlink:href='#ref'/><title>Referred by car ( classId -&gt; id ) 
+Referred by race_classes_class ( classId -&gt; id ) 
 Referred by race_car ( classId -&gt; id ) </title></a>
-  <use id='nn' x='130' y='477' xlink:href='#nn'/><a xlink:href='#public.class_name'><text id='public.class.name' x='147' y='487'>name</text><title>name
+  <use id='nn' x='1058' y='637' xlink:href='#nn'/><a xlink:href='#public.class_name'><text id='public.class.name' x='1075' y='647'>name</text><title>name
 * varchar(100)</title></a>
-<text x='205' y='484' text-anchor='end' class='colType'>t</text>
-<!-- == Table 'race_car' == -->
-<rect id='depict_public.race_car' class='entity' style='stroke:none;' x='304' y='280' width='128' height='176' rx='8' ry='8' />
-<path d='M 304 308 L 304 288 Q 304 280 312 280 L 424 280 Q 432 280 432 288 L 432 308 L304 308 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='304' y='280' width='128' height='176' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.race_car'><text x='339' y='299' >race_car</text><title>Table public.race_car</title></a>
-  <use id='nn' x='306' y='317' xlink:href='#nn'/><use id='pk' x='306' y='316' xlink:href='#pk'><title>Pk PK_51f9f2ecdabeb94076af14bce7e ( id ) </title></use><a xlink:href='#public.race_car_id'><text id='public.race_car.id' x='323' y='327'>id</text><title>id
+<text x='1133' y='644' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'race' == -->
+<rect id='depict_public.race' class='entity' style='stroke:none;' x='1040' y='152' width='80' height='80' rx='8' ry='8' />
+<path d='M 1040 180 L 1040 160 Q 1040 152 1048 152 L 1112 152 Q 1120 152 1120 160 L 1120 180 L1040 180 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='1040' y='152' width='80' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.race'><text x='1063' y='171' >race</text><title>Table public.race</title></a>
+  <use id='nn' x='1042' y='189' xlink:href='#nn'/><use id='pk' x='1042' y='188' xlink:href='#pk'><title>Pk PK_a3068b184130d87a20e516045bb ( id ) </title></use><a xlink:href='#public.race_id'><text id='public.race.id' x='1059' y='199' onmouseover="hghl(['race_classes_class_FK_12584f2885eb06f198f60736066','public.race_classes_class.raceId','race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId'])" onmouseout="uhghl(['race_classes_class_FK_12584f2885eb06f198f60736066','public.race_classes_class.raceId','race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId'])">id</text><title>id
 * uuid default uuid_generate_v4()</title></a>
-  <use id='nn' x='306' y='333' xlink:href='#nn'/><a xlink:href='#public.race_car_startPosition'><text id='public.race_car.startPosition' x='323' y='343'>startPosition</text><title>startPosition
+<a xlink:href='#public.race.id'><use id='ref' x='1108' y='188' xlink:href='#ref'/><title>Referred by race_classes_class ( raceId -&gt; id ) 
+Referred by race_car ( raceId -&gt; id ) </title></a>
+  <use id='nn' x='1042' y='205' xlink:href='#nn'/><a xlink:href='#public.race_name'><text id='public.race.name' x='1059' y='215'>name</text><title>name
+* varchar(100)</title></a>
+<text x='1117' y='212' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'race_car' == -->
+<rect id='depict_public.race_car' class='entity' style='stroke:none;' x='752' y='264' width='128' height='176' rx='8' ry='8' />
+<path d='M 752 292 L 752 272 Q 752 264 760 264 L 872 264 Q 880 264 880 272 L 880 292 L752 292 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='752' y='264' width='128' height='176' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.race_car'><text x='787' y='283' >race_car</text><title>Table public.race_car</title></a>
+  <use id='nn' x='754' y='301' xlink:href='#nn'/><use id='pk' x='754' y='300' xlink:href='#pk'><title>Pk PK_51f9f2ecdabeb94076af14bce7e ( id ) </title></use><a xlink:href='#public.race_car_id'><text id='public.race_car.id' x='771' y='311'>id</text><title>id
+* uuid default uuid_generate_v4()</title></a>
+  <use id='nn' x='754' y='317' xlink:href='#nn'/><a xlink:href='#public.race_car_startPosition'><text id='public.race_car.startPosition' x='771' y='327'>startPosition</text><title>startPosition
 * integer</title></a>
-<text x='429' y='340' text-anchor='end' class='colType'>#</text>  <a xlink:href='#public.race_car_finishPosition'><text id='public.race_car.finishPosition' x='323' y='359'>finishPosition</text><title>finishPosition
+<text x='877' y='324' text-anchor='end' class='colType'>#</text>  <a xlink:href='#public.race_car_finishPosition'><text id='public.race_car.finishPosition' x='771' y='343'>finishPosition</text><title>finishPosition
 integer</title></a>
-<text x='429' y='356' text-anchor='end' class='colType'>#</text>  <a xlink:href='#public.race_car_driverId'><text id='public.race_car.driverId' x='323' y='375' onmouseover="hghl(['race_car_FK_992d9232f72becb0195371a2183','public.driver.id'])" onmouseout="uhghl(['race_car_FK_992d9232f72becb0195371a2183','public.driver.id'])">driverId</text><title>driverId
+<text x='877' y='340' text-anchor='end' class='colType'>#</text>  <a xlink:href='#public.race_car_driverId'><text id='public.race_car.driverId' x='771' y='359' onmouseover="hghl(['race_car_FK_992d9232f72becb0195371a2183','public.driver.id'])" onmouseout="uhghl(['race_car_FK_992d9232f72becb0195371a2183','public.driver.id'])">driverId</text><title>driverId
 uuid</title></a>
-<a xlink:href='#public.race_car.driverId'><use id='fk' x='420' y='364' xlink:href='#fk'/><title>References driver ( driverId -&gt; id ) </title></a>
-  <a xlink:href='#public.race_car_carId'><text id='public.race_car.carId' x='323' y='391' onmouseover="hghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.car.id'])" onmouseout="uhghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.car.id'])">carId</text><title>carId
+<a xlink:href='#public.race_car.driverId'><use id='fk' x='868' y='348' xlink:href='#fk'/><title>References driver ( driverId -&gt; id ) </title></a>
+  <a xlink:href='#public.race_car_carId'><text id='public.race_car.carId' x='771' y='375' onmouseover="hghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.car.id'])" onmouseout="uhghl(['race_car_FK_9f676341f8ef0aa149628f2e33f','public.car.id'])">carId</text><title>carId
 uuid</title></a>
-<a xlink:href='#public.race_car.carId'><use id='fk' x='420' y='380' xlink:href='#fk'/><title>References car ( carId -&gt; id ) </title></a>
-  <a xlink:href='#public.race_car_raceId'><text id='public.race_car.raceId' x='323' y='407' onmouseover="hghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race.id'])" onmouseout="uhghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race.id'])">raceId</text><title>raceId
+<a xlink:href='#public.race_car.carId'><use id='fk' x='868' y='364' xlink:href='#fk'/><title>References car ( carId -&gt; id ) </title></a>
+  <a xlink:href='#public.race_car_raceId'><text id='public.race_car.raceId' x='771' y='391' onmouseover="hghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race.id'])" onmouseout="uhghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race.id'])">raceId</text><title>raceId
 uuid</title></a>
-<a xlink:href='#public.race_car.raceId'><use id='fk' x='420' y='396' xlink:href='#fk'/><title>References race ( raceId -&gt; id ) </title></a>
-  <use id='nn' x='306' y='413' xlink:href='#nn'/><a xlink:href='#public.race_car_raceNumber'><text id='public.race_car.raceNumber' x='323' y='423'>raceNumber</text><title>raceNumber
+<a xlink:href='#public.race_car.raceId'><use id='fk' x='868' y='380' xlink:href='#fk'/><title>References race ( raceId -&gt; id ) </title></a>
+  <use id='nn' x='754' y='397' xlink:href='#nn'/><a xlink:href='#public.race_car_raceNumber'><text id='public.race_car.raceNumber' x='771' y='407'>raceNumber</text><title>raceNumber
 * varchar</title></a>
-<text x='429' y='420' text-anchor='end' class='colType'>t</text>  <a xlink:href='#public.race_car_classId'><text id='public.race_car.classId' x='323' y='439' onmouseover="hghl(['race_car_FK_cb25810626d910def38a3b935b9','public.class.id'])" onmouseout="uhghl(['race_car_FK_cb25810626d910def38a3b935b9','public.class.id'])">classId</text><title>classId
+<text x='877' y='404' text-anchor='end' class='colType'>t</text>  <a xlink:href='#public.race_car_classId'><text id='public.race_car.classId' x='771' y='423' onmouseover="hghl(['race_car_FK_cb25810626d910def38a3b935b9','public.class.id'])" onmouseout="uhghl(['race_car_FK_cb25810626d910def38a3b935b9','public.class.id'])">classId</text><title>classId
 uuid</title></a>
-<a xlink:href='#public.race_car.classId'><use id='fk' x='420' y='428' xlink:href='#fk'/><title>References class ( classId -&gt; id ) </title></a>
+<a xlink:href='#public.race_car.classId'><use id='fk' x='868' y='412' xlink:href='#fk'/><title>References class ( classId -&gt; id ) </title></a>
+
+<!-- == Table 'race_classes_class' == -->
+<rect id='depict_public.race_classes_class' class='entity' style='stroke:none;' x='1120' y='344' width='128' height='80' rx='8' ry='8' />
+<path d='M 1120 372 L 1120 352 Q 1120 344 1128 344 L 1240 344 Q 1248 344 1248 352 L 1248 372 L1120 372 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='1120' y='344' width='128' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.race_classes_class'><text x='1127' y='363' >race_classes_class</text><title>Table public.race_classes_class</title></a>
+  <use id='nn' x='1122' y='381' xlink:href='#nn'/><use id='pk' x='1122' y='380' xlink:href='#pk'><title>Pk PK_d39510e4c590914a58b41184e83 ( raceId, classId ) IDX_12584f2885eb06f198f6073606 ( raceId ) </title></use><a xlink:href='#public.race_classes_class_raceId'><text id='public.race_classes_class.raceId' x='1139' y='391' onmouseover="hghl(['race_classes_class_FK_12584f2885eb06f198f60736066','public.race.id'])" onmouseout="uhghl(['race_classes_class_FK_12584f2885eb06f198f60736066','public.race.id'])">raceId</text><title>raceId
+* uuid</title></a>
+<a xlink:href='#public.race_classes_class.raceId'><use id='fk' x='1236' y='380' xlink:href='#fk'/><title>References race ( raceId -&gt; id ) </title></a>
+  <use id='nn' x='1122' y='397' xlink:href='#nn'/><use id='pk' x='1122' y='396' xlink:href='#pk'><title>Pk PK_d39510e4c590914a58b41184e83 ( raceId, classId ) IDX_b303e181a4fc6e7b5026124967 ( classId ) </title></use><a xlink:href='#public.race_classes_class_classId'><text id='public.race_classes_class.classId' x='1139' y='407' onmouseover="hghl(['race_classes_class_FK_b303e181a4fc6e7b5026124967b','public.class.id'])" onmouseout="uhghl(['race_classes_class_FK_b303e181a4fc6e7b5026124967b','public.class.id'])">classId</text><title>classId
+* uuid</title></a>
+<a xlink:href='#public.race_classes_class.classId'><use id='fk' x='1236' y='396' xlink:href='#fk'/><title>References class ( classId -&gt; id ) </title></a>
+
+<!-- == Table 'team' == -->
+<rect id='depict_public.team' class='entity' style='stroke:none;' x='448' y='664' width='144' height='112' rx='8' ry='8' />
+<path d='M 448 692 L 448 672 Q 448 664 456 664 L 584 664 Q 592 664 592 672 L 592 692 L448 692 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='448' y='664' width='144' height='112' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.team'><text x='501' y='683' >team</text><title>Table public.team</title></a>
+  <use id='nn' x='450' y='701' xlink:href='#nn'/><use id='pk' x='450' y='700' xlink:href='#pk'><title>Pk PK_f57d8293406df4af348402e4b74 ( id ) </title></use><a xlink:href='#public.team_id'><text id='public.team.id' x='467' y='711' onmouseover="hghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId','team_classes_driver_FK_83569ed7735af6675b28dfac5e3','public.team_classes_driver.teamId'])" onmouseout="uhghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId','team_classes_driver_FK_83569ed7735af6675b28dfac5e3','public.team_classes_driver.teamId'])">id</text><title>id
+* uuid default uuid_generate_v4()</title></a>
+<a xlink:href='#public.team.id'><use id='ref' x='580' y='700' xlink:href='#ref'/><title>Referred by car ( teamId -&gt; id ) 
+Referred by team_classes_driver ( teamId -&gt; id ) </title></a>
+  <use id='nn' x='450' y='717' xlink:href='#nn'/><a xlink:href='#public.team_name'><text id='public.team.name' x='467' y='727'>name</text><title>name
+* varchar(100)</title></a>
+<text x='589' y='724' text-anchor='end' class='colType'>t</text>  <use id='nn' x='450' y='733' xlink:href='#nn'/><a xlink:href='#public.team_nationality'><text id='public.team.nationality' x='467' y='743'>nationality</text><title>nationality
+* team_nationality_enum</title></a>
+<text x='589' y='740' text-anchor='end' class='colType'>t</text>  <use id='unq' x='450' y='748' xlink:href='#unq'><title>Unq REL_826a10e6287bbb4abfd17c04b1 ( businessAddressId ) </title></use><a xlink:href='#public.team_businessAddressId'><text id='public.team.businessAddressId' x='467' y='759' onmouseover="hghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.address.id'])" onmouseout="uhghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.address.id'])">businessAddressId</text><title>businessAddressId
+uuid</title></a>
+<a xlink:href='#public.team.businessAddressId'><use id='fk' x='580' y='748' xlink:href='#fk'/><title>References address ( businessAddressId -&gt; id ) </title></a>
+
+<!-- == Table 'team_classes_driver' == -->
+<rect id='depict_public.team_classes_driver' class='entity' style='stroke:none;' x='496' y='440' width='144' height='80' rx='8' ry='8' />
+<path d='M 496 468 L 496 448 Q 496 440 504 440 L 632 440 Q 640 440 640 448 L 640 468 L496 468 ' style='fill:url(#tbg_3986C1);stroke-width:0;' />
+<rect class='entity' x='496' y='440' width='144' height='80' rx='8' ry='8' style='fill:none;stroke:#CBDBE8'/>
+<a xlink:href='#public.team_classes_driver'><text x='505' y='459' >team_classes_driver</text><title>Table public.team_classes_driver</title></a>
+  <use id='nn' x='498' y='477' xlink:href='#nn'/><use id='pk' x='498' y='476' xlink:href='#pk'><title>Pk PK_c5a02ff5874564eb39ceebcbfd4 ( teamId, driverId ) IDX_83569ed7735af6675b28dfac5e ( teamId ) </title></use><a xlink:href='#public.team_classes_driver_teamId'><text id='public.team_classes_driver.teamId' x='515' y='487' onmouseover="hghl(['team_classes_driver_FK_83569ed7735af6675b28dfac5e3','public.team.id'])" onmouseout="uhghl(['team_classes_driver_FK_83569ed7735af6675b28dfac5e3','public.team.id'])">teamId</text><title>teamId
+* uuid</title></a>
+<a xlink:href='#public.team_classes_driver.teamId'><use id='fk' x='628' y='476' xlink:href='#fk'/><title>References team ( teamId -&gt; id ) </title></a>
+  <use id='nn' x='498' y='493' xlink:href='#nn'/><use id='pk' x='498' y='492' xlink:href='#pk'><title>Pk PK_c5a02ff5874564eb39ceebcbfd4 ( teamId, driverId ) IDX_3d58dff28d0804866fcb118c69 ( driverId ) </title></use><a xlink:href='#public.team_classes_driver_driverId'><text id='public.team_classes_driver.driverId' x='515' y='503' onmouseover="hghl(['team_classes_driver_FK_3d58dff28d0804866fcb118c69f','public.driver.id'])" onmouseout="uhghl(['team_classes_driver_FK_3d58dff28d0804866fcb118c69f','public.driver.id'])">driverId</text><title>driverId
+* uuid</title></a>
+<a xlink:href='#public.team_classes_driver.driverId'><use id='fk' x='628' y='492' xlink:href='#fk'/><title>References driver ( driverId -&gt; id ) </title></a>
 
 <!-- == Table 'address' == -->
-<rect id='depict_public.address' class='entity' style='stroke:none;' x='864' y='296' width='96' height='160' rx='8' ry='8' />
-<path d='M 864 324 L 864 304 Q 864 296 872 296 L 952 296 Q 960 296 960 304 L 960 324 L864 324 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='864' y='296' width='96' height='160' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.address'><text x='886' y='315' >address</text><title>Table public.address</title></a>
-  <use id='nn' x='866' y='333' xlink:href='#nn'/><use id='pk' x='866' y='332' xlink:href='#pk'><title>Pk PK_d92de1f82754668b5f5f5dd4fd5 ( id ) </title></use><a xlink:href='#public.address_id'><text id='public.address.id' x='883' y='343' onmouseover="hghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId'])" onmouseout="uhghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId'])">id</text><title>id
+<rect id='depict_public.address' class='entity' style='stroke:none;' x='176' y='440' width='96' height='160' rx='8' ry='8' />
+<path d='M 176 468 L 176 448 Q 176 440 184 440 L 264 440 Q 272 440 272 448 L 272 468 L176 468 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='176' y='440' width='96' height='160' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.address'><text x='198' y='459' >address</text><title>Table public.address</title></a>
+  <use id='nn' x='178' y='477' xlink:href='#nn'/><use id='pk' x='178' y='476' xlink:href='#pk'><title>Pk PK_d92de1f82754668b5f5f5dd4fd5 ( id ) </title></use><a xlink:href='#public.address_id'><text id='public.address.id' x='195' y='487' onmouseover="hghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId'])" onmouseout="uhghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.driver.homeAddressId','team_FK_826a10e6287bbb4abfd17c04b14','public.team.businessAddressId','driver_FK_f162a75e923a024cb507e96e106','public.driver.managementAddressId'])">id</text><title>id
 * uuid default uuid_generate_v4()</title></a>
-<a xlink:href='#public.address.id'><use id='ref' x='948' y='332' xlink:href='#ref'/><title>Referred by driver ( homeAddressId -&gt; id ) 
+<a xlink:href='#public.address.id'><use id='ref' x='260' y='476' xlink:href='#ref'/><title>Referred by driver ( homeAddressId -&gt; id ) 
 Referred by team ( businessAddressId -&gt; id ) 
 Referred by driver ( managementAddressId -&gt; id ) </title></a>
-  <a xlink:href='#public.address_street'><text id='public.address.street' x='883' y='359'>street</text><title>street
+  <a xlink:href='#public.address_street'><text id='public.address.street' x='195' y='503'>street</text><title>street
 varchar(100)</title></a>
-<text x='957' y='356' text-anchor='end' class='colType'>t</text>  <a xlink:href='#public.address_street2'><text id='public.address.street2' x='883' y='375'>street2</text><title>street2
+<text x='269' y='500' text-anchor='end' class='colType'>t</text>  <a xlink:href='#public.address_street2'><text id='public.address.street2' x='195' y='519'>street2</text><title>street2
 varchar(100)</title></a>
-<text x='957' y='372' text-anchor='end' class='colType'>t</text>  <use id='nn' x='866' y='381' xlink:href='#nn'/><a xlink:href='#public.address_city'><text id='public.address.city' x='883' y='391'>city</text><title>city
+<text x='269' y='516' text-anchor='end' class='colType'>t</text>  <use id='nn' x='178' y='525' xlink:href='#nn'/><a xlink:href='#public.address_city'><text id='public.address.city' x='195' y='535'>city</text><title>city
 * varchar(100)</title></a>
-<text x='957' y='388' text-anchor='end' class='colType'>t</text>  <use id='nn' x='866' y='397' xlink:href='#nn'/><a xlink:href='#public.address_state'><text id='public.address.state' x='883' y='407'>state</text><title>state
+<text x='269' y='532' text-anchor='end' class='colType'>t</text>  <use id='nn' x='178' y='541' xlink:href='#nn'/><a xlink:href='#public.address_state'><text id='public.address.state' x='195' y='551'>state</text><title>state
 * varchar(50)</title></a>
-<text x='957' y='404' text-anchor='end' class='colType'>t</text>  <use id='nn' x='866' y='413' xlink:href='#nn'/><a xlink:href='#public.address_zipcode'><text id='public.address.zipcode' x='883' y='423'>zipcode</text><title>zipcode
+<text x='269' y='548' text-anchor='end' class='colType'>t</text>  <use id='nn' x='178' y='557' xlink:href='#nn'/><a xlink:href='#public.address_zipcode'><text id='public.address.zipcode' x='195' y='567'>zipcode</text><title>zipcode
 * varchar(20)</title></a>
-<text x='957' y='420' text-anchor='end' class='colType'>t</text>  <use id='nn' x='866' y='429' xlink:href='#nn'/><a xlink:href='#public.address_country'><text id='public.address.country' x='883' y='439'>country</text><title>country
+<text x='269' y='564' text-anchor='end' class='colType'>t</text>  <use id='nn' x='178' y='573' xlink:href='#nn'/><a xlink:href='#public.address_country'><text id='public.address.country' x='195' y='583'>country</text><title>country
 * varchar(100)</title></a>
-<text x='957' y='436' text-anchor='end' class='colType'>t</text>
-<!-- == Table 'team' == -->
-<rect id='depict_public.team' class='entity' style='stroke:none;' x='768' y='72' width='144' height='112' rx='8' ry='8' />
-<path d='M 768 100 L 768 80 Q 768 72 776 72 L 904 72 Q 912 72 912 80 L 912 100 L768 100 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='768' y='72' width='144' height='112' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.team'><text x='821' y='91' >team</text><title>Table public.team</title></a>
-  <use id='nn' x='770' y='109' xlink:href='#nn'/><use id='pk' x='770' y='108' xlink:href='#pk'><title>Pk PK_f57d8293406df4af348402e4b74 ( id ) </title></use><a xlink:href='#public.team_id'><text id='public.team.id' x='787' y='119' onmouseover="hghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId'])" onmouseout="uhghl(['car_FK_848edf6915784246d3a20d20a50','public.car.teamId'])">id</text><title>id
-* uuid default uuid_generate_v4()</title></a>
-<a xlink:href='#public.team.id'><use id='ref' x='900' y='108' xlink:href='#ref'/><title>Referred by car ( teamId -&gt; id ) </title></a>
-  <use id='nn' x='770' y='125' xlink:href='#nn'/><a xlink:href='#public.team_name'><text id='public.team.name' x='787' y='135'>name</text><title>name
-* varchar(100)</title></a>
-<text x='909' y='132' text-anchor='end' class='colType'>t</text>  <use id='nn' x='770' y='141' xlink:href='#nn'/><a xlink:href='#public.team_nationality'><text id='public.team.nationality' x='787' y='151'>nationality</text><title>nationality
-* team_nationality_enum</title></a>
-<text x='909' y='148' text-anchor='end' class='colType'>t</text>  <use id='unq' x='770' y='156' xlink:href='#unq'><title>Unq REL_826a10e6287bbb4abfd17c04b1 ( businessAddressId ) </title></use><a xlink:href='#public.team_businessAddressId'><text id='public.team.businessAddressId' x='787' y='167' onmouseover="hghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.address.id'])" onmouseout="uhghl(['team_FK_826a10e6287bbb4abfd17c04b14','public.address.id'])">businessAddressId</text><title>businessAddressId
-uuid</title></a>
-<a xlink:href='#public.team.businessAddressId'><use id='fk' x='900' y='156' xlink:href='#fk'/><title>References address ( businessAddressId -&gt; id ) </title></a>
-
-<!-- == Table 'race' == -->
-<rect id='depict_public.race' class='entity' style='stroke:none;' x='608' y='200' width='80' height='80' rx='8' ry='8' />
-<path d='M 608 228 L 608 208 Q 608 200 616 200 L 680 200 Q 688 200 688 208 L 688 228 L608 228 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='608' y='200' width='80' height='80' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.race'><text x='631' y='219' >race</text><title>Table public.race</title></a>
-  <use id='nn' x='610' y='237' xlink:href='#nn'/><use id='pk' x='610' y='236' xlink:href='#pk'><title>Pk PK_a3068b184130d87a20e516045bb ( id ) </title></use><a xlink:href='#public.race_id'><text id='public.race.id' x='627' y='247' onmouseover="hghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId'])" onmouseout="uhghl(['race_car_FK_4136671f0548adc4f1675287ec0','public.race_car.raceId'])">id</text><title>id
-* uuid default uuid_generate_v4()</title></a>
-<a xlink:href='#public.race.id'><use id='ref' x='676' y='236' xlink:href='#ref'/><title>Referred by race_car ( raceId -&gt; id ) </title></a>
-  <use id='nn' x='610' y='253' xlink:href='#nn'/><a xlink:href='#public.race_name'><text id='public.race.name' x='627' y='263'>name</text><title>name
-* varchar(100)</title></a>
-<text x='685' y='260' text-anchor='end' class='colType'>t</text>
+<text x='269' y='580' text-anchor='end' class='colType'>t</text>
 <!-- == Table 'driver' == -->
-<rect id='depict_public.driver' class='entity' style='stroke:none;' x='512' y='376' width='176' height='144' rx='8' ry='8' />
-<path d='M 512 404 L 512 384 Q 512 376 520 376 L 680 376 Q 688 376 688 384 L 688 404 L512 404 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
-<rect class='entity' x='512' y='376' width='176' height='144' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
-<a xlink:href='#public.driver'><text x='579' y='395' >driver</text><title>Table public.driver</title></a>
-  <use id='nn' x='514' y='413' xlink:href='#nn'/><a xlink:href='#public.driver_nationality'><text id='public.driver.nationality' x='531' y='423'>nationality</text><title>nationality
+<rect id='depict_public.driver' class='entity' style='stroke:none;' x='400' y='136' width='176' height='144' rx='8' ry='8' />
+<path d='M 400 164 L 400 144 Q 400 136 408 136 L 568 136 Q 576 136 576 144 L 576 164 L400 164 ' style='fill:url(#tbg_BED3F4);stroke-width:0;' />
+<rect class='entity' x='400' y='136' width='176' height='144' rx='8' ry='8' style='fill:none;stroke:#CBD6E8'/>
+<a xlink:href='#public.driver'><text x='467' y='155' >driver</text><title>Table public.driver</title></a>
+  <use id='nn' x='402' y='173' xlink:href='#nn'/><a xlink:href='#public.driver_nationality'><text id='public.driver.nationality' x='419' y='183'>nationality</text><title>nationality
 * driver_nationality_enum</title></a>
-<text x='685' y='420' text-anchor='end' class='colType'>t</text>  <use id='nn' x='514' y='429' xlink:href='#nn'/><a xlink:href='#public.driver_firstName'><text id='public.driver.firstName' x='531' y='439'>firstName</text><title>firstName
+<text x='573' y='180' text-anchor='end' class='colType'>t</text>  <use id='nn' x='402' y='189' xlink:href='#nn'/><a xlink:href='#public.driver_firstName'><text id='public.driver.firstName' x='419' y='199'>firstName</text><title>firstName
 * varchar(40)</title></a>
-<text x='685' y='436' text-anchor='end' class='colType'>t</text>  <use id='nn' x='514' y='445' xlink:href='#nn'/><a xlink:href='#public.driver_lastName'><text id='public.driver.lastName' x='531' y='455'>lastName</text><title>lastName
+<text x='573' y='196' text-anchor='end' class='colType'>t</text>  <use id='nn' x='402' y='205' xlink:href='#nn'/><a xlink:href='#public.driver_lastName'><text id='public.driver.lastName' x='419' y='215'>lastName</text><title>lastName
 * varchar(40)</title></a>
-<text x='685' y='452' text-anchor='end' class='colType'>t</text>  <use id='unq' x='514' y='460' xlink:href='#unq'><title>Unq UQ_36e30c29d63438e7560d02cc7e7 ( homeAddressId ) </title></use><a xlink:href='#public.driver_homeAddressId'><text id='public.driver.homeAddressId' x='531' y='471' onmouseover="hghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.address.id'])" onmouseout="uhghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.address.id'])">homeAddressId</text><title>homeAddressId
+<text x='573' y='212' text-anchor='end' class='colType'>t</text>  <use id='unq' x='402' y='220' xlink:href='#unq'><title>Unq UQ_36e30c29d63438e7560d02cc7e7 ( homeAddressId ) </title></use><a xlink:href='#public.driver_homeAddressId'><text id='public.driver.homeAddressId' x='419' y='231' onmouseover="hghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.address.id'])" onmouseout="uhghl(['driver_FK_36e30c29d63438e7560d02cc7e7','public.address.id'])">homeAddressId</text><title>homeAddressId
 uuid</title></a>
-<a xlink:href='#public.driver.homeAddressId'><use id='fk' x='676' y='460' xlink:href='#fk'/><title>References address ( homeAddressId -&gt; id ) </title></a>
-  <use id='unq' x='514' y='476' xlink:href='#unq'><title>Unq UQ_f162a75e923a024cb507e96e106 ( managementAddressId ) </title></use><a xlink:href='#public.driver_managementAddressId'><text id='public.driver.managementAddressId' x='531' y='487' onmouseover="hghl(['driver_FK_f162a75e923a024cb507e96e106','public.address.id'])" onmouseout="uhghl(['driver_FK_f162a75e923a024cb507e96e106','public.address.id'])">managementAddressId</text><title>managementAddressId
+<a xlink:href='#public.driver.homeAddressId'><use id='fk' x='564' y='220' xlink:href='#fk'/><title>References address ( homeAddressId -&gt; id ) </title></a>
+  <use id='unq' x='402' y='236' xlink:href='#unq'><title>Unq UQ_f162a75e923a024cb507e96e106 ( managementAddressId ) </title></use><a xlink:href='#public.driver_managementAddressId'><text id='public.driver.managementAddressId' x='419' y='247' onmouseover="hghl(['driver_FK_f162a75e923a024cb507e96e106','public.address.id'])" onmouseout="uhghl(['driver_FK_f162a75e923a024cb507e96e106','public.address.id'])">managementAddressId</text><title>managementAddressId
 uuid</title></a>
-<a xlink:href='#public.driver.managementAddressId'><use id='fk' x='676' y='476' xlink:href='#fk'/><title>References address ( managementAddressId -&gt; id ) </title></a>
-  <use id='nn' x='514' y='493' xlink:href='#nn'/><use id='pk' x='514' y='492' xlink:href='#pk'><title>Pk PK_61de71a8d217d585ecd5ee3d065 ( id ) </title></use><a xlink:href='#public.driver_id'><text id='public.driver.id' x='531' y='503' onmouseover="hghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId'])" onmouseout="uhghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId'])">id</text><title>id
+<a xlink:href='#public.driver.managementAddressId'><use id='fk' x='564' y='236' xlink:href='#fk'/><title>References address ( managementAddressId -&gt; id ) </title></a>
+  <use id='nn' x='402' y='253' xlink:href='#nn'/><use id='pk' x='402' y='252' xlink:href='#pk'><title>Pk PK_61de71a8d217d585ecd5ee3d065 ( id ) </title></use><a xlink:href='#public.driver_id'><text id='public.driver.id' x='419' y='263' onmouseover="hghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId','team_classes_driver_FK_3d58dff28d0804866fcb118c69f','public.team_classes_driver.driverId'])" onmouseout="uhghl(['race_car_FK_992d9232f72becb0195371a2183','public.race_car.driverId','team_classes_driver_FK_3d58dff28d0804866fcb118c69f','public.team_classes_driver.driverId'])">id</text><title>id
 * uuid default uuid_generate_v4()</title></a>
-<a xlink:href='#public.driver.id'><use id='ref' x='676' y='492' xlink:href='#ref'/><title>Referred by race_car ( driverId -&gt; id ) </title></a>
+<a xlink:href='#public.driver.id'><use id='ref' x='564' y='252' xlink:href='#ref'/><title>Referred by race_car ( driverId -&gt; id ) 
+Referred by team_classes_driver ( driverId -&gt; id ) </title></a>
 
 <!-- == Callout == -->
-<rect class='callout' x='48' y='816' width='448' height='71' rx='16' ry='16'  />
-<text x='72' y='816' class='callout'>
+<rect class='callout' x='48' y='64' width='448' height='71' rx='16' ry='16'  />
+<text x='72' y='64' class='callout'>
     <tspan x='52' dx='8' dy='19'>Double&#45;click table headers&#44; columns&#44; or foreign keys to edit&#46; </tspan>
     <tspan x='52' dx='8' dy='19'>Create multiple layouts &#40;diagrams&#41; with the same or different tables&#46; </tspan>
     <tspan x='52' dx='8' dy='19'>Saving the model to file will save also the layouts&#46;</tspan>
@@ -569,7 +634,7 @@ function installListeners( svgContainer, svgImage ){
 <div class='container pt-2'>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.address'  onclick="window.scrollTo(664, 304);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Schema public</h5><p class='text-muted mb-5'>standard public schema</p>
+<div class='card'><div class='card-body'><a name='public.address'  onclick="window.scrollTo(60, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Schema public</h5><p class='text-muted mb-5'>standard public schema</p>
 <h5 class='card-title'>Table address</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
@@ -618,21 +683,21 @@ function installListeners( svgContainer, svgImage ){
 <tr><th colspan='3'>Referring Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_36e30c29d63438e7560d02cc7e7</td>
-		<td > (id) &#8592; <a href='#public&#46;driver'  onclick="window.scrollTo(312, 384);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(homeAddressId) </td>
+		<td > (id) &#8592; <a href='#public&#46;driver'  onclick="window.scrollTo(200, 144);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(homeAddressId) </td>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_826a10e6287bbb4abfd17c04b14</td>
-		<td > (id) &#8592; <a href='#public&#46;team'  onclick="window.scrollTo(568, 80);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;">team</a>(businessAddressId) </td>
+		<td > (id) &#8592; <a href='#public&#46;team'  onclick="window.scrollTo(248, 672);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;">team</a>(businessAddressId) </td>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_f162a75e923a024cb507e96e106</td>
-		<td > (id) &#8592; <a href='#public&#46;driver'  onclick="window.scrollTo(312, 384);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(managementAddressId) </td>
+		<td > (id) &#8592; <a href='#public&#46;driver'  onclick="window.scrollTo(200, 144);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(managementAddressId) </td>
 	</tr>
 </tbody>
 </table></div></div>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.car'  onclick="window.scrollTo(60, 112);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table car</h5></a>
+<div class='card'><div class='card-body'><a name='public.car'  onclick="window.scrollTo(600, 656);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table car</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
 <tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
@@ -649,7 +714,7 @@ function installListeners( svgContainer, svgImage ){
 		<td> varchar&#40;40&#41;  </td>
 	</tr>
 	<tr>
-		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
 		<td><a name='public.car_classId'>classId</a></td>
 		<td> uuid  </td>
 	</tr>
@@ -664,31 +729,28 @@ function installListeners( svgContainer, svgImage ){
 		<td> uuid  DEFAULT uuid_generate_v4() </td>
 	</tr>
 <tr><th colspan='3'>Indexes</th></tr>
-	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>UQ&#95;7f4cde2f52b7249b96d89661bfa</td>
-		<td> ON classId</td>
-	</tr>
 	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;55bbdeb14e0b1d7ab417d11ee6d</td>
 		<td> ON id</td>
 	</tr>
 <tr><th colspan='3'>Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_7f4cde2f52b7249b96d89661bfa</td>
-		<td > (classId) &#8594; <a href='#public&#46;class'  onclick="window.scrollTo(60, 432);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;">class</a>(id) </td>
+		<td > (classId) &#8594; <a href='#public&#46;class'  onclick="window.scrollTo(856, 592);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;">class</a>(id) </td>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_848edf6915784246d3a20d20a50</td>
-		<td > (teamId) &#8594; <a href='#public&#46;team'  onclick="window.scrollTo(568, 80);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;">team</a>(id) </td>
+		<td > (teamId) &#8594; <a href='#public&#46;team'  onclick="window.scrollTo(248, 672);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;">team</a>(id) </td>
 	</tr>
 <tr><th colspan='3'>Referring Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_9f676341f8ef0aa149628f2e33f</td>
-		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(104, 288);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(carId) </td>
+		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(552, 272);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(carId) </td>
 	</tr>
 </tbody>
 </table></div></div>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.class'  onclick="window.scrollTo(60, 432);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table class</h5></a>
+<div class='card'><div class='card-body'><a name='public.class'  onclick="window.scrollTo(856, 592);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table class</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
 <tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
@@ -711,17 +773,21 @@ function installListeners( svgContainer, svgImage ){
 <tr><th colspan='3'>Referring Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_7f4cde2f52b7249b96d89661bfa</td>
-		<td > (id) &#8592; <a href='#public&#46;car'  onclick="window.scrollTo(60, 112);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;">car</a>(classId) </td>
+		<td > (id) &#8592; <a href='#public&#46;car'  onclick="window.scrollTo(600, 656);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;">car</a>(classId) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_b303e181a4fc6e7b5026124967b</td>
+		<td > (id) &#8592; <a href='#public&#46;race&#95;classes&#95;class'  onclick="window.scrollTo(920, 352);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_classes_class').classList.add('palpable'); return false;">race&#95;classes&#95;class</a>(classId) </td>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_cb25810626d910def38a3b935b9</td>
-		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(104, 288);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(classId) </td>
+		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(552, 272);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(classId) </td>
 	</tr>
 </tbody>
 </table></div></div>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.driver'  onclick="window.scrollTo(312, 384);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table driver</h5></a>
+<div class='card'><div class='card-body'><a name='public.driver'  onclick="window.scrollTo(200, 144);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table driver</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
 <tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
@@ -770,22 +836,26 @@ function installListeners( svgContainer, svgImage ){
 <tr><th colspan='3'>Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_36e30c29d63438e7560d02cc7e7</td>
-		<td > (homeAddressId) &#8594; <a href='#public&#46;address'  onclick="window.scrollTo(664, 304);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;">address</a>(id) </td>
+		<td > (homeAddressId) &#8594; <a href='#public&#46;address'  onclick="window.scrollTo(60, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;">address</a>(id) </td>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_f162a75e923a024cb507e96e106</td>
-		<td > (managementAddressId) &#8594; <a href='#public&#46;address'  onclick="window.scrollTo(664, 304);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;">address</a>(id) </td>
+		<td > (managementAddressId) &#8594; <a href='#public&#46;address'  onclick="window.scrollTo(60, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;">address</a>(id) </td>
 	</tr>
 <tr><th colspan='3'>Referring Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_992d9232f72becb0195371a2183</td>
-		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(104, 288);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(driverId) </td>
+		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(552, 272);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(driverId) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_3d58dff28d0804866fcb118c69f</td>
+		<td > (id) &#8592; <a href='#public&#46;team&#95;classes&#95;driver'  onclick="window.scrollTo(296, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team_classes_driver').classList.add('palpable'); return false;">team&#95;classes&#95;driver</a>(driverId) </td>
 	</tr>
 </tbody>
 </table></div></div>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.race'  onclick="window.scrollTo(408, 208);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table race</h5></a>
+<div class='card'><div class='card-body'><a name='public.race'  onclick="window.scrollTo(840, 160);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table race</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
 <tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
@@ -807,14 +877,18 @@ function installListeners( svgContainer, svgImage ){
 	</tr>
 <tr><th colspan='3'>Referring Foreign Keys</th></tr>
 	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_12584f2885eb06f198f60736066</td>
+		<td > (id) &#8592; <a href='#public&#46;race&#95;classes&#95;class'  onclick="window.scrollTo(920, 352);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_classes_class').classList.add('palpable'); return false;">race&#95;classes&#95;class</a>(raceId) </td>
+	</tr>
+	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_4136671f0548adc4f1675287ec0</td>
-		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(104, 288);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(raceId) </td>
+		<td > (id) &#8592; <a href='#public&#46;race&#95;car'  onclick="window.scrollTo(552, 272);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;">race&#95;car</a>(raceId) </td>
 	</tr>
 </tbody>
 </table></div></div>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.race_car'  onclick="window.scrollTo(104, 288);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table race_car</h5></a>
+<div class='card'><div class='card-body'><a name='public.race_car'  onclick="window.scrollTo(552, 272);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_car').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table race_car</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
 <tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
@@ -867,25 +941,64 @@ function installListeners( svgContainer, svgImage ){
 <tr><th colspan='3'>Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_9f676341f8ef0aa149628f2e33f</td>
-		<td > (carId) &#8594; <a href='#public&#46;car'  onclick="window.scrollTo(60, 112);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;">car</a>(id) </td>
-	</tr>
-	<tr>
-		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_992d9232f72becb0195371a2183</td>
-		<td > (driverId) &#8594; <a href='#public&#46;driver'  onclick="window.scrollTo(312, 384);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(id) </td>
-	</tr>
-	<tr>
-		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_4136671f0548adc4f1675287ec0</td>
-		<td > (raceId) &#8594; <a href='#public&#46;race'  onclick="window.scrollTo(408, 208);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race').classList.add('palpable'); return false;">race</a>(id) </td>
+		<td > (carId) &#8594; <a href='#public&#46;car'  onclick="window.scrollTo(600, 656);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;">car</a>(id) </td>
 	</tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_cb25810626d910def38a3b935b9</td>
-		<td > (classId) &#8594; <a href='#public&#46;class'  onclick="window.scrollTo(60, 432);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;">class</a>(id) </td>
+		<td > (classId) &#8594; <a href='#public&#46;class'  onclick="window.scrollTo(856, 592);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;">class</a>(id) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_992d9232f72becb0195371a2183</td>
+		<td > (driverId) &#8594; <a href='#public&#46;driver'  onclick="window.scrollTo(200, 144);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(id) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_4136671f0548adc4f1675287ec0</td>
+		<td > (raceId) &#8594; <a href='#public&#46;race'  onclick="window.scrollTo(840, 160);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race').classList.add('palpable'); return false;">race</a>(id) </td>
 	</tr>
 </tbody>
 </table></div></div>
 
 <br><br>
-<div class='card'><div class='card-body'><a name='public.team'  onclick="window.scrollTo(568, 80);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table team</h5></a>
+<div class='card'><div class='card-body'><a name='public.race_classes_class'  onclick="window.scrollTo(920, 352);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race_classes_class').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table race_classes_class</h5></a>
+<table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
+<thead>
+<tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='public.race_classes_class_raceId'>raceId</a></td>
+		<td> uuid  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='public.race_classes_class_classId'>classId</a></td>
+		<td> uuid  </td>
+	</tr>
+<tr><th colspan='3'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;d39510e4c590914a58b41184e83</td>
+		<td> ON raceId&#44; classId</td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IDX&#95;12584f2885eb06f198f6073606</td>
+		<td> ON raceId</td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IDX&#95;b303e181a4fc6e7b5026124967</td>
+		<td> ON classId</td>
+	</tr>
+<tr><th colspan='3'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_b303e181a4fc6e7b5026124967b</td>
+		<td > (classId) &#8594; <a href='#public&#46;class'  onclick="window.scrollTo(856, 592);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.class').classList.add('palpable'); return false;">class</a>(id) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_12584f2885eb06f198f60736066</td>
+		<td > (raceId) &#8594; <a href='#public&#46;race'  onclick="window.scrollTo(840, 160);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.race').classList.add('palpable'); return false;">race</a>(id) </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br><br>
+<div class='card'><div class='card-body'><a name='public.team'  onclick="window.scrollTo(248, 672);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table team</h5></a>
 <table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
 <thead>
 <tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
@@ -921,12 +1034,55 @@ function installListeners( svgContainer, svgImage ){
 <tr><th colspan='3'>Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_826a10e6287bbb4abfd17c04b14</td>
-		<td > (businessAddressId) &#8594; <a href='#public&#46;address'  onclick="window.scrollTo(664, 304);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;">address</a>(id) </td>
+		<td > (businessAddressId) &#8594; <a href='#public&#46;address'  onclick="window.scrollTo(60, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.address').classList.add('palpable'); return false;">address</a>(id) </td>
 	</tr>
 <tr><th colspan='3'>Referring Foreign Keys</th></tr>
 	<tr>
 		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_848edf6915784246d3a20d20a50</td>
-		<td > (id) &#8592; <a href='#public&#46;car'  onclick="window.scrollTo(60, 112);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;">car</a>(teamId) </td>
+		<td > (id) &#8592; <a href='#public&#46;car'  onclick="window.scrollTo(600, 656);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.car').classList.add('palpable'); return false;">car</a>(teamId) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#ref'/></svg></td><td>FK_83569ed7735af6675b28dfac5e3</td>
+		<td > (id) &#8592; <a href='#public&#46;team&#95;classes&#95;driver'  onclick="window.scrollTo(296, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team_classes_driver').classList.add('palpable'); return false;">team&#95;classes&#95;driver</a>(teamId) </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br><br>
+<div class='card'><div class='card-body'><a name='public.team_classes_driver'  onclick="window.scrollTo(296, 448);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team_classes_driver').classList.add('palpable'); return false;" style='cursor:pointer;'><h5 class='card-title'>Table team_classes_driver</h5></a>
+<table class='table table-sm small' style='table-layout: fixed; word-wrap: break-word;'>
+<thead>
+<tr><th style='width:5%'>Idx</th><th style='width:40%'>Field Name</th><th>Data Type</th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='public.team_classes_driver_teamId'>teamId</a></td>
+		<td> uuid  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='public.team_classes_driver_driverId'>driverId</a></td>
+		<td> uuid  </td>
+	</tr>
+<tr><th colspan='3'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>PK&#95;c5a02ff5874564eb39ceebcbfd4</td>
+		<td> ON teamId&#44; driverId</td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IDX&#95;83569ed7735af6675b28dfac5e</td>
+		<td> ON teamId</td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>IDX&#95;3d58dff28d0804866fcb118c69</td>
+		<td> ON driverId</td>
+	</tr>
+<tr><th colspan='3'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_3d58dff28d0804866fcb118c69f</td>
+		<td > (driverId) &#8594; <a href='#public&#46;driver'  onclick="window.scrollTo(200, 144);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.driver').classList.add('palpable'); return false;">driver</a>(id) </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_83569ed7735af6675b28dfac5e3</td>
+		<td > (teamId) &#8594; <a href='#public&#46;team'  onclick="window.scrollTo(248, 672);var nodes = document.getElementsByClassName('palpable');for (var i = 0; i < nodes.length; i++) { nodes[i].classList.remove('palpable');}; document.getElementById('depict_public.team').classList.add('palpable'); return false;">team</a>(id) </td>
 	</tr>
 </tbody>
 </table></div></div>

@@ -28,7 +28,7 @@ class Team {
 
   @ManyToMany(() => Driver)
   @JoinTable()
-  classes?: Driver[];
+  drivers?: Driver[];
 
   @OneToMany(() => Car, car => car.team)
   cars?: Car[]
