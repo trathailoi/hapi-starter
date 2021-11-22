@@ -13,7 +13,7 @@ class Race {
     name?: string;
 
     @OneToMany(() => Class, carClass => carClass.id)
-    class?: Class[]
+    classes?: Class[]
 }
 
 export { Race }
