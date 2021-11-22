@@ -18,12 +18,16 @@ import { ClassService } from '../service/class';
 import { ClassController } from '../api/class.controller';
 
 import { Team } from '../entity/Team';
-import { TeamService } from '../service/Team';
+import { TeamService } from '../service/team';
 import { TeamController } from '../api/team.controller';
 
 import { Driver } from '../entity/Driver';
-import { DriverService } from '../service/Driver';
+import { DriverService } from '../service/driver';
 import { DriverController } from '../api/driver.controller';
+
+import { Car } from '../entity/Car';
+import { CarService } from '../service/car';
+import { CarController } from '../api/car.controller';
 
 /**
  * This file contains all of the Inversify configuration code.  This is the only
@@ -118,12 +122,14 @@ container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() =
 container.bind<Repository<Class>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
 container.bind<Repository<Team>>(TYPES.TeamRepository).toDynamicValue(() => createRepository<Team>(Team)).inSingletonScope()
 container.bind<Repository<Driver>>(TYPES.DriverRepository).toDynamicValue(() => createRepository<Driver>(Driver)).inSingletonScope()
+container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(() => createRepository<Car>(Car)).inSingletonScope()
 
 // Services
 container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
 container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope();
 container.bind<TeamService>(TYPES.TeamService).to(TeamService).inSingletonScope();
 container.bind<DriverService>(TYPES.DriverService).to(DriverService).inSingletonScope();
+container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
@@ -131,6 +137,7 @@ container.bind<AddressController>(TYPES.AddressController).to(AddressController)
 container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope();
 container.bind<TeamController>(TYPES.TeamController).to(TeamController).inSingletonScope();
 container.bind<DriverController>(TYPES.DriverController).to(DriverController).inSingletonScope();
+container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

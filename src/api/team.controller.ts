@@ -14,21 +14,20 @@ import { TeamDTO } from '../dto/team';
 class TeamController extends HapiController {
 
   constructor(
-      @inject(TYPES.Logger) private logger: Logger,
-      @inject(TYPES.TeamService) private teamService: TeamService)
-  {
-      super();
-      this.logger.info('Created controller TeamController');
+    @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.TeamService) private teamService: TeamService) {
+    super();
+    this.logger.info('Created controller TeamController');
   }
 
-/**
- * Get all team
- */
+  /**
+   * Get all team
+   */
   @HapiRoute({
     method: 'GET',
     path: 'teams',
     options: {
-      validate: { },
+      validate: {},
       description: 'Get all team',
       tags: ['Team'],
       auth: false
@@ -38,9 +37,9 @@ class TeamController extends HapiController {
     return toolkit.response(await this.teamService.findAll());
   }
 
-/**
- * Update an existing team
- */
+  /**
+   * Update an existing team
+   */
   @HapiRoute({
     method: 'PUT',
     path: 'teams',
@@ -68,9 +67,9 @@ class TeamController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Add a new team to the store
- */
+  /**
+   * Add a new team to the store
+   */
   @HapiRoute({
     method: 'POST',
     path: 'teams',
@@ -93,9 +92,9 @@ class TeamController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Find team by ID
- */
+  /**
+   * Find team by ID
+   */
   @HapiRoute({
     method: 'GET',
     path: 'teams/{teamId}',
@@ -118,9 +117,9 @@ class TeamController extends HapiController {
     return toolkit.response(item);
   }
 
-/**
- * Delete a team
- */
+  /**
+   * Delete a team
+   */
   @HapiRoute({
     method: 'DELETE',
     path: 'teams/{teamId}',

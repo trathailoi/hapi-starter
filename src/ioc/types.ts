@@ -25,6 +25,10 @@ const TYPES = {
     DriverController: Symbol.for('DriverController'),
     DriverRepository: Symbol.for('DriverRepository'),
     DriverService: Symbol.for('DriverService'),
+
+    CarController: Symbol.for('CarController'),
+    CarRepository: Symbol.for('CarRepository'),
+    CarService: Symbol.for('CarService'),
 }
 
 export { TYPES }

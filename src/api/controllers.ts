@@ -7,6 +7,7 @@ import { AddressController } from "./address.controller";
 import { ClassController } from "./class.controller";
 import { TeamController } from "./team.controller";
 import { DriverController } from "./driver.controller";
+import { CarController } from "./car.controller";
 
 /**
  * The purpose of this class is to simply collect all of our controllers so we can generate
@@ -36,6 +37,9 @@ class Controllers {
 
     @inject(TYPES.DriverController) 
     private driverController?: DriverController;
+
+    @inject(TYPES.CarController) 
+    private carController?: CarController;
 
     /**
      * Wraps the static getRoutes() method on HapiController.  This makes more sense

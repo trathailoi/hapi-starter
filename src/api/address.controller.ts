@@ -13,21 +13,20 @@ import { AddressDTO } from '../dto/address';
 @injectable()
 class AddressController extends HapiController {
   constructor(
-      @inject(TYPES.Logger) private logger: Logger,
-      @inject(TYPES.AddressService) private addressService: AddressService)
-  {
-      super();
-      this.logger.info('Created controller AddressController');
+    @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.AddressService) private addressService: AddressService) {
+    super();
+    this.logger.info('Created controller AddressController');
   }
 
-/**
- * Get all address
- */
+  /**
+   * Get all address
+   */
   @HapiRoute({
     method: 'GET',
     path: 'addresses',
     options: {
-      validate: { },
+      validate: {},
       description: 'Get all address',
       tags: ['Address'],
       auth: false
@@ -37,9 +36,9 @@ class AddressController extends HapiController {
     return toolkit.response(await this.addressService.findAll());
   }
 
-/**
- * Update an existing address
- */
+  /**
+   * Update an existing address
+   */
   @HapiRoute({
     method: 'PUT',
     path: 'addresses',
@@ -70,9 +69,9 @@ class AddressController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Add a new address to the store
- */
+  /**
+   * Add a new address to the store
+   */
   @HapiRoute({
     method: 'POST',
     path: 'addresses',
@@ -98,9 +97,9 @@ class AddressController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Find address by ID
- */
+  /**
+   * Find address by ID
+   */
   @HapiRoute({
     method: 'GET',
     path: 'addresses/{addressId}',
@@ -123,9 +122,9 @@ class AddressController extends HapiController {
     return toolkit.response(item);
   }
 
-/**
- * Delete a address
- */
+  /**
+   * Delete a address
+   */
   @HapiRoute({
     method: 'DELETE',
     path: 'addresses/{addressId}',

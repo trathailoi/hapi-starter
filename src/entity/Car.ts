@@ -64,8 +64,7 @@ class Car {
   // })
   // entryNumber?: number;
 
-  @OneToOne(() => Class)
-  @JoinColumn()
+  @ManyToOne(() => Class)
   class?: Class;
 
   @ManyToOne(() => Team, team => team.cars)

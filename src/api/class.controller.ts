@@ -14,21 +14,20 @@ import { ClassDTO } from '../dto/class';
 class ClassController extends HapiController {
 
   constructor(
-      @inject(TYPES.Logger) private logger: Logger,
-      @inject(TYPES.ClassService) private classService: ClassService)
-  {
-      super();
-      this.logger.info('Created controller ClassController');
+    @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.ClassService) private classService: ClassService) {
+    super();
+    this.logger.info('Created controller ClassController');
   }
 
-/**
- * Get all class
- */
+  /**
+   * Get all class
+   */
   @HapiRoute({
     method: 'GET',
     path: 'classes',
     options: {
-      validate: { },
+      validate: {},
       description: 'Get all class',
       tags: ['Class'],
       auth: false
@@ -38,9 +37,9 @@ class ClassController extends HapiController {
     return toolkit.response(await this.classService.findAll());
   }
 
-/**
- * Update an existing class
- */
+  /**
+   * Update an existing class
+   */
   @HapiRoute({
     method: 'PUT',
     path: 'classes',
@@ -66,9 +65,9 @@ class ClassController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Add a new class to the store
- */
+  /**
+   * Add a new class to the store
+   */
   @HapiRoute({
     method: 'POST',
     path: 'classes',
@@ -89,9 +88,9 @@ class ClassController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Find class by ID
- */
+  /**
+   * Find class by ID
+   */
   @HapiRoute({
     method: 'GET',
     path: 'classes/{classId}',
@@ -114,9 +113,9 @@ class ClassController extends HapiController {
     return toolkit.response(item);
   }
 
-/**
- * Delete a class
- */
+  /**
+   * Delete a class
+   */
   @HapiRoute({
     method: 'DELETE',
     path: 'classes/{classId}',

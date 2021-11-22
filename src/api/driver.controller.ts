@@ -14,21 +14,20 @@ import { DriverDTO } from '../dto/driver';
 class DriverController extends HapiController {
 
   constructor(
-      @inject(TYPES.Logger) private logger: Logger,
-      @inject(TYPES.DriverService) private driverService: DriverService)
-  {
-      super();
-      this.logger.info('Created controller DriverController');
+    @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.DriverService) private driverService: DriverService) {
+    super();
+    this.logger.info('Created controller DriverController');
   }
 
-/**
- * Get all driver
- */
+  /**
+   * Get all driver
+   */
   @HapiRoute({
     method: 'GET',
     path: 'drivers',
     options: {
-      validate: { },
+      validate: {},
       description: 'Get all driver',
       tags: ['Driver'],
       auth: false
@@ -38,9 +37,9 @@ class DriverController extends HapiController {
     return toolkit.response(await this.driverService.findAll());
   }
 
-/**
- * Update an existing driver
- */
+  /**
+   * Update an existing driver
+   */
   @HapiRoute({
     method: 'PUT',
     path: 'drivers',
@@ -70,9 +69,9 @@ class DriverController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Add a new driver to the store
- */
+  /**
+   * Add a new driver to the store
+   */
   @HapiRoute({
     method: 'POST',
     path: 'drivers',
@@ -97,9 +96,9 @@ class DriverController extends HapiController {
     return toolkit.response('success');
   }
 
-/**
- * Find driver by ID
- */
+  /**
+   * Find driver by ID
+   */
   @HapiRoute({
     method: 'GET',
     path: 'drivers/{driverId}',
@@ -122,9 +121,9 @@ class DriverController extends HapiController {
     return toolkit.response(item);
   }
 
-/**
- * Delete a driver
- */
+  /**
+   * Delete a driver
+   */
   @HapiRoute({
     method: 'DELETE',
     path: 'drivers/{driverId}',
