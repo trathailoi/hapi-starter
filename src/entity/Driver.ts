@@ -1,7 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Address } from './Address';
 
-export type NationalityType = 'USA' | 'Viet Nam'
+export enum NationalityType {
+  usa = 'USA',
+  vietnam = 'Viet Nam'
+}
+
 @Entity()
 class Driver {
   @PrimaryGeneratedColumn('uuid')
@@ -15,7 +19,7 @@ class Driver {
 
   @Column({
     type: 'enum',
-    enum: ['USA', 'Viet Nam']
+    enum: NationalityType
   })
   nationality?: NationalityType;
   

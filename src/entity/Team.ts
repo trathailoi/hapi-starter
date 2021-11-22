@@ -3,6 +3,11 @@ import { Address } from './Address';
 import { Car } from './Car';
 import { Driver } from './Driver';
 
+export enum NationalityType {
+  usa = 'USA',
+  vietnam = 'Viet Nam'
+}
+
 @Entity()
 class Team {
   @PrimaryGeneratedColumn('uuid')
@@ -13,9 +18,9 @@ class Team {
 
   @Column({
     type: 'enum',
-    enum: ['USA', 'Viet Nam']
+    enum: NationalityType
   })
-  nationality?: string;    
+  nationality?: NationalityType;    
 
   @OneToOne(() => Address)
   @JoinColumn()
