@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 import { Class } from './Class';
 
 @Entity()
@@ -12,7 +12,8 @@ class Race {
     })
     name?: string;
 
-    @OneToMany(() => Class, carClass => carClass.id)
+    @ManyToMany(() => Class)
+    @JoinTable()
     classes?: Class[]
 }
 

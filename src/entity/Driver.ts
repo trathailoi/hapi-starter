@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Address } from './Address';
 import { Team } from './Team';
 
@@ -39,8 +39,9 @@ class Driver {
     @JoinColumn()
     managementAddress?: Address
 
-    @ManyToOne(() => Team)
-    team?: string;
+    @ManyToMany(() => Team)
+    @JoinTable()
+    teams?: Team[];
 }
 
 export { Driver }
