@@ -1,4 +1,4 @@
 export class ClassDTO {
-  id!: string;
+  id?: string;
   name?: string;
 }

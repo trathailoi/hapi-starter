@@ -1,5 +1,5 @@
 export class AddressDTO {
-  id!: string;
+  id?: string;
   street?: string;
   street2?: string;
   city?: string;

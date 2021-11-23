@@ -42,16 +42,18 @@ class DriverController extends HapiController {
    */
   @HapiRoute({
     method: 'PUT',
-    path: 'drivers',
+    path: 'drivers/{driverId}',
     options: {
       validate: {
+        params: {
+          driverId: Joi.string().length(36).required()
+        },
         payload: {
-          id: Joi.string().length(36).required(),
           firstName: Joi.string().required(),
           lastName: Joi.string().required(),
           nationality: Joi.string().required().valid('USA', 'Viet Nam'),
-          homeAddress: Joi.string().length(36).allow(null),
-          managementAddress: Joi.string().length(36).allow(null)
+          homeAddress: Joi.string().length(36).allow(null, ''),
+          managementAddress: Joi.string().length(36).allow(null, '')
         }
       },
       description: 'Update an existing driver',
@@ -61,10 +63,11 @@ class DriverController extends HapiController {
   })
   public async updateDriver(request: Request, toolkit: ResponseToolkit) {
     const payload: DriverDTO = request.payload as DriverDTO;
-    const item = await this.driverService.findById(payload.id);
+    const item = await this.driverService.findById(request.params.driverId);
     if (!item) {
       throw Boom.notFound();
     }
+    payload.id = request.params.driverId;
     await this.driverService.save(payload);
     return toolkit.response('success');
   }
@@ -81,8 +84,8 @@ class DriverController extends HapiController {
           firstName: Joi.string().required(),
           lastName: Joi.string().required(),
           nationality: Joi.string().required().valid('USA', 'Viet Nam'),
-          homeAddress: Joi.string().length(36).allow(null),
-          managementAddress: Joi.string().length(36).allow(null)
+          homeAddress: Joi.string().length(36).allow(null, ''),
+          managementAddress: Joi.string().length(36).allow(null, '')
         }
       },
       description: 'Add a new driver to the store',

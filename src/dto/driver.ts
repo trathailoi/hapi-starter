@@ -1,5 +1,5 @@
 export class DriverDTO {
-  id!: string;
+  id?: string;
   firstName?: string;
   lastName?: string;
   nationality?: string;
