@@ -9,12 +9,15 @@ import { HapiController } from './hapi-controller';
 
 import { CarService } from '../service/car';
 import { CarDTO } from '../dto/car';
+import { Car } from '../entity/Car';
+import { CarMapper } from '../helpers/mapper/car';
 
 @injectable()
 class CarController extends HapiController {
 
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.CarMapper) private carMapper: CarMapper,
     @inject(TYPES.CarService) private carService: CarService) {
     super();
     this.logger.info('Created controller CarController');
@@ -47,11 +50,13 @@ class CarController extends HapiController {
    */
   @HapiRoute({
     method: 'PUT',
-    path: 'cars',
+    path: 'cars/{carId}',
     options: {
       validate: {
+        params: {
+          carId: Joi.string().length(36).required()
+        },
         payload: {
-          id: Joi.string().length(36).required(),
           make: Joi.string().required(),
           model: Joi.string().required(),
           class: Joi.string().length(36).required(),
@@ -64,11 +69,12 @@ class CarController extends HapiController {
     }
   })
   public async updateCar(request: Request, toolkit: ResponseToolkit) {
-    const payload: CarDTO = request.payload as CarDTO;
-    const item = await this.carService.findById(payload.id);
+    const item = await this.carService.findById(request.params.carId);
     if (!item) {
       throw Boom.notFound();
     }
+    const payload: Car = this.carMapper.map(CarDTO, Car, request.payload);
+    payload.id = request.params.carId;
     await this.carService.save(payload);
     return toolkit.response('success');
   }
@@ -94,7 +100,7 @@ class CarController extends HapiController {
     }
   })
   public async addCar(request: Request, toolkit: ResponseToolkit) {
-    const payload: CarDTO = request.payload as CarDTO;
+    const payload: Car = this.carMapper.map(CarDTO, Car, request.payload);
     await this.carService.save(payload);
     return toolkit.response('success');
   }

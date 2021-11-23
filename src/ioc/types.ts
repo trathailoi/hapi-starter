@@ -30,10 +30,12 @@ const TYPES = {
     CarController: Symbol.for('CarController'),
     CarRepository: Symbol.for('CarRepository'),
     CarService: Symbol.for('CarService'),
-
+    CarMapper: Symbol.for('CarMapper'),
+    
     RaceController: Symbol.for('RaceController'),
     RaceRepository: Symbol.for('RaceRepository'),
     RaceService: Symbol.for('RaceService'),
+    RaceMapper: Symbol.for('RaceMapper'),
 }
 
 export { TYPES }

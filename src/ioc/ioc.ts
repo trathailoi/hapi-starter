@@ -29,10 +29,12 @@ import { DriverController } from '../api/driver.controller';
 import { Car } from '../entity/Car';
 import { CarService } from '../service/car';
 import { CarController } from '../api/car.controller';
+import { CarMapper } from '../helpers/mapper/car';
 
 import { Race } from '../entity/Race';
 import { RaceService } from '../service/race';
 import { RaceController } from '../api/race.controller';
+import { RaceMapper } from '../helpers/mapper/race';
 
 /**
  * This file contains all of the Inversify configuration code.  This is the only
@@ -124,6 +126,8 @@ container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope(
 
 // Mapper
 container.bind<TeamMapper>(TYPES.TeamMapper).to(TeamMapper).inSingletonScope();
+container.bind<CarMapper>(TYPES.CarMapper).to(CarMapper).inSingletonScope();
+container.bind<RaceMapper>(TYPES.RaceMapper).to(RaceMapper).inSingletonScope();
 
 // Repositories
 container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()

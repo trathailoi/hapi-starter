@@ -9,13 +9,18 @@ import { HapiController } from './hapi-controller';
 
 import { RaceService } from '../service/race';
 import { RaceDTO } from '../dto/race';
+import { Race } from '../entity/Race';
+import { RaceMapper } from '../helpers/mapper/race';
+import { ClassService } from '../service/class';
 
 @injectable()
 class RaceController extends HapiController {
 
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
-    @inject(TYPES.RaceService) private raceService: RaceService) {
+    @inject(TYPES.RaceMapper) private raceMapper: RaceMapper,
+    @inject(TYPES.RaceService) private raceService: RaceService,
+    @inject(TYPES.ClassService) private classService: ClassService) {
     super();
     this.logger.info('Created controller RaceController');
   }
@@ -42,12 +47,15 @@ class RaceController extends HapiController {
    */
   @HapiRoute({
     method: 'PUT',
-    path: 'races',
+    path: 'races/{raceId}',
     options: {
       validate: {
+        params: {
+          raceId: Joi.string().length(36).required()
+        },
         payload: {
-          id: Joi.string().length(36).required(),
-          name: Joi.string().required()
+          name: Joi.string().required(),
+          classes: Joi.array().items(Joi.string().length(36))
         }
       },
       description: 'Update an existing race',
@@ -56,11 +64,16 @@ class RaceController extends HapiController {
     }
   })
   public async updateRace(request: Request, toolkit: ResponseToolkit) {
-    const payload: RaceDTO = request.payload as RaceDTO;
-    const item = await this.raceService.findById(payload.id);
+    const item = await this.raceService.findById(request.params.raceId);
     if (!item) {
       throw Boom.notFound();
     }
+    const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
+    if (payload.classes && payload.classes.length) {
+      const classes = await this.classService.findByIds(payload.classes);
+      payload.classes = classes
+    }
+    payload.id = request.params.raceId;
     await this.raceService.save(payload);
     return toolkit.response('success');
   }
@@ -74,7 +87,8 @@ class RaceController extends HapiController {
     options: {
       validate: {
         payload: {
-          name: Joi.string().required()
+          name: Joi.string().required(),
+          classes: Joi.array().items(Joi.string().length(36))
         }
       },
       description: 'Add a new race to the store',
@@ -83,7 +97,11 @@ class RaceController extends HapiController {
     }
   })
   public async addRace(request: Request, toolkit: ResponseToolkit) {
-    const payload: RaceDTO = request.payload as RaceDTO;
+    const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
+    if (payload.classes && payload.classes.length) {
+      const classes = await this.classService.findByIds(payload.classes);
+      payload.classes = classes
+    }
     await this.raceService.save(payload);
     return toolkit.response('success');
   }
@@ -97,7 +115,7 @@ class RaceController extends HapiController {
     options: {
       validate: {
         params: {
-          addressId: Joi.string().length(36).required()
+          raceId: Joi.string().length(36).required()
         }
       },
       description: 'Find race by ID',
@@ -122,7 +140,7 @@ class RaceController extends HapiController {
     options: {
       validate: {
         params: {
-          addressId: Joi.string().length(36).required()
+          raceId: Joi.string().length(36).required()
         }
       },
       description: 'Delete a race',

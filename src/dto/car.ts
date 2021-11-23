@@ -1,5 +1,5 @@
 export class CarDTO {
-  id!: string;
+  id?: string;
   make?: string;
   model?: string;
   class?: string;

@@ -19,7 +19,7 @@ class CarService extends CrudService<Car> {
   public async findById(id: string): Promise<Car | undefined> {
     const result = await this.repository.findOne({
       where: { id },
-      relations: ['class', 'team']
+      relations: ['class', 'team', 'team.businessAddress']
     })
     return result;
   }
@@ -32,10 +32,9 @@ class CarService extends CrudService<Car> {
     if (query.model) {
       whereObj.model = Like(`%${query.model}%`)
     }
-    console.log('whereObj', whereObj)
     const result = await this.repository.find({
       where: whereObj,
-      relations: ['class', 'team']
+      relations: ['class', 'team', 'team.businessAddress']
     });
     return result;
   }

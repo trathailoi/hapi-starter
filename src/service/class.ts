@@ -14,6 +14,11 @@ class ClassService extends CrudService<Class> {
     super(repository, logger);
     this.logger.info('Created ClassService');
   }
+
+  public async findByIds(ids: Class[]): Promise<Array<Class>> {
+    const result = await this.repository.findByIds(ids)
+    return result;
+  }
 }
 
 export { ClassService }

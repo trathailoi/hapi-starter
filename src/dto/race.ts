@@ -1,4 +1,5 @@
 export class RaceDTO {
-  id!: string;
+  id?: string;
   name?: string;
+  classes?: Array<string>
 }
