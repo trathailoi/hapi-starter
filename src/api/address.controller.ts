@@ -41,11 +41,13 @@ class AddressController extends HapiController {
    */
   @HapiRoute({
     method: 'PUT',
-    path: 'addresses',
+    path: 'addresses/{addressId}',
     options: {
       validate: {
+        params: {
+          addressId: Joi.string().length(36).required()
+        },
         payload: {
-          id: Joi.string().length(36).required(),
           street: Joi.string().allow(null, ''),
           street2: Joi.string().allow(null, ''),
           city: Joi.string().required(),
@@ -61,10 +63,11 @@ class AddressController extends HapiController {
   })
   public async updateAddress(request: Request, toolkit: ResponseToolkit) {
     const payload: AddressDTO = request.payload as AddressDTO;
-    const item = await this.addressService.findById(payload.id);
+    const item = await this.addressService.findById(request.params.addressId);
     if (!item) {
       throw Boom.notFound();
     }
+    payload.id = request.params.addressId
     await this.addressService.save(payload);
     return toolkit.response('success');
   }

@@ -42,11 +42,13 @@ class ClassController extends HapiController {
    */
   @HapiRoute({
     method: 'PUT',
-    path: 'classes',
+    path: 'classes/{classId}',
     options: {
       validate: {
+        params: {
+          classId: Joi.string().length(36).required()
+        },
         payload: {
-          id: Joi.string().length(36).required(),
           name: Joi.string().required()
         }
       },
@@ -57,10 +59,11 @@ class ClassController extends HapiController {
   })
   public async updateClass(request: Request, toolkit: ResponseToolkit) {
     const payload: ClassDTO = request.payload as ClassDTO;
-    const item = await this.classService.findById(payload.id);
+    const item = await this.classService.findById(request.params.classId);
     if (!item) {
       throw Boom.notFound();
     }
+    payload.id = request.params.classId;
     await this.classService.save(payload);
     return toolkit.response('success');
   }
