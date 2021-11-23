@@ -12,10 +12,12 @@ const Configue = require('configue');
 import { Address } from '../entity/Address';
 import { AddressService } from '../service/address';
 import { AddressController } from '../api/address.controller';
+import { AddressMapper } from '../helpers/mapper/address';
 
 import { Class } from '../entity/Class';
 import { ClassService } from '../service/class';
 import { ClassController } from '../api/class.controller';
+import { ClassMapper } from '../helpers/mapper/class';
 
 import { Team } from '../entity/Team';
 import { TeamService } from '../service/team';
@@ -25,6 +27,7 @@ import { TeamMapper } from '../helpers/mapper/team';
 import { Driver } from '../entity/Driver';
 import { DriverService } from '../service/driver';
 import { DriverController } from '../api/driver.controller';
+import { DriverMapper } from '../helpers/mapper/driver';
 
 import { Car } from '../entity/Car';
 import { CarService } from '../service/car';
@@ -125,7 +128,10 @@ container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
 container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope();
 
 // Mapper
+container.bind<AddressMapper>(TYPES.AddressMapper).to(AddressMapper).inSingletonScope();
+container.bind<ClassMapper>(TYPES.ClassMapper).to(ClassMapper).inSingletonScope();
 container.bind<TeamMapper>(TYPES.TeamMapper).to(TeamMapper).inSingletonScope();
+container.bind<DriverMapper>(TYPES.DriverMapper).to(DriverMapper).inSingletonScope();
 container.bind<CarMapper>(TYPES.CarMapper).to(CarMapper).inSingletonScope();
 container.bind<RaceMapper>(TYPES.RaceMapper).to(RaceMapper).inSingletonScope();
 

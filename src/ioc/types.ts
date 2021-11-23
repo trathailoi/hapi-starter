@@ -13,10 +13,12 @@ const TYPES = {
     AddressController: Symbol.for('AddressController'),
     AddressRepository: Symbol.for('AddressRepository'),
     AddressService: Symbol.for('AddressService'),
+    AddressMapper: Symbol.for('AddressMapper'),
 
     ClassController: Symbol.for('ClassController'),
     ClassRepository: Symbol.for('ClassRepository'),
     ClassService: Symbol.for('ClassService'),
+    ClassMapper: Symbol.for('ClassMapper'),
 
     TeamController: Symbol.for('TeamController'),
     TeamRepository: Symbol.for('TeamRepository'),
@@ -26,6 +28,7 @@ const TYPES = {
     DriverController: Symbol.for('DriverController'),
     DriverRepository: Symbol.for('DriverRepository'),
     DriverService: Symbol.for('DriverService'),
+    DriverMapper: Symbol.for('DriverMapper'),
 
     CarController: Symbol.for('CarController'),
     CarRepository: Symbol.for('CarRepository'),

@@ -9,11 +9,14 @@ import { HapiController } from './hapi-controller';
 
 import { AddressService } from '../service/address';
 import { AddressDTO } from '../dto/address';
+import { Address } from '../entity/Address';
+import { AddressMapper } from '../helpers/mapper/address';
 
 @injectable()
 class AddressController extends HapiController {
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.AddressMapper) private addressMapper: AddressMapper,
     @inject(TYPES.AddressService) private addressService: AddressService) {
     super();
     this.logger.info('Created controller AddressController');
@@ -62,11 +65,11 @@ class AddressController extends HapiController {
     }
   })
   public async updateAddress(request: Request, toolkit: ResponseToolkit) {
-    const payload: AddressDTO = request.payload as AddressDTO;
     const item = await this.addressService.findById(request.params.addressId);
     if (!item) {
       throw Boom.notFound();
     }
+    const payload: Address = this.addressMapper.map(AddressDTO, Address, request.payload);
     payload.id = request.params.addressId
     await this.addressService.save(payload);
     return toolkit.response('success');
@@ -95,7 +98,7 @@ class AddressController extends HapiController {
     }
   })
   public async addAddress(request: Request, toolkit: ResponseToolkit) {
-    const payload: AddressDTO = request.payload as AddressDTO;
+    const payload: Address = this.addressMapper.map(AddressDTO, Address, request.payload);
     await this.addressService.save(payload);
     return toolkit.response('success');
   }

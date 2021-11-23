@@ -9,12 +9,15 @@ import { HapiController } from './hapi-controller';
 
 import { DriverService } from '../service/driver';
 import { DriverDTO } from '../dto/driver';
+import { Driver } from '../entity/Driver';
+import { DriverMapper } from '../helpers/mapper/driver';
 
 @injectable()
 class DriverController extends HapiController {
 
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.DriverMapper) private driverMapper: DriverMapper,
     @inject(TYPES.DriverService) private driverService: DriverService) {
     super();
     this.logger.info('Created controller DriverController');
@@ -62,11 +65,11 @@ class DriverController extends HapiController {
     }
   })
   public async updateDriver(request: Request, toolkit: ResponseToolkit) {
-    const payload: DriverDTO = request.payload as DriverDTO;
     const item = await this.driverService.findById(request.params.driverId);
     if (!item) {
       throw Boom.notFound();
     }
+    const payload: Driver = this.driverMapper.map(DriverDTO, Driver, request.payload);
     payload.id = request.params.driverId;
     await this.driverService.save(payload);
     return toolkit.response('success');
@@ -94,7 +97,7 @@ class DriverController extends HapiController {
     }
   })
   public async addDriver(request: Request, toolkit: ResponseToolkit) {
-    const payload: DriverDTO = request.payload as DriverDTO;
+    const payload: Driver = this.driverMapper.map(DriverDTO, Driver, request.payload);
     await this.driverService.save(payload);
     return toolkit.response('success');
   }

@@ -9,12 +9,15 @@ import { HapiController } from './hapi-controller';
 
 import { ClassService } from '../service/class';
 import { ClassDTO } from '../dto/class';
+import { Class } from '../entity/Class';
+import { ClassMapper } from '../helpers/mapper/class';
 
 @injectable()
 class ClassController extends HapiController {
 
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
+    @inject(TYPES.ClassMapper) private classMapper: ClassMapper,
     @inject(TYPES.ClassService) private classService: ClassService) {
     super();
     this.logger.info('Created controller ClassController');
@@ -58,11 +61,11 @@ class ClassController extends HapiController {
     }
   })
   public async updateClass(request: Request, toolkit: ResponseToolkit) {
-    const payload: ClassDTO = request.payload as ClassDTO;
     const item = await this.classService.findById(request.params.classId);
     if (!item) {
       throw Boom.notFound();
     }
+    const payload: Class = this.classMapper.map(ClassDTO, Class, request.payload);
     payload.id = request.params.classId;
     await this.classService.save(payload);
     return toolkit.response('success');
@@ -86,7 +89,7 @@ class ClassController extends HapiController {
     }
   })
   public async addClass(request: Request, toolkit: ResponseToolkit) {
-    const payload: ClassDTO = request.payload as ClassDTO;
+    const payload: Class = this.classMapper.map(ClassDTO, Class, request.payload);
     await this.classService.save(payload);
     return toolkit.response('success');
   }
