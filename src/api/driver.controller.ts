@@ -52,8 +52,8 @@ class DriverController extends HapiController {
           firstName: Joi.string().required(),
           lastName: Joi.string().required(),
           nationality: Joi.string().required().valid('USA', 'Viet Nam'),
-          homeAddress: Joi.string().length(36).allow(null, ''),
-          managementAddress: Joi.string().length(36).allow(null, '')
+          homeAddress: Joi.string().length(36).allow(null),
+          managementAddress: Joi.string().length(36).allow(null)
         }
       },
       description: 'Update an existing driver',
@@ -84,8 +84,8 @@ class DriverController extends HapiController {
           firstName: Joi.string().required(),
           lastName: Joi.string().required(),
           nationality: Joi.string().required().valid('USA', 'Viet Nam'),
-          homeAddress: Joi.string().length(36).allow(null, ''),
-          managementAddress: Joi.string().length(36).allow(null, '')
+          homeAddress: Joi.string().length(36).allow(null),
+          managementAddress: Joi.string().length(36).allow(null)
         }
       },
       description: 'Add a new driver to the store',

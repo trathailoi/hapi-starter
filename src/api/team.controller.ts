@@ -9,13 +9,18 @@ import { HapiController } from './hapi-controller';
 
 import { TeamService } from '../service/team';
 import { TeamDTO } from '../dto/team';
+import { Team } from '../entity/Team';
+import { TeamMapper } from '../helpers/mapper/team';
+import { DriverService } from '../service/driver';
 
 @injectable()
 class TeamController extends HapiController {
 
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
-    @inject(TYPES.TeamService) private teamService: TeamService) {
+    @inject(TYPES.TeamMapper) private teamMapper: TeamMapper,
+    @inject(TYPES.TeamService) private teamService: TeamService,
+    @inject(TYPES.DriverService) private driverService: DriverService) {
     super();
     this.logger.info('Created controller TeamController');
   }
@@ -42,14 +47,17 @@ class TeamController extends HapiController {
    */
   @HapiRoute({
     method: 'PUT',
-    path: 'teams',
+    path: 'teams/{teamId}',
     options: {
       validate: {
+        params: {
+          teamId: Joi.string().length(36).required()
+        },
         payload: {
-          id: Joi.string().length(36).required(),
           name: Joi.string().required(),
           nationality: Joi.string().required().valid('USA', 'Viet Nam'),
-          businessAddress: Joi.string().length(36).allow(null)
+          businessAddress: Joi.string().length(36).allow(null),
+          drivers: Joi.array().items(Joi.string().length(36))
         }
       },
       description: 'Update an existing team',
@@ -58,10 +66,15 @@ class TeamController extends HapiController {
     }
   })
   public async updateTeam(request: Request, toolkit: ResponseToolkit) {
-    const payload: TeamDTO = request.payload as TeamDTO;
-    const item = await this.teamService.findById(payload.id);
+    const item = await this.teamService.findById(request.params.teamId);
     if (!item) {
       throw Boom.notFound();
+    }
+    const payload: Team = this.teamMapper.map(TeamDTO, Team, request.payload);
+    payload.id = request.params.teamId;
+    if (payload.drivers && payload.drivers.length) {
+      const drivers = await this.driverService.findByIds(payload.drivers);
+      payload.drivers = drivers
     }
     await this.teamService.save(payload);
     return toolkit.response('success');
@@ -78,7 +91,8 @@ class TeamController extends HapiController {
         payload: {
           name: Joi.string().required(),
           nationality: Joi.string().required().valid('USA', 'Viet Nam'),
-          businessAddress: Joi.string().length(36).allow(null)
+          businessAddress: Joi.string().length(36).allow(null),
+          drivers: Joi.array().items(Joi.string().length(36))
         }
       },
       description: 'Add a new team to the store',
@@ -87,8 +101,13 @@ class TeamController extends HapiController {
     }
   })
   public async addTeam(request: Request, toolkit: ResponseToolkit) {
-    const payload: TeamDTO = request.payload as TeamDTO;
+    const payload: Team = this.teamMapper.map(TeamDTO, Team, request.payload);
+    if (payload.drivers && payload.drivers.length) {
+      const drivers = await this.driverService.findByIds(payload.drivers);
+      payload.drivers = drivers
+    }
     await this.teamService.save(payload);
+
     return toolkit.response('success');
   }
 

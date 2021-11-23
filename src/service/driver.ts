@@ -23,6 +23,11 @@ class DriverService extends CrudService<Driver> {
     return result;
   }
 
+  public async findByIds(ids: Driver[]): Promise<Array<Driver>> {
+    const result = await this.repository.findByIds(ids)
+    return result;
+  }
+
   public async findAll(): Promise<Array<Driver>> {
     const result = await this.repository.find({ relations: ['homeAddress', 'managementAddress'] });
     return result;

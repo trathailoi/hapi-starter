@@ -21,6 +21,7 @@ const TYPES = {
     TeamController: Symbol.for('TeamController'),
     TeamRepository: Symbol.for('TeamRepository'),
     TeamService: Symbol.for('TeamService'),
+    TeamMapper: Symbol.for('TeamMapper'),
 
     DriverController: Symbol.for('DriverController'),
     DriverRepository: Symbol.for('DriverRepository'),

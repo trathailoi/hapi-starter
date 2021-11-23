@@ -20,6 +20,7 @@ import { ClassController } from '../api/class.controller';
 import { Team } from '../entity/Team';
 import { TeamService } from '../service/team';
 import { TeamController } from '../api/team.controller';
+import { TeamMapper } from '../helpers/mapper/team';
 
 import { Driver } from '../entity/Driver';
 import { DriverService } from '../service/driver';
@@ -120,6 +121,9 @@ container.bind<Logger>(TYPES.Logger).toDynamicValue(
 container.bind<Mapper>(TYPES.Mapper).to(Mapper).inSingletonScope();
 container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
 container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope();
+
+// Mapper
+container.bind<TeamMapper>(TYPES.TeamMapper).to(TeamMapper).inSingletonScope();
 
 // Repositories
 container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
