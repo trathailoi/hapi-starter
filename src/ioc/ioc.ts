@@ -12,6 +12,10 @@ import { Address } from '../entity/Address';
 import { AddressService } from '../service/address';
 import { AddressController } from '../api/address.controller';
 
+import { Class } from '../entity/Class';
+import { ClassService } from '../service/class';
+import { ClassController } from '../api/class.controller';
+
 const Configue = require('configue');
 
 /**
@@ -104,13 +108,16 @@ container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope(
 
 // Repositories
 container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
+container.bind<Repository<Address>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
 
 // Services
 container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
+container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope();
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
 container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope();
+container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

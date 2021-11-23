@@ -4,6 +4,7 @@ import { TYPES } from "../ioc/types";
 import { HapiController } from "./hapi-controller";
 import { HelloWorldController } from "./helloworld-controller";
 import { AddressController } from "./address.controller";
+import { ClassController } from "./class.controller";
 
 /**
  * The purpose of this class is to simply collect all of our controllers so we can generate
@@ -24,6 +25,9 @@ class Controllers {
 
     @inject(TYPES.AddressController)
     private addressController?: AddressController;
+
+    @inject(TYPES.ClassController)
+    private classController?: ClassController;
 
     /**
      * Wraps the static getRoutes() method on HapiController.  This makes more sense

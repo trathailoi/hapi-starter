@@ -1,4 +1,4 @@
-export class AddressDTO {
+export class AddressModel {
     id?: string;
     name?: string;
     street?: string;

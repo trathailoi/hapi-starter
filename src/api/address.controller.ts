@@ -9,7 +9,7 @@ import { HapiController } from './hapi-controller';
 import { Mapper } from "../helpers/mapper";
 
 import { AddressService } from '../service/address';
-import { AddressDTO } from '../dto/address';
+import { AddressModel } from '../dto/address';
 import { Address } from '../entity/address';
 
 @injectable()
@@ -47,7 +47,7 @@ class AddressController extends HapiController {
     }
   })
   public async addAddress(request: Request, toolkit: ResponseToolkit) {
-    const payload: Address = this.mapper.map(AddressDTO, Address, request.payload);
+    const payload: Address = this.mapper.map(AddressModel, Address, request.payload);
     const address = await this.addressService.save(payload);
     return toolkit.response(address);
   }
@@ -106,6 +106,7 @@ class AddressController extends HapiController {
           id: Joi.string().length(36).required()
         },
         payload: {
+          name: Joi.string(),
           street: Joi.string().allow(null, ''),
           street2: Joi.string().allow(null, ''),
           city: Joi.string(),
@@ -120,14 +121,14 @@ class AddressController extends HapiController {
     }
   })
   public async updateAddress(request: Request, toolkit: ResponseToolkit) {
-    const payload: Address = this.mapper.map(AddressDTO, Address, request.payload);
+    const payload: Address = this.mapper.map(AddressModel, Address, request.payload);
 
     const item = await this.addressService.findById(payload.id);
     if (!item) {
       throw Boom.notFound();
     }
-    await this.addressService.save(payload);
-    return toolkit.response('success');
+    const address = await this.addressService.save(payload);
+    return toolkit.response(address);
   }
 
   /**
