@@ -85,7 +85,7 @@ paths:
         "200":
           description: Successful operation
         "400":
-          description: Invalid ID supplied
+          description: Invalid input
         "404":
           description: Class not found
     delete:
@@ -184,7 +184,7 @@ paths:
         "200":
           description: Successful operation
         "400":
-          description: Invalid ID supplied
+          description: Invalid input
         "404":
           description: Address not found
     delete:
@@ -283,7 +283,7 @@ paths:
         "200":
           description: Successful operation
         "400":
-          description: Invalid ID supplied
+          description: Invalid input
         "404":
           description: Driver not found
     delete:
@@ -1024,8 +1024,6 @@ components:
           minimum: 1
           type: integer
           example: 11
-      xml:
-        name: RaceCar
   requestBodies:
     Class:
       content:
