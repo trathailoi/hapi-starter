@@ -72,7 +72,7 @@ class ClassController extends HapiController {
   }
 
   /**
-   * Add a new class to the store
+   * Add a new class to the system
    */
   @HapiRoute({
     method: 'POST',
@@ -83,7 +83,7 @@ class ClassController extends HapiController {
           name: Joi.string().required()
         }
       },
-      description: 'Add a new class to the store',
+      description: 'Add a new class to the system',
       tags: ['Class'],
       auth: false
     }

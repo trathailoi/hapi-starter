@@ -81,7 +81,7 @@ class TeamController extends HapiController {
   }
 
   /**
-   * Add a new team to the store
+   * Add a new team to the system
    */
   @HapiRoute({
     method: 'POST',
@@ -95,7 +95,7 @@ class TeamController extends HapiController {
           drivers: Joi.array().items(Joi.string().length(36))
         }
       },
-      description: 'Add a new team to the store',
+      description: 'Add a new team to the system',
       tags: ['Team'],
       auth: false
     }

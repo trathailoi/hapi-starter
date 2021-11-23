@@ -76,7 +76,7 @@ class DriverController extends HapiController {
   }
 
   /**
-   * Add a new driver to the store
+   * Add a new driver to the system
    */
   @HapiRoute({
     method: 'POST',
@@ -91,7 +91,7 @@ class DriverController extends HapiController {
           managementAddress: Joi.string().length(36).allow(null)
         }
       },
-      description: 'Add a new driver to the store',
+      description: 'Add a new driver to the system',
       tags: ['Driver'],
       auth: false
     }

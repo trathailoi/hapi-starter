@@ -1,4 +1,3 @@
----
 openapi: 3.0.0
 info:
   title: The race cars
@@ -6,18 +5,18 @@ info:
     email: loi.tra@9thwonder.com
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/annguyen9w/hapi-starter/1.0.0
-  description: SwaggerHub API Auto Mocking
-- url: http://localhost:8080/api/
+  - url: https://virtserver.swaggerhub.com/annguyen9w/hapi-starter/1.0.0
+    description: SwaggerHub API Auto Mocking
+  - url: http://localhost:8080/api/
 paths:
   /classes:
     get:
       tags:
-      - Class
+        - Class
       summary: Get all class
       operationId: getClasses
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -25,98 +24,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Class'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - Class
+        - Class
       summary: Add a new class to the system
       operationId: addClass
       requestBody:
         $ref: '#/components/requestBodies/Class'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /classes/{classId}:
     get:
       tags:
-      - Class
+        - Class
       summary: Find class by ID
       operationId: getClassById
       parameters:
-      - name: classId
-        in: path
-        description: ID of class to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: classId
+          in: path
+          description: ID of class to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Class'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Class not found
     put:
       tags:
-      - Class
+        - Class
       summary: Update an existing class
       operationId: updateClass
       parameters:
-      - name: classId
-        in: path
-        description: Class id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: classId
+          in: path
+          description: Class id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Class'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
-        "404":
+        '404':
           description: Class not found
     delete:
       tags:
-      - Class
+        - Class
       summary: Delete a class
       operationId: deleteClass
       parameters:
-      - name: classId
-        in: path
-        description: Class id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: classId
+          in: path
+          description: Class id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Class not found
   /addresses:
     get:
       tags:
-      - Address
+        - Address
       summary: Get all address
       operationId: getAddresses
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -124,98 +123,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Address'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - Address
+        - Address
       summary: Add a new address to the system
       operationId: addAddress
       requestBody:
         $ref: '#/components/requestBodies/Address'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /addresses/{addressId}:
     get:
       tags:
-      - Address
+        - Address
       summary: Find address by ID
       operationId: getAddressById
       parameters:
-      - name: addressId
-        in: path
-        description: ID of address to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: addressId
+          in: path
+          description: ID of address to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Address'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Address not found
     put:
       tags:
-      - Address
+        - Address
       summary: Update an existing address
       operationId: updateAddress
       parameters:
-      - name: addressId
-        in: path
-        description: Address id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: addressId
+          in: path
+          description: Address id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Address'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
-        "404":
+        '404':
           description: Address not found
     delete:
       tags:
-      - Address
+        - Address
       summary: Delete a address
       operationId: deleteAddress
       parameters:
-      - name: addressId
-        in: path
-        description: Address id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: addressId
+          in: path
+          description: Address id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Address not found
   /drivers:
     get:
       tags:
-      - Driver
+        - Driver
       summary: Get all driver
       operationId: getDrivers
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -223,98 +222,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Driver'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - Driver
+        - Driver
       summary: Add a new driver to the system
       operationId: addDriver
       requestBody:
         $ref: '#/components/requestBodies/Driver'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /drivers/{driverId}:
     get:
       tags:
-      - Driver
+        - Driver
       summary: Find driver by ID
       operationId: getDriverById
       parameters:
-      - name: driverId
-        in: path
-        description: ID of driver to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: driverId
+          in: path
+          description: ID of driver to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Driver'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Driver not found
     put:
       tags:
-      - Driver
+        - Driver
       summary: Update an existing driver
       operationId: updateDriver
       parameters:
-      - name: driverId
-        in: path
-        description: Driver id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: driverId
+          in: path
+          description: Driver id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Driver'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
-        "404":
+        '404':
           description: Driver not found
     delete:
       tags:
-      - Driver
+        - Driver
       summary: Delete a driver
       operationId: deleteDriver
       parameters:
-      - name: driverId
-        in: path
-        description: Driver id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: driverId
+          in: path
+          description: Driver id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Driver not found
   /teams:
     get:
       tags:
-      - Team
+        - Team
       summary: Get all team
       operationId: getTeams
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -322,117 +321,117 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TeamResponse'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - Team
+        - Team
       summary: Add a new team to the system
       operationId: addTeam
       requestBody:
         $ref: '#/components/requestBodies/Team'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /teams/{teamId}:
     get:
       tags:
-      - Team
+        - Team
       summary: Find team by ID
       operationId: getTeamById
       parameters:
-      - name: teamId
-        in: path
-        description: ID of team to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: teamId
+          in: path
+          description: ID of team to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TeamResponse'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Team not found
     put:
       tags:
-      - Team
+        - Team
       summary: Update an existing team
       operationId: updateTeam
       parameters:
-      - name: teamId
-        in: path
-        description: Team id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: teamId
+          in: path
+          description: Team id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Team'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
+        '400':
+          description: Invalid input
+        '404':
           description: Team not found
     delete:
       tags:
-      - Team
+        - Team
       summary: Delete a team
       operationId: deleteTeam
       parameters:
-      - name: teamId
-        in: path
-        description: Team id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: teamId
+          in: path
+          description: Team id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Team not found
   /cars:
     get:
       tags:
-      - Car
+        - Car
       summary: Get all car
       operationId: getCars
       parameters:
-      - name: make
-        in: query
-        description: Make values that need to be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: Ferrari
-      - name: model
-        in: query
-        description: Model values that need to be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          example: 488 GTE-LM
+        - name: make
+          in: query
+          description: Make values that need to be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: Ferrari
+        - name: model
+          in: query
+          description: Model values that need to be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: 488 GTE-LM
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -440,98 +439,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CarResponse'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - Car
+        - Car
       summary: Add a new car to the system
       operationId: addCar
       requestBody:
         $ref: '#/components/requestBodies/Car'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /cars/{carId}:
     get:
       tags:
-      - Car
+        - Car
       summary: Find car by ID
       operationId: getCarById
       parameters:
-      - name: carId
-        in: path
-        description: ID of car to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: carId
+          in: path
+          description: ID of car to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CarResponse'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Car not found
     put:
       tags:
-      - Car
+        - Car
       summary: Update an existing car
       operationId: updateCar
       parameters:
-      - name: carId
-        in: path
-        description: Car id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: carId
+          in: path
+          description: Car id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Car'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
+        '400':
+          description: Invalid input
+        '404':
           description: Car not found
     delete:
       tags:
-      - Car
+        - Car
       summary: Delete a car
       operationId: deleteCar
       parameters:
-      - name: carId
-        in: path
-        description: Car id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: carId
+          in: path
+          description: Car id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Car not found
   /races:
     get:
       tags:
-      - Race
+        - Race
       summary: Get all race
       operationId: getRaces
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -539,98 +538,98 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RaceResponse'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - Race
+        - Race
       summary: Add a new race to the system
       operationId: addRace
       requestBody:
         $ref: '#/components/requestBodies/Race'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /races/{raceId}:
     get:
       tags:
-      - Race
+        - Race
       summary: Find race by ID
       operationId: getRaceById
       parameters:
-      - name: raceId
-        in: path
-        description: ID of race to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: raceId
+          in: path
+          description: ID of race to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RaceResponse'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Race not found
     put:
       tags:
-      - Race
+        - Race
       summary: Update an existing race
       operationId: updateRace
       parameters:
-      - name: raceId
-        in: path
-        description: Race id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: raceId
+          in: path
+          description: Race id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Race'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
+        '400':
+          description: Invalid input
+        '404':
           description: Race not found
     delete:
       tags:
-      - Race
+        - Race
       summary: Delete a race
       operationId: deleteRace
       parameters:
-      - name: raceId
-        in: path
-        description: Race id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: raceId
+          in: path
+          description: Race id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Race not found
   /race-cars:
     get:
       tags:
-      - RaceCar
+        - RaceCar
       summary: Get all race car
       operationId: getRaceCars
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
@@ -638,89 +637,89 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RaceCar'
-        "400":
+        '400':
           description: Invalid input
     post:
       tags:
-      - RaceCar
+        - RaceCar
       summary: Add a new race car to the system
       operationId: addRaceCar
       requestBody:
         $ref: '#/components/requestBodies/RaceCar'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid input
   /race-cars/{raceCarId}:
     get:
       tags:
-      - RaceCar
+        - RaceCar
       summary: Find race car by ID
       operationId: getRaceCarById
       parameters:
-      - name: raceCarId
-        in: path
-        description: ID of race car to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: raceCarId
+          in: path
+          description: ID of race car to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RaceCar'
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: RaceCar not found
     put:
       tags:
-      - RaceCar
+        - RaceCar
       summary: Update an existing race car
       operationId: updateRaceCar
       parameters:
-      - name: raceCarId
-        in: path
-        description: RaceCar id need to be updated
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: raceCarId
+          in: path
+          description: RaceCar id need to be updated
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/RaceCar'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
+        '400':
+          description: Invalid input
+        '404':
           description: RaceCar not found
     delete:
       tags:
-      - RaceCar
+        - RaceCar
       summary: Delete a race car
       operationId: deleteRaceCar
       parameters:
-      - name: raceCarId
-        in: path
-        description: RaceCar id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          $ref: '#/components/schemas/UUID'
+        - name: raceCarId
+          in: path
+          description: RaceCar id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: RaceCar not found
 components:
   schemas:
@@ -730,7 +729,7 @@ components:
       example: 40e6215d-b5c6-4896-987c-f30f3678f608
     ClassRequestBody:
       required:
-      - name
+        - name
       type: object
       properties:
         name:
@@ -738,19 +737,19 @@ components:
           example: LM GTE AM
     Class:
       allOf:
-      - required:
-        - id
-        type: object
-        properties:
-          id:
-            $ref: '#/components/schemas/UUID'
-      - $ref: '#/components/schemas/ClassRequestBody'
+        - required:
+            - id
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/UUID'
+        - $ref: '#/components/schemas/ClassRequestBody'
     AddressRequestBody:
       required:
-      - city
-      - country
-      - state
-      - zipcode
+        - city
+        - country
+        - state
+        - zipcode
       type: object
       properties:
         street:
@@ -767,24 +766,24 @@ components:
           example: Texas
         zipcode:
           type: string
-          example: "77002"
+          example: '77002'
         country:
           type: string
           example: United States
     Address:
       allOf:
-      - required:
-        - id
-        type: object
-        properties:
-          id:
-            $ref: '#/components/schemas/UUID'
-      - $ref: '#/components/schemas/AddressRequestBody'
+        - required:
+            - id
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/UUID'
+        - $ref: '#/components/schemas/AddressRequestBody'
     DriverRequestBody:
       required:
-      - firstName
-      - lastName
-      - nationality
+        - firstName
+        - lastName
+        - nationality
       type: object
       properties:
         firstName:
@@ -796,18 +795,18 @@ components:
         nationality:
           type: string
           enum:
-          - USA
-          - Viet Nam
+            - USA
+            - Viet Nam
         homeAddress:
           $ref: '#/components/schemas/UUID'
         managementAddress:
           $ref: '#/components/schemas/UUID'
     Driver:
       required:
-      - firstName
-      - id
-      - lastName
-      - nationality
+        - firstName
+        - id
+        - lastName
+        - nationality
       type: object
       properties:
         id:
@@ -821,16 +820,16 @@ components:
         nationality:
           type: string
           enum:
-          - USA
-          - Viet Nam
+            - USA
+            - Viet Nam
         homeAddress:
           $ref: '#/components/schemas/Address'
         managementAddress:
           $ref: '#/components/schemas/Address'
     TeamRequestBody:
       required:
-      - name
-      - nationality
+        - name
+        - nationality
       type: object
       properties:
         name:
@@ -839,16 +838,20 @@ components:
         nationality:
           type: string
           enum:
-          - USA
-          - Viet Nam
+            - USA
+            - Viet Nam
         businessAddress:
           $ref: '#/components/schemas/UUID'
+        drivers:
+          type: array
+          items:
+            $ref: '#/components/schemas/UUID'
     Team:
       required:
-      - cars
-      - id
-      - name
-      - nationality
+        - cars
+        - id
+        - name
+        - nationality
       type: object
       properties:
         id:
@@ -859,27 +862,31 @@ components:
         nationality:
           type: string
           enum:
-          - USA
-          - Viet Nam
+            - USA
+            - Viet Nam
         businessAddress:
           $ref: '#/components/schemas/Address'
     TeamResponse:
       allOf:
-      - $ref: '#/components/schemas/Team'
-      - required:
-        - car
-        type: object
-        properties:
-          cars:
-            type: array
-            items:
-              $ref: '#/components/schemas/Car'
+        - $ref: '#/components/schemas/Team'
+        - required:
+            - car
+          type: object
+          properties:
+            cars:
+              type: array
+              items:
+                $ref: '#/components/schemas/Car'
+            drivers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Driver'
     CarRequestBody:
       required:
-      - class
-      - make
-      - model
-      - team
+        - class
+        - make
+        - model
+        - team
       type: object
       properties:
         make:
@@ -894,10 +901,10 @@ components:
           $ref: '#/components/schemas/UUID'
     Car:
       required:
-      - class
-      - make
-      - model
-      - team
+        - class
+        - make
+        - model
+        - team
       type: object
       properties:
         id:
@@ -912,17 +919,17 @@ components:
           $ref: '#/components/schemas/Class'
     CarResponse:
       allOf:
-      - $ref: '#/components/schemas/Car'
-      - required:
-        - team
-        type: object
-        properties:
-          team:
-            $ref: '#/components/schemas/Team'
+        - $ref: '#/components/schemas/Car'
+        - required:
+            - team
+          type: object
+          properties:
+            team:
+              $ref: '#/components/schemas/Team'
     RaceRequestBody:
       required:
-      - classes
-      - name
+        - classes
+        - name
       type: object
       properties:
         name:
@@ -934,7 +941,7 @@ components:
             $ref: '#/components/schemas/UUID'
     Race:
       required:
-      - name
+        - name
       type: object
       properties:
         id:
@@ -944,8 +951,8 @@ components:
           example: Le Mans
     RaceResponse:
       required:
-      - classes
-      - name
+        - classes
+        - name
       type: object
       properties:
         id:
@@ -964,12 +971,12 @@ components:
             $ref: '#/components/schemas/RaceCar'
     RaceCarRequestBody:
       required:
-      - car
-      - class
-      - driver
-      - race
-      - raceNumber
-      - startPosition
+        - car
+        - class
+        - driver
+        - race
+        - raceNumber
+        - startPosition
       type: object
       properties:
         race:
@@ -982,7 +989,7 @@ components:
           $ref: '#/components/schemas/UUID'
         raceNumber:
           type: string
-          example: "123"
+          example: '123'
         startPosition:
           minimum: 1
           type: integer
@@ -993,13 +1000,13 @@ components:
           example: 11
     RaceCar:
       required:
-      - car
-      - class
-      - driver
-      - id
-      - race
-      - raceNumber
-      - startPosition
+        - car
+        - class
+        - driver
+        - id
+        - race
+        - raceNumber
+        - startPosition
       type: object
       properties:
         id:
@@ -1015,7 +1022,7 @@ components:
           $ref: '#/components/schemas/Class'
         raceNumber:
           type: string
-          example: "123"
+          example: '123'
         startPosition:
           minimum: 1
           type: integer

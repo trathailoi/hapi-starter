@@ -79,7 +79,7 @@ class RaceController extends HapiController {
   }
 
   /**
-   * Add a new race to the store
+   * Add a new race to the system
    */
   @HapiRoute({
     method: 'POST',
@@ -91,7 +91,7 @@ class RaceController extends HapiController {
           classes: Joi.array().items(Joi.string().length(36))
         }
       },
-      description: 'Add a new race to the store',
+      description: 'Add a new race to the system',
       tags: ['Race'],
       auth: false
     }

@@ -80,7 +80,7 @@ class CarController extends HapiController {
   }
 
   /**
-   * Add a new car to the store
+   * Add a new car to the system
    */
   @HapiRoute({
     method: 'POST',
@@ -94,7 +94,7 @@ class CarController extends HapiController {
           team: Joi.string().length(36).required()
         }
       },
-      description: 'Add a new car to the store',
+      description: 'Add a new car to the system',
       tags: ['Car'],
       auth: false
     }

@@ -76,7 +76,7 @@ class AddressController extends HapiController {
   }
 
   /**
-   * Add a new address to the store
+   * Add a new address to the system
    */
   @HapiRoute({
     method: 'POST',
@@ -92,7 +92,7 @@ class AddressController extends HapiController {
           country: Joi.string().required()
         }
       },
-      description: 'Add a new address to the store',
+      description: 'Add a new address to the system',
       tags: ['Address'],
       auth: false
     }
