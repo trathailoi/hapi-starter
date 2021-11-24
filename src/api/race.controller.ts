@@ -69,10 +69,6 @@ class RaceController extends HapiController {
       throw Boom.notFound();
     }
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
-    if (payload.classes && payload.classes.length) {
-      const classes = await this.classService.findByIds(payload.classes);
-      payload.classes = classes
-    }
     payload.id = request.params.raceId;
     await this.raceService.save(payload);
     return toolkit.response('success');
@@ -98,10 +94,6 @@ class RaceController extends HapiController {
   })
   public async addRace(request: Request, toolkit: ResponseToolkit) {
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
-    if (payload.classes && payload.classes.length) {
-      const classes = await this.classService.findByIds(payload.classes);
-      payload.classes = classes
-    }
     await this.raceService.save(payload);
     return toolkit.response('success');
   }

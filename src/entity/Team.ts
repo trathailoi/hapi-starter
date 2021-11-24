@@ -22,11 +22,11 @@ class Team {
   })
   nationality?: NationalityType;    
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, address => address.id, { cascade: true })
   @JoinColumn()
   businessAddress?: Address;
 
-  @ManyToMany(() => Driver)
+  @ManyToMany(() => Driver, driver => driver.teams)
   @JoinTable()
   drivers?: Driver[];
 

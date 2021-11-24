@@ -5,9 +5,9 @@ info:
     email: loi.tra@9thwonder.com
   version: 1.0.0
 servers:
+  - url: http://localhost:8080/api/
   - url: https://virtserver.swaggerhub.com/annguyen9w/hapi-starter/1.0.0
     description: SwaggerHub API Auto Mocking
-  - url: http://localhost:8080/api/
 paths:
   /classes:
     get:
@@ -25,7 +25,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Class'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Class
@@ -35,9 +35,9 @@ paths:
         $ref: '#/components/requestBodies/Class'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
   /classes/{classId}:
     get:
       tags:
@@ -49,8 +49,6 @@ paths:
           in: path
           description: ID of class to return
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
@@ -61,9 +59,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Class'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Class not found
+          $ref: '#/components/responses/notfound'
     put:
       tags:
         - Class
@@ -74,19 +72,17 @@ paths:
           in: path
           description: Class id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Class'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Class not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
         - Class
@@ -97,17 +93,15 @@ paths:
           in: path
           description: Class id to delete
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Class not found
+          $ref: '#/components/responses/notfound'
   /addresses:
     get:
       tags:
@@ -124,7 +118,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Address'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Address
@@ -134,9 +128,9 @@ paths:
         $ref: '#/components/requestBodies/Address'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
   /addresses/{addressId}:
     get:
       tags:
@@ -148,8 +142,6 @@ paths:
           in: path
           description: ID of address to return
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
@@ -160,9 +152,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Address'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Address not found
+          $ref: '#/components/responses/notfound'
     put:
       tags:
         - Address
@@ -173,19 +165,17 @@ paths:
           in: path
           description: Address id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Address'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Address not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
         - Address
@@ -196,17 +186,15 @@ paths:
           in: path
           description: Address id to delete
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Address not found
+          $ref: '#/components/responses/notfound'
   /drivers:
     get:
       tags:
@@ -221,9 +209,9 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Driver'
+                  $ref: '#/components/schemas/DriverResponse'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Driver
@@ -233,9 +221,9 @@ paths:
         $ref: '#/components/requestBodies/Driver'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
   /drivers/{driverId}:
     get:
       tags:
@@ -247,8 +235,6 @@ paths:
           in: path
           description: ID of driver to return
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
@@ -257,11 +243,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Driver'
+                $ref: '#/components/schemas/DriverResponse'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Driver not found
+          $ref: '#/components/responses/notfound'
     put:
       tags:
         - Driver
@@ -272,19 +258,17 @@ paths:
           in: path
           description: Driver id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Driver'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Driver not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
         - Driver
@@ -295,17 +279,41 @@ paths:
           in: path
           description: Driver id to delete
           required: true
-          style: simple
-          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/badrequest'
+        '404':
+          $ref: '#/components/responses/notfound'
+  /drivers/{driverId}/results:
+    get:
+      tags:
+        - Driver
+      summary: All race results for that driver
+      operationId: getRaceResultByDriverId
+      parameters:
+        - name: driverId
+          in: path
+          description: ID of driver to return
+          required: true
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RaceResult'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Driver not found
+          $ref: '#/components/responses/notfound'
   /teams:
     get:
       tags:
@@ -322,7 +330,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/TeamResponse'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Team
@@ -332,9 +340,9 @@ paths:
         $ref: '#/components/requestBodies/Team'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
   /teams/{teamId}:
     get:
       tags:
@@ -346,8 +354,6 @@ paths:
           in: path
           description: ID of team to return
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
@@ -358,9 +364,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/TeamResponse'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Team not found
+          $ref: '#/components/responses/notfound'
     put:
       tags:
         - Team
@@ -371,19 +377,17 @@ paths:
           in: path
           description: Team id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Team'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Team not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
         - Team
@@ -394,17 +398,15 @@ paths:
           in: path
           description: Team id to delete
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Team not found
+          $ref: '#/components/responses/notfound'
   /cars:
     get:
       tags:
@@ -416,8 +418,6 @@ paths:
           in: query
           description: Make values that need to be considered for filter
           required: false
-          style: form
-          explode: true
           schema:
             type: string
             example: Ferrari
@@ -425,8 +425,6 @@ paths:
           in: query
           description: Model values that need to be considered for filter
           required: false
-          style: form
-          explode: true
           schema:
             type: string
             example: 488 GTE-LM
@@ -440,7 +438,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/CarResponse'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Car
@@ -450,9 +448,9 @@ paths:
         $ref: '#/components/requestBodies/Car'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
   /cars/{carId}:
     get:
       tags:
@@ -464,8 +462,6 @@ paths:
           in: path
           description: ID of car to return
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
@@ -476,9 +472,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/CarResponse'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Car not found
+          $ref: '#/components/responses/notfound'
     put:
       tags:
         - Car
@@ -489,19 +485,17 @@ paths:
           in: path
           description: Car id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Car'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Car not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
         - Car
@@ -512,17 +506,41 @@ paths:
           in: path
           description: Car id to delete
           required: true
-          style: simple
-          explode: false
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/badrequest'
+        '404':
+          $ref: '#/components/responses/notfound'
+  /cars/{carId}/results:
+    get:
+      tags:
+        - Car
+      summary: All race results for that car
+      operationId: getRaceResultByCarId
+      parameters:
+        - name: carId
+          in: path
+          description: ID of car to return
+          required: true
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RaceResult'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Car not found
+          $ref: '#/components/responses/notfound'
   /races:
     get:
       tags:
@@ -537,9 +555,9 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RaceResponse'
+                  $ref: '#/components/schemas/Race'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Race
@@ -549,9 +567,9 @@ paths:
         $ref: '#/components/requestBodies/Race'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
   /races/{raceId}:
     get:
       tags:
@@ -563,8 +581,6 @@ paths:
           in: path
           description: ID of race to return
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
@@ -573,11 +589,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaceResponse'
+                $ref: '#/components/schemas/Race'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Race not found
+          $ref: '#/components/responses/notfound'
     put:
       tags:
         - Race
@@ -588,19 +604,17 @@ paths:
           in: path
           description: Race id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
         $ref: '#/components/requestBodies/Race'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Race not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
         - Race
@@ -611,23 +625,28 @@ paths:
           in: path
           description: Race id to delete
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: Race not found
-  /race-cars:
+          $ref: '#/components/responses/notfound'
+  /races/{raceId}/results:
     get:
       tags:
-        - RaceCar
-      summary: Get all race car
-      operationId: getRaceCars
+        - Race
+      summary: All race results for that race
+      operationId: getRaceResultByRaceId
+      parameters:
+        - name: raceId
+          in: path
+          description: ID of race to return
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
       responses:
         '200':
           description: Successful operation
@@ -636,91 +655,52 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RaceCar'
+                  $ref: '#/components/schemas/RaceResult'
         '400':
-          description: Invalid input
-    post:
-      tags:
-        - RaceCar
-      summary: Add a new race car to the system
-      operationId: addRaceCar
-      requestBody:
-        $ref: '#/components/requestBodies/RaceCar'
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          description: Invalid input
-  /race-cars/{raceCarId}:
-    get:
-      tags:
-        - RaceCar
-      summary: Find race car by ID
-      operationId: getRaceCarById
-      parameters:
-        - name: raceCarId
-          in: path
-          description: ID of race car to return
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: '#/components/schemas/UUID'
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RaceCar'
-        '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: RaceCar not found
+          $ref: '#/components/responses/notfound'
+  /race-results/{raceResultId}:
     put:
       tags:
-        - RaceCar
-      summary: Update an existing race car
-      operationId: updateRaceCar
+        - Race Result
+      summary: Update an existing race result
+      operationId: updateRaceResult
       parameters:
-        - name: raceCarId
+        - name: raceResultId
           in: path
-          description: RaceCar id need to be updated
+          description: Race result id need to be updated
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
-        $ref: '#/components/requestBodies/RaceCar'
+        $ref: '#/components/requestBodies/RaceResult'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid input
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: RaceCar not found
+          $ref: '#/components/responses/notfound'
     delete:
       tags:
-        - RaceCar
-      summary: Delete a race car
-      operationId: deleteRaceCar
+        - Race Result
+      summary: Delete a race result
+      operationId: deleteRaceResult
       parameters:
-        - name: raceCarId
+        - name: raceResultId
           in: path
-          description: RaceCar id to delete
+          description: Race result id to delete
           required: true
-          style: simple
-          explode: false
           schema:
             $ref: '#/components/schemas/UUID'
       responses:
         '200':
-          description: Successful operation
+          $ref: '#/components/responses/success'
         '400':
-          description: Invalid ID supplied
+          $ref: '#/components/responses/badrequest'
         '404':
-          description: RaceCar not found
+          $ref: '#/components/responses/notfound'
 components:
   schemas:
     UUID:
@@ -826,6 +806,17 @@ components:
           $ref: '#/components/schemas/Address'
         managementAddress:
           $ref: '#/components/schemas/Address'
+    DriverResponse:
+      allOf:
+        - $ref: '#/components/schemas/Driver'
+        - required:
+            - teams
+          type: object
+          properties:
+            teams:
+              type: array
+              items:
+                $ref: '#/components/schemas/Team'
     TeamRequestBody:
       required:
         - name
@@ -928,17 +919,16 @@ components:
               $ref: '#/components/schemas/Team'
     RaceRequestBody:
       required:
-        - classes
         - name
       type: object
       properties:
         name:
           type: string
           example: Le Mans
-        classes:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/UUID'
+            $ref: '#/components/schemas/RaceResultRequestBody'
     Race:
       required:
         - name
@@ -949,27 +939,7 @@ components:
         name:
           type: string
           example: Le Mans
-    RaceResponse:
-      required:
-        - classes
-        - name
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/UUID'
-        name:
-          type: string
-          example: Le Mans
-        classes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Class'
-        raceCars:
-          type: array
-          description: All cars run in race
-          items:
-            $ref: '#/components/schemas/RaceCar'
-    RaceCarRequestBody:
+    RaceResultRequestBody:
       required:
         - car
         - class
@@ -989,16 +959,16 @@ components:
           $ref: '#/components/schemas/UUID'
         raceNumber:
           type: string
-          example: '123'
+          example: '200'
         startPosition:
           minimum: 1
           type: integer
-          example: 5
+          example: 2
         finishPosition:
           minimum: 1
           type: integer
-          example: 11
-    RaceCar:
+          example: 3
+    RaceResult:
       required:
         - car
         - class
@@ -1022,15 +992,15 @@ components:
           $ref: '#/components/schemas/Class'
         raceNumber:
           type: string
-          example: '123'
+          example: '200'
         startPosition:
           minimum: 1
           type: integer
-          example: 5
+          example: 2
         finishPosition:
           minimum: 1
           type: integer
-          example: 11
+          example: 3
   requestBodies:
     Class:
       content:
@@ -1068,9 +1038,57 @@ components:
           schema:
             $ref: '#/components/schemas/RaceRequestBody'
       required: true
-    RaceCar:
+    RaceResult:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/RaceCarRequestBody'
+            $ref: '#/components/schemas/RaceResultRequestBody'
       required: true
+  responses:
+    success:
+      description: Successful operation
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: success
+    badrequest:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode: 
+                type: integer
+                default: 400
+              error:
+                type: string
+                default: Bad Request
+              message:
+                type: string
+                default: Invalid request input
+            required:
+              - statusCode
+              - error
+              - message
+    notfound:
+      description: Item not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode: 
+                type: integer
+                default: 404
+              error:
+                type: string
+                default: Not Found
+              message:
+                type: string
+                default: Not Found
+            required:
+              - statusCode
+              - error
+              - message

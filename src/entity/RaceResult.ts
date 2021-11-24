@@ -5,17 +5,17 @@ import { Driver } from './Driver';
 import { Class } from './Class';
 
 @Entity()
-class RaceCar {
+class RaceResult {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
-  @ManyToOne(() => Car, car => car.raceCars)
+  @ManyToOne(() => Car, car => car.raceResults)
   car?: Car;
 
-  @ManyToOne(() => Race, race => race.raceCars)
+  @ManyToOne(() => Race, race => race.raceResults)
   race?: Race;
 
-  @ManyToOne(() => Driver)
+  @ManyToOne(() => Driver, driver => driver.raceResults)
   driver?: Driver;
 
   @ManyToOne(() => Class)
@@ -32,4 +32,4 @@ class RaceCar {
 
 }
 
-export { RaceCar }
+export { RaceResult }

@@ -39,10 +39,10 @@ import { RaceService } from '../service/race';
 import { RaceController } from '../api/race.controller';
 import { RaceMapper } from '../helpers/mapper/race';
 
-import { RaceCar } from '../entity/RaceCar';
-import { RaceCarService } from '../service/race-car';
-import { RaceCarController } from '../api/race-car.controller';
-import { RaceCarMapper } from '../helpers/mapper/race-car';
+import { RaceResult } from '../entity/RaceResult';
+import { RaceResultService } from '../service/race-result';
+import { RaceResultController } from '../api/race-result.controller';
+import { RaceResultMapper } from '../helpers/mapper/race-result';
 
 /**
  * This file contains all of the Inversify configuration code.  This is the only
@@ -139,7 +139,7 @@ container.bind<TeamMapper>(TYPES.TeamMapper).to(TeamMapper).inSingletonScope();
 container.bind<DriverMapper>(TYPES.DriverMapper).to(DriverMapper).inSingletonScope();
 container.bind<CarMapper>(TYPES.CarMapper).to(CarMapper).inSingletonScope();
 container.bind<RaceMapper>(TYPES.RaceMapper).to(RaceMapper).inSingletonScope();
-container.bind<RaceCarMapper>(TYPES.RaceCarMapper).to(RaceCarMapper).inSingletonScope();
+container.bind<RaceResultMapper>(TYPES.RaceResultMapper).to(RaceResultMapper).inSingletonScope();
 
 // Repositories
 container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
@@ -148,7 +148,7 @@ container.bind<Repository<Team>>(TYPES.TeamRepository).toDynamicValue(() => crea
 container.bind<Repository<Driver>>(TYPES.DriverRepository).toDynamicValue(() => createRepository<Driver>(Driver)).inSingletonScope()
 container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(() => createRepository<Car>(Car)).inSingletonScope()
 container.bind<Repository<Race>>(TYPES.RaceRepository).toDynamicValue(() => createRepository<Race>(Race)).inSingletonScope()
-container.bind<Repository<RaceCar>>(TYPES.RaceCarRepository).toDynamicValue(() => createRepository<RaceCar>(RaceCar)).inSingletonScope()
+container.bind<Repository<RaceResult>>(TYPES.RaceResultRepository).toDynamicValue(() => createRepository<RaceResult>(RaceResult)).inSingletonScope()
 
 // Services
 container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
@@ -157,7 +157,7 @@ container.bind<TeamService>(TYPES.TeamService).to(TeamService).inSingletonScope(
 container.bind<DriverService>(TYPES.DriverService).to(DriverService).inSingletonScope();
 container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
 container.bind<RaceService>(TYPES.RaceService).to(RaceService).inSingletonScope();
-container.bind<RaceCarService>(TYPES.RaceCarService).to(RaceCarService).inSingletonScope();
+container.bind<RaceResultService>(TYPES.RaceResultService).to(RaceResultService).inSingletonScope();
 
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
@@ -167,7 +167,7 @@ container.bind<TeamController>(TYPES.TeamController).to(TeamController).inSingle
 container.bind<DriverController>(TYPES.DriverController).to(DriverController).inSingletonScope();
 container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope();
 container.bind<RaceController>(TYPES.RaceController).to(RaceController).inSingletonScope();
-container.bind<RaceCarController>(TYPES.RaceCarController).to(RaceCarController).inSingletonScope();
+container.bind<RaceResultController>(TYPES.RaceResultController).to(RaceResultController).inSingletonScope();
 
 /**
  * Utility function to create TypeORM repositories from their types through generics

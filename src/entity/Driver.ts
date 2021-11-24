@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToMany, OneToMany } from 'typeorm';
 import { Address } from './Address';
+import { RaceResult } from './RaceResult';
+import { Team } from './Team';
 
 export enum NationalityType {
   usa = 'USA',
@@ -23,13 +25,19 @@ class Driver {
   })
   nationality?: NationalityType;
   
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, address => address.id, { cascade: true })
   @JoinColumn()
   homeAddress?: Address;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, address => address.id, { cascade: true })
   @JoinColumn()
   managementAddress?: Address;
+
+  @ManyToMany(() => Team, team => team.drivers)
+  teams?: Team[];
+
+  @OneToMany(() => RaceResult, raceResult => raceResult.driver)
+  raceResults?: RaceResult[]
 }
 
 export { Driver }

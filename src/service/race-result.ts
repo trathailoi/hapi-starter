@@ -3,19 +3,19 @@ import { Logger } from "winston";
 import { Repository } from "typeorm";
 import { TYPES } from "../ioc/types";
 import { CrudService } from "./crudservice";
-import { RaceCar } from "../entity/RaceCar";
+import { RaceResult } from "../entity/RaceResult";
 
 @injectable()
-class RaceCarService extends CrudService<RaceCar> {
+class RaceResultService extends CrudService<RaceResult> {
   constructor(
-    @inject(TYPES.RaceCarRepository) repository: Repository<RaceCar>,
+    @inject(TYPES.RaceResultRepository) repository: Repository<RaceResult>,
     @inject(TYPES.Logger) logger: Logger
   ) {
     super(repository, logger);
-    this.logger.info('Created RaceCarService');
+    this.logger.info('Created RaceResultService');
   }
 
-  public async findById(id: string): Promise<RaceCar | undefined> {
+  public async findById(id: string): Promise<RaceResult | undefined> {
     const result = await this.repository.findOne({
       where: { id },
       relations: ['race', 'car', 'car.class', 'driver', 'driver.homeAddress', 'driver.managementAddress', 'class']
@@ -23,7 +23,7 @@ class RaceCarService extends CrudService<RaceCar> {
     return result;
   }
 
-  public async findAll(): Promise<Array<RaceCar>> {
+  public async findAll(): Promise<Array<RaceResult>> {
     const result = await this.repository.find({
       relations: ['race', 'car', 'car.class', 'driver', 'driver.homeAddress', 'driver.managementAddress', 'class']
     });
@@ -31,4 +31,4 @@ class RaceCarService extends CrudService<RaceCar> {
   }
 }
 
-export { RaceCarService }
+export { RaceResultService }

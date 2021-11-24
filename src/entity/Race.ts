@@ -1,6 +1,5 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Class } from './Class';
-import { RaceCar } from './RaceCar';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { RaceResult } from './RaceResult';
 
 @Entity()
 class Race {
@@ -10,12 +9,8 @@ class Race {
   @Column('varchar', { length: 100 })
   name?: string;
 
-  @ManyToMany(() => Class)
-  @JoinTable()
-  classes?: Class[];
-
-  @OneToMany(() => RaceCar, raceCar => raceCar.race)
-  raceCars?: RaceCar[]
+  @OneToMany(() => RaceResult, raceResult => raceResult.race)
+  raceResults?: RaceResult[]
 }
 
 export { Race }

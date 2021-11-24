@@ -1,4 +1,4 @@
-export class RaceCarDTO {
+export class RaceResultDTO {
   id?: string;
   car?: string;
   race?: string;

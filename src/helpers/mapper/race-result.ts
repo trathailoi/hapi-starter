@@ -1,13 +1,13 @@
 import 'automapper-ts';
 import { injectable } from 'inversify';
-import { RaceCarDTO } from '../../dto/race-car';
-import { RaceCar } from '../../entity/RaceCar';
+import { RaceResultDTO } from '../../dto/race-result';
+import { RaceResult } from '../../entity/RaceResult';
 
 /**
  * Wrapper around automapper, for dependency injection convenience (static/global variables bad)
  */
 @injectable()
-class RaceCarMapper {
+class RaceResultMapper {
 
   /**
    * Helper method, shorthand for "map all properties of the source to the same properties in
@@ -43,8 +43,8 @@ class RaceCarMapper {
   constructor() {
     // Add code here to configure mappings
     this.createDefaultBiDiMap(
-      RaceCarDTO,
-      RaceCar,
+      RaceResultDTO,
+      RaceResult,
       ['id', 'car', 'race', 'driver', 'class', 'raceNumber', 'startPosition', 'finishPosition']
     )
   }
@@ -54,4 +54,4 @@ class RaceCarMapper {
   }
 }
 
-export { RaceCarMapper }
+export { RaceResultMapper }
