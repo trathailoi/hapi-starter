@@ -34,7 +34,7 @@ class ApiServer {
                             // During development, log and respond with the full error.
                             console.error(err)
                         }
-                        throw err
+                        throw Boom.badRequest(err?.message)
                     }
                 }
               }
