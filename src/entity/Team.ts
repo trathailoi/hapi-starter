@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { Address } from './address';
 import { Driver } from './driver';
+import { Car } from './car';
 
 export enum Nationality {
     USA = 'USA',
@@ -10,7 +11,7 @@ export enum Nationality {
 @Entity()
 class Team {
     @PrimaryGeneratedColumn('uuid')
-    id?: string;
+    id!: string;
 
     @Column('varchar', {
         nullable: false,
@@ -32,6 +33,9 @@ class Team {
     // @ManyToMany(() => Driver)
     // @JoinTable()
     // drivers?: Driver[];
+
+    @OneToMany(() => Car, car => car.team)
+    cars?: Car[]
 }
 
 export { Team }

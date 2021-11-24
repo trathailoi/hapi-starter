@@ -14,6 +14,15 @@ class TeamService extends CrudService<Team> {
     super(repository, logger);
     this.logger.info('Created TeamService');
   }
+
+  public async findById(id: string): Promise<Team | undefined> {
+    const result = await this.repository.findOne({
+      where: { id },
+      relations: ['businessAddress', 'cars', 'cars.class']
+    })
+    return result;
+  }
+
 }
 
 export { TeamService }

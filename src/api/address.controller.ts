@@ -96,7 +96,7 @@ class AddressController extends HapiController implements IAddressController {
     options: {
       validate: {
         params: {
-          id: Joi.string().length(36).required()
+          id: Joi.string().guid().length(36).required()
         }
       },
       description: 'Find an address by ID',
@@ -121,7 +121,7 @@ class AddressController extends HapiController implements IAddressController {
     options: {
       validate: {
         params: {
-          id: Joi.string().length(36).required()
+          id: Joi.string().guid().length(36).required()
         },
         payload: {
           name: Joi.string(),
@@ -158,7 +158,7 @@ class AddressController extends HapiController implements IAddressController {
     options: {
       validate: {
         params: {
-          id: Joi.string().length(36).required()
+          id: Joi.string().guid().length(36).required()
         }
       },
       // pre: [
