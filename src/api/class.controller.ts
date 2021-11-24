@@ -90,8 +90,11 @@ class ClassController extends HapiController {
   })
   public async addClass(request: Request, toolkit: ResponseToolkit) {
     const payload: Class = this.classMapper.map(ClassDTO, Class, request.payload);
-    await this.classService.save(payload);
-    return toolkit.response('success');
+    const classItem: Class|undefined = await this.classService.save(payload);
+    return toolkit.response({
+      id: classItem?.id,
+      status: 'success'
+    });
   }
 
   /**

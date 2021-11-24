@@ -35,7 +35,7 @@ paths:
         $ref: '#/components/requestBodies/Class'
       responses:
         '200':
-          $ref: '#/components/responses/success'
+          $ref: '#/components/responses/successwithid'
         '400':
           $ref: '#/components/responses/badrequest'
   /classes/{classId}:
@@ -128,7 +128,7 @@ paths:
         $ref: '#/components/requestBodies/Address'
       responses:
         '200':
-          $ref: '#/components/responses/success'
+          $ref: '#/components/responses/successwithid'
         '400':
           $ref: '#/components/responses/badrequest'
   /addresses/{addressId}:
@@ -221,7 +221,7 @@ paths:
         $ref: '#/components/requestBodies/Driver'
       responses:
         '200':
-          $ref: '#/components/responses/success'
+          $ref: '#/components/responses/successwithid'
         '400':
           $ref: '#/components/responses/badrequest'
   /drivers/{driverId}:
@@ -340,7 +340,7 @@ paths:
         $ref: '#/components/requestBodies/Team'
       responses:
         '200':
-          $ref: '#/components/responses/success'
+          $ref: '#/components/responses/successwithid'
         '400':
           $ref: '#/components/responses/badrequest'
   /teams/{teamId}:
@@ -448,7 +448,7 @@ paths:
         $ref: '#/components/requestBodies/Car'
       responses:
         '200':
-          $ref: '#/components/responses/success'
+          $ref: '#/components/responses/successwithid'
         '400':
           $ref: '#/components/responses/badrequest'
   /cars/{carId}:
@@ -567,7 +567,7 @@ paths:
         $ref: '#/components/requestBodies/CreateRace'
       responses:
         '200':
-          $ref: '#/components/responses/success'
+          $ref: '#/components/responses/successwithid'
         '400':
           $ref: '#/components/responses/badrequest'
   /races/{raceId}:
@@ -1087,6 +1087,21 @@ components:
           schema:
             type: string
             example: success
+    successwithid:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id: 
+                $ref: '#/components/schemas/UUID'
+              status:
+                type: string
+                default: success
+            required:
+              - id
+              - status
     badrequest:
       description: Invalid input
       content:

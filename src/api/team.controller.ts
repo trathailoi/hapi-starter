@@ -106,9 +106,11 @@ class TeamController extends HapiController {
       const drivers = await this.driverService.findByIds(payload.drivers);
       payload.drivers = drivers
     }
-    await this.teamService.save(payload);
-
-    return toolkit.response('success');
+    const team :Team|undefined = await this.teamService.save(payload);
+    return toolkit.response({
+      id: team?.id,
+      status: 'success'
+    });
   }
 
   /**

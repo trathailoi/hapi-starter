@@ -13,12 +13,17 @@ import { Race } from '../entity/Race';
 import { RaceMapper } from '../helpers/mapper/race';
 import { RaceResultService } from '../service/race-result';
 
+import { RaceResultDTO } from '../dto/race-result';
+import { RaceResult } from '../entity/RaceResult';
+import { RaceResultMapper } from '../helpers/mapper/race-result';
+
 @injectable()
 class RaceController extends HapiController {
 
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
     @inject(TYPES.RaceMapper) private raceMapper: RaceMapper,
+    @inject(TYPES.RaceResultMapper) private raceResultMapper: RaceResultMapper,
     @inject(TYPES.RaceService) private raceService: RaceService,
     @inject(TYPES.RaceResultService) private raceResultService: RaceResultService) {
     super();
@@ -101,9 +106,12 @@ class RaceController extends HapiController {
   public async addRace(request: Request, toolkit: ResponseToolkit) {
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
     const race = await this.raceService.save(payload);
-    if (payload.raceResults) {
-      const raceResults = payload.raceResults.map(raceResult => ({...raceResult, race: race?.id}))
-      await this.raceResultService.save(raceResults)
+    if (race && payload.raceResults) {
+      for (const raceResult of payload.raceResults) {
+        const raceResultMapper = this.raceResultMapper.map(RaceResultDTO, RaceResult, raceResult);
+        raceResultMapper.race = race.id;
+        await this.raceResultService.save(raceResultMapper);
+      }
     }
     return toolkit.response('success');
   }
@@ -217,8 +225,11 @@ class RaceController extends HapiController {
     }
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
     if (payload.raceResults) {
-      const raceResults = payload.raceResults.map(raceResult => ({...raceResult, race: request.params.raceId}))
-      await this.raceResultService.save(raceResults)
+      for (const raceResult of payload.raceResults) {
+        const raceResultMapper = this.raceResultMapper.map(RaceResultDTO, RaceResult, raceResult);
+        raceResultMapper.race = request.params.raceId;
+        await this.raceResultService.save(raceResultMapper);
+      }
     }
     return toolkit.response('success');
   }

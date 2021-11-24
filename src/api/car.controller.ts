@@ -103,8 +103,11 @@ class CarController extends HapiController {
   })
   public async addCar(request: Request, toolkit: ResponseToolkit) {
     const payload: Car = this.carMapper.map(CarDTO, Car, request.payload);
-    await this.carService.save(payload);
-    return toolkit.response('success');
+    const car: Car|undefined = await this.carService.save(payload);
+    return toolkit.response({
+      id: car?.id,
+      status: 'success'
+    });
   }
 
   /**

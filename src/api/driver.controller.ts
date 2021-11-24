@@ -100,8 +100,11 @@ class DriverController extends HapiController {
   })
   public async addDriver(request: Request, toolkit: ResponseToolkit) {
     const payload: Driver = this.driverMapper.map(DriverDTO, Driver, request.payload);
-    await this.driverService.save(payload);
-    return toolkit.response('success');
+    const driver: Driver|undefined = await this.driverService.save(payload);
+    return toolkit.response({
+      id: driver?.id,
+      status: 'success'
+    });
   }
 
   /**

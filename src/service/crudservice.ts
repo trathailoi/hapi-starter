@@ -17,7 +17,7 @@ class CrudService<T> {
     return result;
   }
 
-  public async save(entity: object): Promise<T | undefined> {
+  public async save(entity: T): Promise<T | undefined> {
     const result = await this.repository.save(entity);
     return result;
   }

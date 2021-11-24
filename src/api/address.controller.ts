@@ -100,7 +100,11 @@ class AddressController extends HapiController {
   public async addAddress(request: Request, toolkit: ResponseToolkit) {
     const payload: Address = this.addressMapper.map(AddressDTO, Address, request.payload);
     await this.addressService.save(payload);
-    return toolkit.response('success');
+    const address: Address|undefined = await this.addressService.save(payload);
+    return toolkit.response({
+      id: address?.id,
+      status: 'success'
+    });
   }
 
   /**
