@@ -24,8 +24,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Class'
-        '400':
-          $ref: '#/components/responses/badrequest'
+        # '400':
+        #   $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Class
@@ -117,8 +117,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Address'
-        '400':
-          $ref: '#/components/responses/badrequest'
+        # '400':
+        #   $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Address
@@ -210,8 +210,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DriverResponse'
-        '400':
-          $ref: '#/components/responses/badrequest'
+        # '400':
+        #   $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Driver
@@ -329,8 +329,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TeamResponse'
-        '400':
-          $ref: '#/components/responses/badrequest'
+        # '400':
+        #   $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Team
@@ -556,8 +556,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Race'
-        '400':
-          $ref: '#/components/responses/badrequest'
+        # '400':
+        #   $ref: '#/components/responses/badrequest'
     post:
       tags:
         - Race
