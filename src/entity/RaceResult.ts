@@ -10,7 +10,7 @@ class RaceResult {
     id?: string;
 
     @ManyToOne(() => Car)
-    car?: string;
+    car?: Car;
 
     @Column('int', {
         nullable: false
@@ -18,23 +18,23 @@ class RaceResult {
     carNumber?: string;
 
     @ManyToOne(() => Race)
-    race?: string;
+    race?: Race;
 
     @ManyToOne(() => Driver)
-    driver?: string;
+    driver?: Driver;
 
     @ManyToOne(() => Class)
-    class?: Class[]
+    class?: Class;
 
     @Column('int', {
         nullable: false
     })
-    startPosition?: number;
+    startingPosition?: number;
 
     @Column('int', {
         nullable: false
     })
-    finishPosition?: number;
+    finishingPosition?: number;
 
     @Column('bool', {
         nullable: false

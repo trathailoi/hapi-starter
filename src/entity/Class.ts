@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { RaceResult } from './RaceResult';
 
 @Entity()
 class Class {
@@ -10,6 +11,9 @@ class Class {
         length: 50
     })
     name?: string;
+
+    @OneToMany(() => RaceResult, raceResult => raceResult.class)
+    results?: RaceResult[];
 }
 
 export { Class }

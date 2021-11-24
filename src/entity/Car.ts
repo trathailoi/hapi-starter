@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Class } from './Class';
 import { Team } from './Team';
+import { RaceResult } from './RaceResult';
 
 /**
  * This class defines an entity that represents cars in the database.  
@@ -34,6 +35,9 @@ class Car {
 
     @ManyToOne(() => Team)
     team?: string;
+
+    @OneToMany(() => RaceResult, raceResult => raceResult.car)
+    results?: RaceResult[];
 }
 
 export { Car }

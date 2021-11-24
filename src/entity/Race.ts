@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
-import { Class } from './Class';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { RaceResult } from './RaceResult';
 
 @Entity()
 class Race {
@@ -12,9 +12,8 @@ class Race {
     })
     name?: string;
 
-    @ManyToMany(() => Class)
-    @JoinTable()
-    classes?: Class[]
+    @OneToMany(() => RaceResult, raceResult => raceResult.race)
+    results?: RaceResult[];
 }
 
 export { Race }
