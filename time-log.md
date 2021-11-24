@@ -21,5 +21,5 @@
     + update Craig feedback (database schema, api design): 3h
     + update Craig feedback (implement): 3h
 - 11/24/2021
-    + update Craig feedback (implement): 3h
-    + try jest for unit test: 3h
+    + update Craig feedback (implement): 4h
+    + try jest for unit test: 1h
