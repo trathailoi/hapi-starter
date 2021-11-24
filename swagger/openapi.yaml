@@ -925,7 +925,7 @@ components:
         name:
           type: string
           example: Le Mans
-        results:
+        raceResults:
           type: array
           items:
             $ref: '#/components/schemas/RaceResultRequestBody'
