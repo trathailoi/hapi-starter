@@ -1,4 +1,5 @@
 import { Server, ServerRegisterPluginObject } from "@hapi/hapi";
+import * as Boom from '@hapi/boom';
 import { inject, injectable } from "inversify";
 import { Controllers } from "./api/controllers";
 import { Logger } from "winston";
@@ -21,9 +22,26 @@ class ApiServer {
         this.hapiServer = new Server({
             port: configue.get('hapi.port', 8080),
             routes: {
-              cors: true
+              cors: true,
+              validate: {
+                failAction: async (request, h, err) => {
+                    if (process.env.NODE_ENV === 'production') {
+                        // In prod, log a limited error message and throw the default Bad Request error.
+                        // console.error('ValidationError:', err?.message) // Better to use an actual logger here.
+                        this.logger.info('ValidationError:', err)
+                        throw Boom.badRequest(`Invalid request payload input`)
+                    } else {
+                        if (process.env.NODE_ENV !== 'test') {
+                            // During development, log and respond with the full error.
+                            console.error(err)
+                        }
+                        throw Boom.badRequest(err?.message)
+                        // throw err
+                    }
+                }
+              }
             }
-        });
+        })
         this.hapiServer.validator(require('@hapi/joi'));
 
         /**

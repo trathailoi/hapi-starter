@@ -8,3 +8,6 @@
   - get familiar with OpenAPI and Swagger editor.
   - design API according to the requirements.
   - try splitting the single YAML file into entity-level files (not yet).
+- Implementation:
+  - address: 4h
+  - class: 30m

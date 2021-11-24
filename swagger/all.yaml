@@ -25,8 +25,8 @@ tags:
     description: Drivers
   - name: race
     description: Races
-  - name: car-race
-    description: Cars-Races relationship
+  - name: race-result
+    description: Race's Results
 
 paths:
   # Classes
@@ -533,7 +533,40 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
-
+  '/drivers/{driverId}/results':
+    get:
+      tags:
+        - driver
+        - race-result
+      summary: Get driver's results on races
+      description: Get driver's results on races
+      operationId: getDriverRaceResults
+      parameters:
+        - name: driverId
+          in: path
+          description: ID of the driver
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+        - name: raceId
+          in: query
+          description: filter the results by a race id
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RaceResultRespone'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+  
   # Cars
   /cars:
     post:
@@ -683,23 +716,55 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
+  '/cars/{carId}/results':
+    get:
+      tags:
+        - car
+        - race-result
+      summary: Get a car's results
+      description: Get a car's results
+      operationId: getCarResults
+      parameters:
+        - name: carId
+          in: path
+          description: ID of the car
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+        - name: raceId
+          in: query
+          description: filter the results by a race id
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RaceResultRespone'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
 
   # Races
   /races:
     post:
       tags:
         - race
-      summary: Add a new race to the system
+        - race-result
+      summary: Add a new race (with its results) to the system
       operationId: addRace
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RaceFormData'
-        description: form data object that contains fields to update a specific race in the system
+              $ref: '#/components/schemas/CreatingRaceFormData'
+        description: You can add a new race to the system, as well as its results at once. The "results" field is optional.
       responses:
-        default:
-          description: successful operation
         '200':
           description: successful operation
           content:
@@ -821,37 +886,26 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
-
-  # Cars-Races
-  /cars-races:
-    post:
-      tags:
-        - car-race
-      summary: Add a new car-race to the system
-      operationId: addCarRace
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CarRaceFormData'
-        description: form data object that contains fields to update a specific car-race in the system
-      responses:
-        default:
-          description: successful operation
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarRaceRespone'
-        '400':
-          $ref: '#/components/responses/400BadRequest'
+  '/races/{raceId}/results':
     get:
       tags:
-        - car-race
-      summary: Finds Cars-Races
-      description: Finds all the cars-races
-      operationId: findCars-Races
+        - race
+        - race-result
+      summary: Get a race's results
+      description: Get a race's results
+      operationId: getRaceResults
+      parameters:
+        - name: raceId
+          in: path
+          description: ID of the race
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+        - name: classId
+          in: query
+          description: get results for a specific class on the race
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
       responses:
         '200':
           description: successful operation
@@ -860,41 +914,21 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CarRaceRespone'
-  '/cars-races/{carRaceId}':
-    get:
-      tags:
-        - car-race
-      summary: Find car-race by ID
-      description: Returns a single car-race
-      operationId: getCarRaceById
-      parameters:
-        - name: carRaceId
-          in: path
-          description: ID of car-race to return
-          required: true
-          schema:
-            $ref: '#/components/schemas/uuidFormat'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarRaceRespone'
+                  $ref: '#/components/schemas/RaceResultRespone'
         '404':
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
-    patch:
+    put:
       tags:
-        - car-race
-      summary: Updates an existing car-race by ID
-      operationId: updateCarRace
+        - race
+        - race-result
+      summary: Add new race results for an existing race
+      operationId: addRaceResult
       parameters:
-        - name: carRaceId
+        - name: raceId
           in: path
-          description: ID of the car-race that needs to be updated
+          description: ID of the race
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
@@ -902,28 +936,95 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CarRaceFormData'
-        description: form data object that contains fields to update a specific car-race in the system
+              type: array
+              items:
+                $ref: '#/components/schemas/RaceResultFormData'
+        description: A results array. Each element is a result object.
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CarRaceRespone'
+                $ref: '#/components/schemas/RaceResultRespone'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+
+  '/races/{raceId}/results/{raceResultId}':
+    patch:
+      tags:
+        - race
+        - race-result
+      summary: Updates an existing race result
+      operationId: updateRaceResult
+      parameters:
+        - name: raceId
+          in: path
+          description: ID of the race
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+        - name: raceResultId
+          in: path
+          description: ID of the result that needs to be updated
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaceResultFormData'
+        description: form data object that contains fields to update a specific race result in the system
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaceResultRespone'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+
+  # RaceResults
+  '/race-results/{raceResultId}':
+    get:
+      tags:
+        - race-result
+      summary: Get a result detail by ID
+      description: Get a result detail by ID
+      operationId: getRaceResultById
+      parameters:
+        - name: raceResultId
+          in: path
+          description: ID of a race result
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaceResultRespone'
         '404':
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
     delete:
       tags:
-        - car-race
-      summary: Deletes a car-race by ID
-      operationId: deleteCarRace
+        - race-result
+      summary: Delete a race result by ID
+      operationId: deleteRaceResult
       parameters:
-        - name: carRaceId
+        - name: raceResultId
           in: path
-          description: CarRace id to delete
+          description: race result ID to delete
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
@@ -1163,13 +1264,15 @@ components:
         name:
           type: string
           example: Le Mans
-        classes:
-          type: array
-          items:
-            $ref: '#/components/schemas/uuidFormat'
-          example:
-            - 5f36215d-f5c6-4896-087c-f30f3678f607
-            - 12345678-abcd-ef12–345a-12345678abcd
+    CreatingRaceFormData: # Can be referenced as '#/components/schemas/CreatingRaceFormData'
+      allOf:
+        - $ref: '#/components/schemas/RaceFormData'
+        - type: object
+          properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/RaceResultFormData'
     Race: # Can be referenced as '#/components/schemas/Race'
       allOf:
         - type: object
@@ -1190,13 +1293,11 @@ components:
           items:
             $ref: '#/components/schemas/Class'
 
-
-    CarRaceFormData: # Can be referenced as '#/components/schemas/CarRaceFormData'
+    RaceResultFormData: # Can be referenced as '#/components/schemas/RaceResultFormData'
       type: object
       required:
         - car
         - carNumber
-        - race
         - driver
         - class
         - startPosition
@@ -1206,8 +1307,6 @@ components:
         carNumber:
           type: integer
           example: 1
-        race:
-          $ref: '#/components/schemas/uuidFormat'
         driver:
           $ref: '#/components/schemas/uuidFormat'
         class:
@@ -1223,7 +1322,7 @@ components:
           type: integer
           format: int32
           example: 3
-    CarRaceRespone: # Can be referenced as '#/components/schemas/CarRaceRespone'
+    RaceResultRespone: # Can be referenced as '#/components/schemas/RaceResultRespone'
       type: object
       properties:
         id:
@@ -1252,6 +1351,8 @@ components:
     uuidFormat: # Can be referenced as '#/components/schemas/uuidFormat'
       type: string
       format: uuid
+      minLength: 36
+      maxLength: 36
       example: 5f36215d-f5c6-4896-087c-f30f3678f607
 
   responses:
