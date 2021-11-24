@@ -141,7 +141,10 @@ class ClassController extends HapiController {
     if (!result.affected) {
       throw Boom.notFound();
     }
-    return toolkit.response('success');
+    return toolkit.response({
+      statusCode: 200,
+      message: 'Successful operation'
+    });
   }
 
 }
