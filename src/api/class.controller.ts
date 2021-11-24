@@ -109,7 +109,7 @@ class ClassController extends HapiController {
     }
   })
   public async updateClass(request: Request, toolkit: ResponseToolkit) {
-    const payload: Class = this.mapper.map(ClassModel, Class, request.payload);
+    const payload: Class = this.mapper.map(ClassModel, Class, Object.assign({}, request.payload, request.params));
 
     const item = await this.classService.findById(payload.id);
     if (!item) {

@@ -121,7 +121,7 @@ class AddressController extends HapiController {
     }
   })
   public async updateAddress(request: Request, toolkit: ResponseToolkit) {
-    const payload: Address = this.mapper.map(AddressModel, Address, request.payload);
+    const payload: Address = this.mapper.map(AddressModel, Address, Object.assign({}, request.payload, request.params));
 
     const item = await this.addressService.findById(payload.id);
     if (!item) {
