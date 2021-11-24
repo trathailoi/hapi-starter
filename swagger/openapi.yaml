@@ -564,7 +564,7 @@ paths:
       summary: Add a new race to the system
       operationId: addRace
       requestBody:
-        $ref: '#/components/requestBodies/Race'
+        $ref: '#/components/requestBodies/CreateRace'
       responses:
         '200':
           $ref: '#/components/responses/success'
@@ -607,7 +607,7 @@ paths:
           schema:
             $ref: '#/components/schemas/UUID'
       requestBody:
-        $ref: '#/components/requestBodies/Race'
+        $ref: '#/components/requestBodies/UpdateRace'
       responses:
         '200':
           $ref: '#/components/responses/success'
@@ -656,6 +656,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RaceResult'
+        '400':
+          $ref: '#/components/responses/badrequest'
+        '404':
+          $ref: '#/components/responses/notfound'
+    post:
+      tags:
+        - Race
+      summary: Add race results for that race
+      operationId: AddRaceResult
+      parameters:
+        - name: raceId
+          in: path
+          description: ID of race to add
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        $ref: '#/components/requestBodies/AddRaceResult'
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
         '400':
           $ref: '#/components/responses/badrequest'
         '404':
@@ -925,10 +946,6 @@ components:
         name:
           type: string
           example: Le Mans
-        raceResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/RaceResultRequestBody'
     Race:
       required:
         - name
@@ -1029,11 +1046,32 @@ components:
           schema:
             $ref: '#/components/schemas/CarRequestBody'
       required: true
-    Race:
+    CreateRace:
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/RaceRequestBody'
+              - type: object
+                properties:
+                  raceResults:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RaceResultRequestBody'
+      required: true
+    UpdateRace:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RaceRequestBody'
+      required: true
+    AddRaceResult:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/RaceResultRequestBody'
       required: true
     RaceResult:
       content:

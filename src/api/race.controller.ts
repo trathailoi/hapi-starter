@@ -54,15 +54,7 @@ class RaceController extends HapiController {
           raceId: Joi.string().length(36).required()
         },
         payload: {
-          name: Joi.string().required(),
-          raceResults: Joi.array().items(Joi.object().keys({
-            car: Joi.string().length(36).required(),
-            driver: Joi.string().length(36).required(),
-            class: Joi.string().length(36).required(),
-            raceNumber: Joi.string().required(),
-            startPosition: Joi.number().required(),
-            finishPosition: Joi.number().allow(null),
-          }))
+          name: Joi.string().required()
         }
       },
       description: 'Update an existing race',
@@ -78,10 +70,6 @@ class RaceController extends HapiController {
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
     payload.id = request.params.raceId;
     await this.raceService.save(payload);
-    if (payload.raceResults) {
-      const raceResults = payload.raceResults.map(raceResult => ({...raceResult, race: request.params.raceId}))
-      await this.raceResultService.save(raceResults)
-    }
     return toolkit.response('success');
   }
 
@@ -193,6 +181,46 @@ class RaceController extends HapiController {
       throw Boom.notFound();
     }
     return toolkit.response(await this.raceResultService.findByQuery({ race: request.params.raceId }));
+  }
+
+  /**
+   * Add race results for that race
+   */
+  @HapiRoute({
+    method: 'POST',
+    path: 'races/{raceId}/results',
+    options: {
+      validate: {
+        params: {
+          raceId: Joi.string().length(36).required()
+        },
+        payload: {
+          raceResults: Joi.array().items(Joi.object().keys({
+            car: Joi.string().length(36).required(),
+            driver: Joi.string().length(36).required(),
+            class: Joi.string().length(36).required(),
+            raceNumber: Joi.string().required(),
+            startPosition: Joi.number().required(),
+            finishPosition: Joi.number().allow(null),
+          }))
+        }
+      },
+      description: 'Add race results for that race',
+      tags: ['Race'],
+      auth: false
+    }
+  })
+  public async addRaceResult(request: Request, toolkit: ResponseToolkit) {
+    const item = await this.raceService.findById(request.params.raceId);
+    if (!item) {
+      throw Boom.notFound();
+    }
+    const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
+    if (payload.raceResults) {
+      const raceResults = payload.raceResults.map(raceResult => ({...raceResult, race: request.params.raceId}))
+      await this.raceResultService.save(raceResults)
+    }
+    return toolkit.response('success');
   }
 
 }
