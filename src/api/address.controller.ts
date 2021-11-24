@@ -143,6 +143,15 @@ class AddressController extends HapiController {
           id: Joi.string().length(36).required()
         }
       },
+      // pre: [
+      //   { method: async (request: Request, toolkit: ResponseToolkit) => {
+      //     const item = await this.addressService.findById(request.params.id)
+      //     if (!item) {
+      //       return Boom.notFound();
+      //     }
+      //     return item
+      //   }, assign: 'detail' }
+      // ],
       description: 'Delete an address by ID',
       tags: ['api', 'address'],
       auth: false
@@ -153,7 +162,10 @@ class AddressController extends HapiController {
     if (!result.affected) {
       throw Boom.notFound();
     }
-    return toolkit.response('success');
+    return toolkit.response({
+      statusCode: 200,
+      message: 'Successful operation'
+    });
   }
 
 }
