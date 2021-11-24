@@ -11,6 +11,7 @@ import { CarService } from '../service/car';
 import { CarDTO } from '../dto/car';
 import { Car } from '../entity/Car';
 import { CarMapper } from '../helpers/mapper/car';
+import { RaceResultService } from '../service/race-result';
 
 @injectable()
 class CarController extends HapiController {
@@ -18,7 +19,8 @@ class CarController extends HapiController {
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
     @inject(TYPES.CarMapper) private carMapper: CarMapper,
-    @inject(TYPES.CarService) private carService: CarService) {
+    @inject(TYPES.CarService) private carService: CarService,
+    @inject(TYPES.RaceResultService) private raceResultService: RaceResultService) {
     super();
     this.logger.info('Created controller CarController');
   }
@@ -155,6 +157,30 @@ class CarController extends HapiController {
     return toolkit.response('success');
   }
 
+  /**
+   * All race results for that car
+   */
+     @HapiRoute({
+      method: 'GET',
+      path: 'cars/{carId}/results',
+      options: {
+        validate: {
+          params: {
+            carId: Joi.string().length(36).required()
+          }
+        },
+        description: 'All race results for that car',
+        tags: ['Car'],
+        auth: false
+      }
+    })
+    public async getRaceResultByRaceId(request: Request, toolkit: ResponseToolkit) {
+      const item = await this.carService.findById(request.params.carId);
+      if (!item) {
+        throw Boom.notFound();
+      }
+      return toolkit.response(await this.raceResultService.findByQuery({ car: request.params.carId }));
+    }
 }
 
 export { CarController }

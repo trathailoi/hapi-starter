@@ -15,16 +15,9 @@ class RaceResultService extends CrudService<RaceResult> {
     this.logger.info('Created RaceResultService');
   }
 
-  public async findById(id: string): Promise<RaceResult | undefined> {
-    const result = await this.repository.findOne({
-      where: { id },
-      relations: ['race', 'car', 'car.class', 'driver', 'driver.homeAddress', 'driver.managementAddress', 'class']
-    })
-    return result;
-  }
-
-  public async findAll(): Promise<Array<RaceResult>> {
+  public async findByQuery(where: object): Promise<Array<RaceResult>> {
     const result = await this.repository.find({
+      where,
       relations: ['race', 'car', 'car.class', 'driver', 'driver.homeAddress', 'driver.managementAddress', 'class']
     });
     return result;

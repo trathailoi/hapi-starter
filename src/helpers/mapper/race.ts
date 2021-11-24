@@ -45,7 +45,7 @@ class RaceMapper {
     this.createDefaultBiDiMap(
       RaceDTO,
       Race,
-      ['id', 'name', 'classes']
+      ['id', 'name', 'raceResults']
     )
   }
 

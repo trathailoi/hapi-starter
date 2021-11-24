@@ -11,7 +11,7 @@ import { RaceService } from '../service/race';
 import { RaceDTO } from '../dto/race';
 import { Race } from '../entity/Race';
 import { RaceMapper } from '../helpers/mapper/race';
-import { ClassService } from '../service/class';
+import { RaceResultService } from '../service/race-result';
 
 @injectable()
 class RaceController extends HapiController {
@@ -20,7 +20,7 @@ class RaceController extends HapiController {
     @inject(TYPES.Logger) private logger: Logger,
     @inject(TYPES.RaceMapper) private raceMapper: RaceMapper,
     @inject(TYPES.RaceService) private raceService: RaceService,
-    @inject(TYPES.ClassService) private classService: ClassService) {
+    @inject(TYPES.RaceResultService) private raceResultService: RaceResultService) {
     super();
     this.logger.info('Created controller RaceController');
   }
@@ -55,7 +55,14 @@ class RaceController extends HapiController {
         },
         payload: {
           name: Joi.string().required(),
-          classes: Joi.array().items(Joi.string().length(36))
+          raceResults: Joi.array().items(Joi.object().keys({
+            car: Joi.string().length(36).required(),
+            driver: Joi.string().length(36).required(),
+            class: Joi.string().length(36).required(),
+            raceNumber: Joi.string().required(),
+            startPosition: Joi.number().required(),
+            finishPosition: Joi.number().allow(null),
+          }))
         }
       },
       description: 'Update an existing race',
@@ -71,6 +78,10 @@ class RaceController extends HapiController {
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
     payload.id = request.params.raceId;
     await this.raceService.save(payload);
+    if (payload.raceResults) {
+      const raceResults = payload.raceResults.map(raceResult => ({...raceResult, race: request.params.raceId}))
+      await this.raceResultService.save(raceResults)
+    }
     return toolkit.response('success');
   }
 
@@ -84,7 +95,14 @@ class RaceController extends HapiController {
       validate: {
         payload: {
           name: Joi.string().required(),
-          classes: Joi.array().items(Joi.string().length(36))
+          raceResults: Joi.array().items(Joi.object().keys({
+            car: Joi.string().length(36).required(),
+            driver: Joi.string().length(36).required(),
+            class: Joi.string().length(36).required(),
+            raceNumber: Joi.string().required(),
+            startPosition: Joi.number().required(),
+            finishPosition: Joi.number().allow(null),
+          }))
         }
       },
       description: 'Add a new race to the system',
@@ -94,7 +112,11 @@ class RaceController extends HapiController {
   })
   public async addRace(request: Request, toolkit: ResponseToolkit) {
     const payload: Race = this.raceMapper.map(RaceDTO, Race, request.payload);
-    await this.raceService.save(payload);
+    const race = await this.raceService.save(payload);
+    if (payload.raceResults) {
+      const raceResults = payload.raceResults.map(raceResult => ({...raceResult, race: race?.id}))
+      await this.raceResultService.save(raceResults)
+    }
     return toolkit.response('success');
   }
 
@@ -146,6 +168,31 @@ class RaceController extends HapiController {
       throw Boom.notFound();
     }
     return toolkit.response('success');
+  }
+
+  /**
+   * All race results for that race
+   */
+  @HapiRoute({
+    method: 'GET',
+    path: 'races/{raceId}/results',
+    options: {
+      validate: {
+        params: {
+          raceId: Joi.string().length(36).required()
+        }
+      },
+      description: 'All race results for that race',
+      tags: ['Race'],
+      auth: false
+    }
+  })
+  public async getRaceResultByRaceId(request: Request, toolkit: ResponseToolkit) {
+    const item = await this.raceService.findById(request.params.raceId);
+    if (!item) {
+      throw Boom.notFound();
+    }
+    return toolkit.response(await this.raceResultService.findByQuery({ race: request.params.raceId }));
   }
 
 }

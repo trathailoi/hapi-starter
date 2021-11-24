@@ -14,21 +14,6 @@ class RaceService extends CrudService<Race> {
     super(repository, logger);
     this.logger.info('Created RaceService');
   }
-
-  public async findById(id: string): Promise<Race | undefined> {
-    const result = await this.repository.findOne({
-      where: { id },
-      relations: ['classes', 'raceCars', 'raceCars.race', 'raceCars.car', 'raceCars.car.class', 'raceCars.driver', 'raceCars.driver.homeAddress', 'raceCars.driver.managementAddress', 'raceCars.class']
-    })
-    return result;
-  }
-
-  public async findAll(): Promise<Array<Race>> {
-    const result = await this.repository.find({
-      relations: ['classes', 'raceCars', 'raceCars.race', 'raceCars.car', 'raceCars.car.class', 'raceCars.driver', 'raceCars.driver.homeAddress', 'raceCars.driver.managementAddress', 'raceCars.class']
-    });
-    return result;
-  }
 }
 
 export { RaceService }

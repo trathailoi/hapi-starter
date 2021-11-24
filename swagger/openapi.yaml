@@ -944,13 +944,10 @@ components:
         - car
         - class
         - driver
-        - race
         - raceNumber
         - startPosition
       type: object
       properties:
-        race:
-          $ref: '#/components/schemas/UUID'
         car:
           $ref: '#/components/schemas/UUID'
         driver:

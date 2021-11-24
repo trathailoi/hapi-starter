@@ -1,5 +1,7 @@
+import { RaceResultDTO } from "./race-result";
+
 export class RaceDTO {
   id?: string;
   name?: string;
-  classes?: Array<string>
+  raceResults?: Array<RaceResultDTO>
 }

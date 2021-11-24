@@ -25,92 +25,39 @@ class RaceResultController extends HapiController {
   }
 
 /**
- * Get all race_car
- */
-  @HapiRoute({
-    method: 'GET',
-    path: 'race-cars',
-    options: {
-      validate: { },
-      description: 'Get all race car',
-      tags: ['RaceResult'],
-      auth: false
-    }
-  })
-  public async getRaceResult(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response(await this.RaceResultService.findAll());
-  }
-
-/**
  * Update an existing race_car
  */
   @HapiRoute({
     method: 'PUT',
-    path: 'race-cars/{RaceResultId}',
+    path: 'race-results/{raceResultId}',
     options: {
       validate: {
         params: {
-          RaceResultId: Joi.string().length(36).required()
+          raceResultId: Joi.string().length(36).required()
+        },
+        payload: {
+          car: Joi.string().length(36).required(),
+          driver: Joi.string().length(36).required(),
+          class: Joi.string().length(36).required(),
+          raceNumber: Joi.string().required(),
+          startPosition: Joi.number().required(),
+          finishPosition: Joi.number().allow(null),
         }
       },
-      description: 'Update an existing race car',
+      description: 'Update an existing race result',
       tags: ['RaceResult'],
       auth: false
     }
   })
   public async updateRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const item = await this.RaceResultService.findById(request.params.RaceResultId);
+    const item = await this.RaceResultService.findById(request.params.raceResultId);
     if (!item) {
       throw Boom.notFound();
     }
     const payload: RaceResult = this.RaceResultMapper.map(RaceResultDTO, RaceResult, request.payload);
-    payload.id = request.params.RaceResultId;
+    payload.id = request.params.raceResultId;
     await this.RaceResultService.save(payload);
     return toolkit.response('success');
-  }
-
-/**
- * Add a new race_car to the system
- */
-  @HapiRoute({
-    method: 'POST',
-    path: 'race-cars',
-    options: {
-      validate: { },
-      description: 'Add a new race car to the system',
-      tags: ['RaceResult'],
-      auth: false
-    }
-  })
-  public async addRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const payload: RaceResult = this.RaceResultMapper.map(RaceResultDTO, RaceResult, request.payload);
-    await this.RaceResultService.save(payload);
-    return toolkit.response('success');
-  }
-
-/**
- * Find race_car by ID
- */
-  @HapiRoute({
-    method: 'GET',
-    path: 'race-cars/{RaceResultId}',
-    options: {
-      validate: {
-        params: {
-          RaceResultId: Joi.string().length(36).required()
-        }
-      },
-      description: 'Find race car by ID',
-      tags: ['RaceResult'],
-      auth: false
-    }
-  })
-  public async getRaceResultById(request: Request, toolkit: ResponseToolkit) {
-    const item = await this.RaceResultService.findById(request.params.RaceResultId);
-    if (!item) {
-      throw Boom.notFound();
-    }
-    return toolkit.response(item);
   }
 
 /**
@@ -118,20 +65,20 @@ class RaceResultController extends HapiController {
  */
   @HapiRoute({
     method: 'DELETE',
-    path: 'race-cars/{RaceResultId}',
+    path: 'race-results/{raceResultId}',
     options: {
       validate: {
         params: {
-          RaceResultId: Joi.string().length(36).required()
+          raceResultId: Joi.string().length(36).required()
         }
       },
-      description: 'Delete a race car',
+      description: 'Delete a race result',
       tags: ['RaceResult'],
       auth: false
     }
   })
   public async deleteRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const result = await this.RaceResultService.delete(request.params.RaceResultId);
+    const result = await this.RaceResultService.delete(request.params.raceResultId);
     if (!result.affected) {
       throw Boom.notFound();
     }

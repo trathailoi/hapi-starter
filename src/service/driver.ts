@@ -18,7 +18,7 @@ class DriverService extends CrudService<Driver> {
   public async findById(id: string): Promise<Driver | undefined> {
     const result = await this.repository.findOne({
       where: { id },
-      relations: ['homeAddress', 'managementAddress']
+      relations: ['homeAddress', 'managementAddress', 'teams', 'teams.businessAddress']
     })
     return result;
   }
@@ -29,7 +29,7 @@ class DriverService extends CrudService<Driver> {
   }
 
   public async findAll(): Promise<Array<Driver>> {
-    const result = await this.repository.find({ relations: ['homeAddress', 'managementAddress'] });
+    const result = await this.repository.find({ relations: ['homeAddress', 'managementAddress', 'teams', 'teams.businessAddress'] });
     return result;
   }
 }

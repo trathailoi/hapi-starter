@@ -11,6 +11,7 @@ import { DriverService } from '../service/driver';
 import { DriverDTO } from '../dto/driver';
 import { Driver } from '../entity/Driver';
 import { DriverMapper } from '../helpers/mapper/driver';
+import { RaceResultService } from '../service/race-result';
 
 @injectable()
 class DriverController extends HapiController {
@@ -18,7 +19,8 @@ class DriverController extends HapiController {
   constructor(
     @inject(TYPES.Logger) private logger: Logger,
     @inject(TYPES.DriverMapper) private driverMapper: DriverMapper,
-    @inject(TYPES.DriverService) private driverService: DriverService) {
+    @inject(TYPES.DriverService) private driverService: DriverService,
+    @inject(TYPES.RaceResultService) private raceResultService: RaceResultService) {
     super();
     this.logger.info('Created controller DriverController');
   }
@@ -152,6 +154,30 @@ class DriverController extends HapiController {
     return toolkit.response('success');
   }
 
+  /**
+   * All race results for that driver
+   */
+     @HapiRoute({
+      method: 'GET',
+      path: 'drivers/{driverId}/results',
+      options: {
+        validate: {
+          params: {
+            driverId: Joi.string().length(36).required()
+          }
+        },
+        description: 'All race results for that driver',
+        tags: ['Driver'],
+        auth: false
+      }
+    })
+    public async getRaceResultByRaceId(request: Request, toolkit: ResponseToolkit) {
+      const item = await this.driverService.findById(request.params.driverId);
+      if (!item) {
+        throw Boom.notFound();
+      }
+      return toolkit.response(await this.raceResultService.findByQuery({ driver: request.params.driverId }));
+    }
 }
 
 export { DriverController }
