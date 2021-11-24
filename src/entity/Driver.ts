@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, OneToMany, JoinTable } from 'typeorm';
-import { Address } from './Address';
-import { Team } from './Team';
-import { RaceResult } from './RaceResult';
+import { Address } from './address';
+import { Team } from './team';
+import { RaceResult } from './race-result';
 
 export enum Nationality {
     USA = 'USA',

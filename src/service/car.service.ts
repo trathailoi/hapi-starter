@@ -3,17 +3,17 @@ import { Logger } from 'winston'
 import { Repository } from 'typeorm'
 import { TYPES } from '../ioc/types'
 import { CrudService } from './crudservice'
-import { Address } from '../entity/Address'
+import { Car } from '../entity/car'
 
 @injectable()
-class AddressService extends CrudService<Address> {
+class CarService extends CrudService<Car> {
   constructor(
-    @inject(TYPES.AddressRepository) repository: Repository<Address>,
+    @inject(TYPES.CarRepository) repository: Repository<Car>,
     @inject(TYPES.Logger) logger: Logger
   ) {
     super(repository, logger);
-    this.logger.info('Created AddressService');
+    this.logger.info('Created CarService');
   }
 }
 
-export { AddressService }
+export { CarService }

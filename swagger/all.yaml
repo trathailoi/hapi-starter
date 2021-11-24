@@ -126,7 +126,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Class'
-  '/classes/{classId}':
+  '/classes/{id}':
     get:
       tags:
         - class
@@ -134,7 +134,7 @@ paths:
       description: Returns a single class
       operationId: getClassById
       parameters:
-        - name: classId
+        - name: id
           in: path
           description: ID of class to return
           required: true
@@ -157,7 +157,7 @@ paths:
       summary: Updates an existing class by ID
       operationId: updateClass
       parameters:
-        - name: classId
+        - name: id
           in: path
           description: ID of the class that needs to be updated
           required: true
@@ -190,7 +190,7 @@ paths:
       #   Negative or non-integer values will generate API errors
       operationId: deleteClass
       parameters:
-        - name: classId
+        - name: id
           in: path
           description: Class id to delete
           required: true
@@ -243,7 +243,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Address'
-  '/addresses/{addressId}':
+  '/addresses/{id}':
     get:
       tags:
         - address
@@ -251,7 +251,7 @@ paths:
       description: Returns a single address
       operationId: getAddressById
       parameters:
-        - name: addressId
+        - name: id
           in: path
           description: ID of address to return
           required: true
@@ -274,7 +274,7 @@ paths:
       summary: Updates an existing address by ID
       operationId: updateAddress
       parameters:
-        - name: addressId
+        - name: id
           in: path
           description: ID of the address that needs to be updated
           required: true
@@ -303,7 +303,7 @@ paths:
       summary: Delete an address by ID
       operationId: deleteAddress
       parameters:
-        - name: addressId
+        - name: id
           in: path
           description: Address id to delete
           required: true
@@ -356,7 +356,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TeamResponse'
-  '/teams/{teamId}':
+  '/teams/{id}':
     get:
       tags:
         - team
@@ -364,7 +364,7 @@ paths:
       description: Returns a single team
       operationId: getTeamById
       parameters:
-        - name: teamId
+        - name: id
           in: path
           description: ID of team to return
           required: true
@@ -387,7 +387,7 @@ paths:
       summary: Updates an existing team by ID
       operationId: updateTeam
       parameters:
-        - name: teamId
+        - name: id
           in: path
           description: ID of the team that needs to be updated
           required: true
@@ -416,7 +416,7 @@ paths:
       summary: Deletes a team by ID
       operationId: deleteTeam
       parameters:
-        - name: teamId
+        - name: id
           in: path
           description: Team id to delete
           required: true
@@ -469,7 +469,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DriverResponse'
-  '/drivers/{driverId}':
+  '/drivers/{id}':
     get:
       tags:
         - driver
@@ -477,7 +477,7 @@ paths:
       description: Returns a single driver
       operationId: getDriverById
       parameters:
-        - name: driverId
+        - name: id
           in: path
           description: ID of driver to return
           required: true
@@ -500,7 +500,7 @@ paths:
       summary: Updates an existing driver by ID
       operationId: updateDriver
       parameters:
-        - name: driverId
+        - name: id
           in: path
           description: ID of the driver that needs to be updated
           required: true
@@ -529,7 +529,7 @@ paths:
       summary: Deletes a driver by ID
       operationId: deleteDriver
       parameters:
-        - name: driverId
+        - name: id
           in: path
           description: Driver id to delete
           required: true
@@ -542,7 +542,7 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
-  '/drivers/{driverId}/results':
+  '/drivers/{id}/results':
     get:
       tags:
         - driver
@@ -551,13 +551,13 @@ paths:
       description: Get driver's results on races
       operationId: getDriverRaceResults
       parameters:
-        - name: driverId
+        - name: id
           in: path
           description: ID of the driver
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: raceId
+        - name: id
           in: query
           description: filter the results by a race id
           schema:
@@ -652,7 +652,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CarResponse'
-  '/cars/{carId}':
+  '/cars/{id}':
     get:
       tags:
         - car
@@ -660,7 +660,7 @@ paths:
       description: Returns a single car
       operationId: getCarById
       parameters:
-        - name: carId
+        - name: id
           in: path
           description: ID of car to return
           required: true
@@ -683,7 +683,7 @@ paths:
       summary: Updates an existing car by ID
       operationId: updateCar
       parameters:
-        - name: carId
+        - name: id
           in: path
           description: ID of the car that needs to be updated
           required: true
@@ -712,7 +712,7 @@ paths:
       summary: Deletes a car by ID
       operationId: deleteCar
       parameters:
-        - name: carId
+        - name: id
           in: path
           description: Car id to delete
           required: true
@@ -725,7 +725,7 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
-  '/cars/{carId}/results':
+  '/cars/{id}/results':
     get:
       tags:
         - car
@@ -734,13 +734,13 @@ paths:
       description: Get a car's results
       operationId: getCarResults
       parameters:
-        - name: carId
+        - name: id
           in: path
           description: ID of the car
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: raceId
+        - name: id
           in: query
           description: filter the results by a race id
           schema:
@@ -822,7 +822,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Race'
-  '/races/{raceId}':
+  '/races/{id}':
     get:
       tags:
         - race
@@ -830,7 +830,7 @@ paths:
       description: Returns a single race
       operationId: getRaceById
       parameters:
-        - name: raceId
+        - name: id
           in: path
           description: ID of race to return
           required: true
@@ -853,7 +853,7 @@ paths:
       summary: Updates an existing race by ID
       operationId: updateRace
       parameters:
-        - name: raceId
+        - name: id
           in: path
           description: ID of the race that needs to be updated
           required: true
@@ -882,7 +882,7 @@ paths:
       summary: Deletes a race by ID
       operationId: deleteRace
       parameters:
-        - name: raceId
+        - name: id
           in: path
           description: Race id to delete
           required: true
@@ -895,7 +895,7 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '400':
           $ref: '#/components/responses/400BadRequest'
-  '/races/{raceId}/results':
+  '/races/{id}/results':
     get:
       tags:
         - race
@@ -904,13 +904,13 @@ paths:
       description: Get a race's results
       operationId: getRaceResults
       parameters:
-        - name: raceId
+        - name: id
           in: path
           description: ID of the race
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: classId
+        - name: id
           in: query
           description: get results for a specific class on the race
           schema:
@@ -935,7 +935,7 @@ paths:
       summary: Add new race results for an existing race
       operationId: addRaceResult
       parameters:
-        - name: raceId
+        - name: id
           in: path
           description: ID of the race
           required: true
@@ -961,7 +961,7 @@ paths:
         '400':
           $ref: '#/components/responses/400BadRequest'
 
-  '/races/{raceId}/results/{raceResultId}':
+  '/races/{id}/results/{raceResultId}':
     patch:
       tags:
         - race
@@ -969,7 +969,7 @@ paths:
       summary: Updates an existing race result
       operationId: updateRaceResult
       parameters:
-        - name: raceId
+        - name: id
           in: path
           description: ID of the race
           required: true
@@ -1000,7 +1000,7 @@ paths:
           $ref: '#/components/responses/400BadRequest'
 
   # RaceResults
-  '/race-results/{raceResultId}':
+  '/race-results/{id}':
     get:
       tags:
         - race-result
@@ -1008,7 +1008,7 @@ paths:
       description: Get a result detail by ID
       operationId: getRaceResultById
       parameters:
-        - name: raceResultId
+        - name: id
           in: path
           description: ID of a race result
           required: true
@@ -1031,7 +1031,7 @@ paths:
       summary: Delete a race result by ID
       operationId: deleteRaceResult
       parameters:
-        - name: raceResultId
+        - name: id
           in: path
           description: race result ID to delete
           required: true

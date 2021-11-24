@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
-import { Address } from './Address';
-import { Driver } from './Driver';
+import { Address } from './address';
+import { Driver } from './driver';
 
 export enum Nationality {
     USA = 'USA',

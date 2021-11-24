@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { RaceResult } from './RaceResult';
+import { RaceResult } from './race-result';
 
 @Entity()
 class Race {

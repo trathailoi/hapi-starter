@@ -1,8 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Car } from './Car';
-import { Race } from './Race';
-import { Driver } from './Driver';
-import { Class } from './Class';
+import { Car } from './car';
+import { Race } from './race';
+import { Driver } from './driver';
+import { Class } from './class';
 
 @Entity()
 class RaceResult {

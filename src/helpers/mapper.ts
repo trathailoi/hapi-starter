@@ -1,10 +1,10 @@
 import 'automapper-ts';
 import { injectable } from 'inversify';
 
-import { Address } from '../entity/Address'
+import { Address } from '../entity/address'
 import { AddressModel } from '../dto/address'
 
-import { Class } from '../entity/Class'
+import { Class } from '../entity/class'
 import { ClassModel } from '../dto/class'
 
 /**

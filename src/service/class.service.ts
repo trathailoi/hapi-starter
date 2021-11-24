@@ -3,7 +3,7 @@ import { Logger } from 'winston'
 import { Repository } from 'typeorm'
 import { TYPES } from '../ioc/types'
 import { CrudService } from './crudservice'
-import { Class } from '../entity/Class'
+import { Class } from '../entity/class'
 
 @injectable()
 class ClassService extends CrudService<Class> {

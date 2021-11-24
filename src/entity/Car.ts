@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
-import { Class } from './Class';
-import { Team } from './Team';
-import { RaceResult } from './RaceResult';
+import { Class } from './class';
+import { Team } from './team';
+import { RaceResult } from './race-result';
 
 /**
  * This class defines an entity that represents cars in the database.  

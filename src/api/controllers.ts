@@ -3,8 +3,16 @@ import { inject, injectable } from "inversify";
 import { TYPES } from "../ioc/types";
 import { HapiController } from "./hapi-controller";
 import { HelloWorldController } from "./helloworld-controller";
-import { AddressController } from "./address.controller";
+// import { AddressController } from "./address.controller";
+// import { ClassController } from "./class.controller";
+
 import { ClassController } from "./class.controller";
+import { AddressController } from "./address.controller";
+import { TeamController } from "./team.controller";
+import { DriverController } from "./driver.controller";
+import { CarController } from "./car.controller";
+import { RaceController } from "./race.controller";
+import { RaceResultController } from "./race-result.controller";
 
 /**
  * The purpose of this class is to simply collect all of our controllers so we can generate
@@ -23,11 +31,26 @@ class Controllers {
     @inject(TYPES.HelloWorldController) 
     private helloWorldController?: HelloWorldController;
 
+    @inject(TYPES.ClassController)
+    private classController?: ClassController;
+
     @inject(TYPES.AddressController)
     private addressController?: AddressController;
 
-    @inject(TYPES.ClassController)
-    private classController?: ClassController;
+    @inject(TYPES.TeamController)
+    private teamController?: TeamController;
+
+    @inject(TYPES.DriverController)
+    private driverController?: DriverController;
+
+    @inject(TYPES.CarController)
+    private carController?: CarController;
+
+    @inject(TYPES.RaceController)
+    private raceController?: RaceController;
+
+    @inject(TYPES.RaceResultController)
+    private raceResultController?: RaceResultController;
 
     /**
      * Wraps the static getRoutes() method on HapiController.  This makes more sense
