@@ -203,8 +203,8 @@ paths:
               $ref: '#/components/schemas/AddressFormData'
         description: form data object that contains fields to update a specific address in the system
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -310,8 +310,8 @@ paths:
               $ref: '#/components/schemas/TeamFormData'
         description: form data object that contains fields to update a specific team in the system
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -417,8 +417,8 @@ paths:
               $ref: '#/components/schemas/DriverFormData'
         description: form data object that contains fields to update a specific driver in the system
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -557,8 +557,8 @@ paths:
               $ref: '#/components/schemas/CarFormData'
         description: form data object that contains fields to update a specific car in the system
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -735,8 +735,8 @@ paths:
               $ref: '#/components/schemas/CreatingRaceFormData'
         description: You can add a new race to the system, as well as its results at once. The "results" field is optional.
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -1111,8 +1111,6 @@ components:
       required:
         - firstName
         - lastName
-        - nationality
-        - team
       properties:
         firstName:
           type: string
@@ -1124,8 +1122,10 @@ components:
           type: string
           enum: [USA, VietNam]
           example: USA
-        team:
-          $ref: '#/components/schemas/uuidFormat'
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/uuidFormat'
         homeAddress:
           $ref: '#/components/schemas/uuidFormat'
         managementAddress:

@@ -30,9 +30,9 @@ class Team {
     @JoinColumn()
     businessAddress?: Address
 
-    // @ManyToMany(() => Driver)
-    // @JoinTable()
-    // drivers?: Driver[]
+    @ManyToMany(() => Driver)
+    @JoinTable()
+    drivers?: Driver[]
 
     @OneToMany(() => Car, car => car.team)
     cars?: Car[]

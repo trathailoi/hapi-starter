@@ -43,14 +43,26 @@ class DriverController extends HapiController implements IDriverController {
     method: 'POST',
     path: 'drivers',
     options: {
-      validate: { },
+      validate: {
+        payload: {
+          firstName: Joi.string().required(),
+          lastName: Joi.string().required(),
+          nationality: Joi.string().valid('USA', 'Viet Nam'),
+          teams: Joi.array().items(Joi.string().guid()),
+          homeAddress: Joi.string().guid(),
+          managementAddress: Joi.string().guid()
+        }
+      },
       description: 'Add a new driver to the system',
-      tags: ['driver',],
+      tags: ['driver'],
       auth: false
     }
   })
   public async addDriver(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const payload: Driver = this.mapper.map(DriverModel, Driver, request.payload)
+    console.log('payload', payload)
+    const item = await this.service.save(payload)
+    return toolkit.response({id: item!.id}).code(201)
   }
 // #endregion
 
@@ -64,12 +76,12 @@ class DriverController extends HapiController implements IDriverController {
     options: {
       validate: { },
       description: 'Finds Drivers',
-      tags: ['driver',],
+      tags: ['driver'],
       auth: false
     }
   })
   public async findDrivers(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    return toolkit.response(await this.service.findAll())
   }
 // #endregion
 
@@ -81,14 +93,22 @@ class DriverController extends HapiController implements IDriverController {
     method: 'GET',
     path: 'drivers/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Find driver by ID',
-      tags: ['driver',],
+      tags: ['driver'],
       auth: false
     }
   })
   public async getDriverById(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const item = await this.service.findById(request.params.id)
+    if (!item) {
+      throw Boom.notFound()
+    }
+    return toolkit.response(item)
   }
 // #endregion
 
@@ -100,14 +120,34 @@ class DriverController extends HapiController implements IDriverController {
     method: 'PATCH',
     path: 'drivers/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        },
+        payload: {
+          firstName: Joi.string(),
+          lastName: Joi.string(),
+          nationality: Joi.string().valid('USA', 'Viet Nam'),
+          teams: Joi.array().items(Joi.string().guid()),
+          homeAddress: Joi.string().guid(),
+          managementAddress: Joi.string().guid()
+        }
+      },
       description: 'Updates an existing driver by ID',
-      tags: ['driver',],
+      tags: ['driver'],
       auth: false
     }
   })
   public async updateDriver(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const payload: Driver = this.mapper.map(DriverModel, Driver, Object.assign({}, request.payload, request.params))
+
+    const item = await this.service.findById(payload.id)
+    if (!item) {
+      throw Boom.notFound()
+    }
+    console.log('payload', payload)
+    await this.service.save(payload)
+    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -119,14 +159,22 @@ class DriverController extends HapiController implements IDriverController {
     method: 'DELETE',
     path: 'drivers/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Deletes a driver by ID',
-      tags: ['driver',],
+      tags: ['driver'],
       auth: false
     }
   })
   public async deleteDriver(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const result = await this.service.delete(request.params.id)
+    if (!result.affected) {
+      throw Boom.notFound()
+    }
+    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -140,7 +188,7 @@ class DriverController extends HapiController implements IDriverController {
     options: {
       validate: { },
       description: 'Get driver\'s results on races',
-      tags: ['driver','race-result',],
+      tags: ['driver','race-result'],
       auth: false
     }
   })

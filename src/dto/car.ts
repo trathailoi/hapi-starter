@@ -4,5 +4,5 @@ export class CarModel {
     model?: string
     class?: string
     team?: string
-    results?: object[]
+    results?: string[]
 }

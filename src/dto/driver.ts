@@ -9,6 +9,6 @@ export class DriverModel {
     nationality?: Nationality
     homeAddress?: string
     managementAddress?: string
-    teams?: object[]
-    results?: object[]
+    teams?: string[]
+    results?: string[]
 }

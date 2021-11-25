@@ -96,7 +96,7 @@ class ClassController extends HapiController implements IClassController {
     options: {
       validate: {
         params: {
-          id: Joi.string().guid().length(36).required()
+          id: Joi.string().guid().required()
         }
       },
       description: 'Find class by ID',
@@ -123,7 +123,7 @@ class ClassController extends HapiController implements IClassController {
     options: {
       validate: {
         params: {
-          id: Joi.string().guid().length(36).required()
+          id: Joi.string().guid().required()
         },
         payload: {
           name: Joi.string().required()
@@ -156,7 +156,7 @@ class ClassController extends HapiController implements IClassController {
     options: {
       validate: {
         params: {
-          id: Joi.string().guid().length(36).required()
+          id: Joi.string().guid().required()
         }
       },
       description: 'Deletes a class by ID',

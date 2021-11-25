@@ -47,7 +47,7 @@ class TeamController extends HapiController implements ITeamController {
         payload: {
           name: Joi.string().required(),
           nationality: Joi.string().valid('USA', 'Viet Nam'),
-          businessAddress: Joi.string().guid().length(36)
+          businessAddress: Joi.string().guid()
         }
       },
       description: 'Add a new team to the system',
@@ -92,7 +92,7 @@ class TeamController extends HapiController implements ITeamController {
     options: {
       validate: {
         params: {
-          id: Joi.string().guid().length(36).required()
+          id: Joi.string().guid().required()
         }
       },
       description: 'Find team by ID',
@@ -119,12 +119,12 @@ class TeamController extends HapiController implements ITeamController {
     options: {
       validate: {
         params: {
-          id: Joi.string().guid().length(36).required()
+          id: Joi.string().guid().required()
         },
         payload: {
           name: Joi.string(),
           nationality: Joi.string().valid('USA', 'Viet Nam'),
-          businessAddress: Joi.string().guid().length(36)
+          businessAddress: Joi.string().guid()
         }
       },
       description: 'Updates an existing team by ID',
@@ -154,7 +154,7 @@ class TeamController extends HapiController implements ITeamController {
     options: {
       validate: {
         params: {
-          id: Joi.string().guid().length(36).required()
+          id: Joi.string().guid().required()
         }
       },
       description: 'Deletes a team by ID',

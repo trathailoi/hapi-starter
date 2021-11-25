@@ -10,6 +10,9 @@ import { ClassModel } from '../dto/class'
 import { Team } from '../entity/team'
 import { TeamModel } from '../dto/team'
 
+import { Driver } from '../entity/driver'
+import { DriverModel } from '../dto/driver'
+
 /**
  * Wrapper around automapper, for dependency injection convenience (static/global variables bad)
  */
@@ -65,6 +68,11 @@ class Mapper {
             TeamModel, 
             Team,
             ['id', 'name', 'nationality', 'businessAddress', 'cars']
+        )
+        this.createDefaultBiDiMap(
+            DriverModel, 
+            Driver,
+            ['id', 'firstName', 'lastName', 'nationality', 'homeAddress', 'managementAddress', 'teams', 'results']
         )
     }
 
