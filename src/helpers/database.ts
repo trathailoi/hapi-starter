@@ -1,4 +1,4 @@
-import { createConnection } from 'typeorm';
+import { createConnection } from 'typeorm'
 
 
 
@@ -8,7 +8,7 @@ import { createConnection } from 'typeorm';
 // TODO: Externalize connection properties
 async function initializeDatabase(config: any) {
     //Add entities here
-    const entities: Array<any> = ["src/entity/*{.ts,.js}"];
+    const entities: Array<any> = ['src/entity/*{.ts,.js}']
     
     await createConnection({
         type: config.get('database.type', 'postgres'),
@@ -20,7 +20,7 @@ async function initializeDatabase(config: any) {
         entities: entities,
         synchronize: config.get('database.synchronize', true),
         logging: config.get('database.logging', false)
-    });
+    })
 }
 
 export { initializeDatabase }

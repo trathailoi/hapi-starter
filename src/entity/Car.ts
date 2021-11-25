@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
-import { Class } from './class';
-import { Team } from './team';
-import { RaceResult } from './race-result';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm'
+import { Class } from './class'
+import { Team } from './team'
+import { RaceResult } from './race-result'
 
 /**
  * This class defines an entity that represents cars in the database.  
@@ -16,28 +16,28 @@ import { RaceResult } from './race-result';
 @Entity()
 class Car {
     @PrimaryGeneratedColumn('uuid')
-    id?: string;
+    id!: string
 
     @Column('varchar', {
         nullable: false,
         length: 40
     })
-    make?: string;
+    make?: string
 
     @Column('varchar', {
         nullable: false,
         length: 40
     })
-    model?: string;
+    model?: string
 
     @ManyToOne(() => Class)
-    class?: string;
+    class?: string
 
     @ManyToOne(() => Team)
-    team?: string;
+    team?: string
 
     @OneToMany(() => RaceResult, raceResult => raceResult.car)
-    results?: RaceResult[];
+    results?: RaceResult[]
 }
 
 export { Car }

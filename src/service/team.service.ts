@@ -11,8 +11,8 @@ class TeamService extends CrudService<Team> {
     @inject(TYPES.TeamRepository) repository: Repository<Team>,
     @inject(TYPES.Logger) logger: Logger
   ) {
-    super(repository, logger);
-    this.logger.info('Created TeamService');
+    super(repository, logger)
+    this.logger.info('Created TeamService')
   }
 
   public async findById(id: string): Promise<Team | undefined> {
@@ -20,7 +20,7 @@ class TeamService extends CrudService<Team> {
       where: { id },
       relations: ['businessAddress', 'cars', 'cars.class']
     })
-    return result;
+    return result
   }
 
 }

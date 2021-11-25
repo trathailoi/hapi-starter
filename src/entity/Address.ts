@@ -1,39 +1,39 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 class Address {
     @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    id!: string
 
     @Column('varchar', {
         nullable: false,
         length: 150
     })
-    name?: string;
+    name?: string
 
     @Column('varchar', {
         nullable: false,
         length: 150
     })
-    street?: string;
+    street?: string
 
     @Column('varchar', {
         nullable: false,
         length: 150
     })
-    street2?: string;
+    street2?: string
 
     @Column('varchar', {
         nullable: false,
         length: 40
     })
-    city?: string;
+    city?: string
 
     @Column('varchar', {
         nullable: false,
         length: 40
     })
-    state?: string;
+    state?: string
 
     @Column('varchar', {
         nullable: false,
@@ -41,13 +41,13 @@ class Address {
         // min: 5,
         // max: 10
     })
-    zip?: string;
+    zip?: string
 
     @Column('varchar', {
         nullable: false,
         length: 40
     })
-    country?: string;
+    country?: string
 }
 
 export { Address }

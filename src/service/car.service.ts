@@ -11,8 +11,8 @@ class CarService extends CrudService<Car> {
     @inject(TYPES.CarRepository) repository: Repository<Car>,
     @inject(TYPES.Logger) logger: Logger
   ) {
-    super(repository, logger);
-    this.logger.info('Created CarService');
+    super(repository, logger)
+    this.logger.info('Created CarService')
   }
 }
 

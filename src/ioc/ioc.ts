@@ -1,50 +1,50 @@
-import { Container } from 'inversify';
-import { Logger } from 'winston';
-import { TYPES } from './types';
-import { HelloWorldController } from '../api/helloworld-controller';
-import { ApiServer } from '../apiserver';
-import { Controllers } from '../api/controllers';
-import { getConnection, Repository } from 'typeorm';
-import * as Winston from 'winston';
-import { Mapper } from '../helpers/mapper';
+import { Container } from 'inversify'
+import { Logger } from 'winston'
+import { TYPES } from './types'
+import { HelloWorldController } from '../api/helloworld-controller'
+import { ApiServer } from '../apiserver'
+import { Controllers } from '../api/controllers'
+import { getConnection, Repository } from 'typeorm'
+import * as Winston from 'winston'
+import { Mapper } from '../helpers/mapper'
 
-// import { Address } from '../entity/addresses';
-// import { AddressService } from '../service/addresses';
-// import { AddressController } from '../api/address.controller';
+// import { Address } from '../entity/addresses'
+// import { AddressService } from '../service/addresses'
+// import { AddressController } from '../api/address.controller'
 
-// import { Class } from '../entity/classes';
-// import { ClassService } from '../service/classes';
-// import { ClassController } from '../api/class.controller';
+// import { Class } from '../entity/classes'
+// import { ClassService } from '../service/classes'
+// import { ClassController } from '../api/class.controller'
 
-import { Class } from '../entity/class';
-import { ClassService } from '../service/class.service';
-import { ClassController } from '../api/class.controller';
+import { Class } from '../entity/class'
+import { ClassService } from '../service/class.service'
+import { ClassController } from '../api/class.controller'
 
-import { Address } from '../entity/address';
-import { AddressService } from '../service/address.service';
-import { AddressController } from '../api/address.controller';
+import { Address } from '../entity/address'
+import { AddressService } from '../service/address.service'
+import { AddressController } from '../api/address.controller'
 
-import { Team } from '../entity/team';
-import { TeamService } from '../service/team.service';
-import { TeamController } from '../api/team.controller';
+import { Team } from '../entity/team'
+import { TeamService } from '../service/team.service'
+import { TeamController } from '../api/team.controller'
 
-import { Driver } from '../entity/driver';
-import { DriverService } from '../service/driver.service';
-import { DriverController } from '../api/driver.controller';
+import { Driver } from '../entity/driver'
+import { DriverService } from '../service/driver.service'
+import { DriverController } from '../api/driver.controller'
 
-import { Car } from '../entity/car';
-import { CarService } from '../service/car.service';
-import { CarController } from '../api/car.controller';
+import { Car } from '../entity/car'
+import { CarService } from '../service/car.service'
+import { CarController } from '../api/car.controller'
 
-import { Race } from '../entity/race';
-import { RaceService } from '../service/race.service';
-import { RaceController } from '../api/race.controller';
+import { Race } from '../entity/race'
+import { RaceService } from '../service/race.service'
+import { RaceController } from '../api/race.controller'
 
-import { RaceResult } from '../entity/race-result';
-import { RaceResultService } from '../service/race-result.service';
-import { RaceResultController } from '../api/race-result.controller';
+import { RaceResult } from '../entity/race-result'
+import { RaceResultService } from '../service/race-result.service'
+import { RaceResultController } from '../api/race-result.controller'
 
-const Configue = require('configue');
+const Configue = require('configue')
 
 /**
  * This file contains all of the Inversify configuration code.  This is the only
@@ -58,7 +58,7 @@ const Configue = require('configue');
  * managed (for example, is it a singleton, or does each reference get its own 
  * instance?) and let the container manage instantiating and injecting dependencies.
  */
-const container = new Container();
+const container = new Container()
 
 
 /**
@@ -78,9 +78,9 @@ const configOpts = {
       format: require('nconf-yaml')
     }
   ]
-};
-const configue = new Configue(configOpts);
-container.bind<typeof Configue>(TYPES.Configue).toConstantValue(configue);
+}
+const configue = new Configue(configOpts)
+container.bind<typeof Configue>(TYPES.Configue).toConstantValue(configue)
 
 /**
  * Configure Winston for logging
@@ -93,24 +93,24 @@ container.bind<Logger>(TYPES.Logger).toDynamicValue(
               Winston.format.timestamp(),
               Winston.format.align(),
               Winston.format.printf(info => {
-                const { timestamp, level, message, ...args } = info;
+                const { timestamp, level, message, ...args } = info
       
-                const ts = timestamp.slice(0, 19).replace('T', ' ');
+                const ts = timestamp.slice(0, 19).replace('T', ' ')
                 return `${ts} [${level}]: ${message} ${
                   Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
-                }`;
+                }`
               })
             ),
             level: configue.get('logging.level'),
-          });
+          })
       
           return Winston.createLogger({
             transports: [consoleTransport],
-          });
+          })
     }
-).inSingletonScope();
+).inSingletonScope()
 
-// "Global" classes - things that aren't controllers, repositories, or services.
+// 'Global' classes - things that aren't controllers, repositories, or services.
 /**
  * For each dependency we set up a binding in the container to the class that implements 
  * each dependency.  Remember that the purpose of dependency injection/inversion of control 
@@ -124,62 +124,62 @@ container.bind<Logger>(TYPES.Logger).toDynamicValue(
  * both the mock and the real service implement the same interface, you can provide either
  * the mock or the real service at runtime and dependent code won't know the difference.
  * 
- * Inversify prepares us for this by binding a "source type" (in this case ApiServer) to a
+ * Inversify prepares us for this by binding a 'source type' (in this case ApiServer) to a
  * symbol - a representation of that type, and bind the symbol to the implemnting class.
- * Below, we bind the symbol TYPES.ApiServer to the class ApiServer.  The "".inSingletonScope()"
+ * Below, we bind the symbol TYPES.ApiServer to the class ApiServer.  The ''.inSingletonScope()'
  * part of the declaration tells Inversify that we want everyone who needs an ApiServer to
  * get the same instance of ApiServer.
  */
-container.bind<Mapper>(TYPES.Mapper).to(Mapper).inSingletonScope();
-container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope();
-container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope();
+container.bind<Mapper>(TYPES.Mapper).to(Mapper).inSingletonScope()
+container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope()
+container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope()
 
 // // Repositories
 // container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
 // container.bind<Repository<Address>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
 
 // // Services
-// container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
-// container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope();
+// container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope()
+// container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope()
 
 // Controllers
-container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope();
-// container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope();
-// container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope();
+container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope()
+// container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope()
+// container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope()
 
 container.bind<Repository<Class>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
-container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope();
-container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope();
+container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope()
+container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope()
 
 container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
-container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope();
-container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope();
+container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope()
+container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope()
 
 container.bind<Repository<Team>>(TYPES.TeamRepository).toDynamicValue(() => createRepository<Team>(Team)).inSingletonScope()
-container.bind<TeamService>(TYPES.TeamService).to(TeamService).inSingletonScope();
-container.bind<TeamController>(TYPES.TeamController).to(TeamController).inSingletonScope();
+container.bind<TeamService>(TYPES.TeamService).to(TeamService).inSingletonScope()
+container.bind<TeamController>(TYPES.TeamController).to(TeamController).inSingletonScope()
 
 container.bind<Repository<Driver>>(TYPES.DriverRepository).toDynamicValue(() => createRepository<Driver>(Driver)).inSingletonScope()
-container.bind<DriverService>(TYPES.DriverService).to(DriverService).inSingletonScope();
-container.bind<DriverController>(TYPES.DriverController).to(DriverController).inSingletonScope();
+container.bind<DriverService>(TYPES.DriverService).to(DriverService).inSingletonScope()
+container.bind<DriverController>(TYPES.DriverController).to(DriverController).inSingletonScope()
 
 container.bind<Repository<Car>>(TYPES.CarRepository).toDynamicValue(() => createRepository<Car>(Car)).inSingletonScope()
-container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope();
-container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope();
+container.bind<CarService>(TYPES.CarService).to(CarService).inSingletonScope()
+container.bind<CarController>(TYPES.CarController).to(CarController).inSingletonScope()
 
 container.bind<Repository<Race>>(TYPES.RaceRepository).toDynamicValue(() => createRepository<Race>(Race)).inSingletonScope()
-container.bind<RaceService>(TYPES.RaceService).to(RaceService).inSingletonScope();
-container.bind<RaceController>(TYPES.RaceController).to(RaceController).inSingletonScope();
+container.bind<RaceService>(TYPES.RaceService).to(RaceService).inSingletonScope()
+container.bind<RaceController>(TYPES.RaceController).to(RaceController).inSingletonScope()
 
 container.bind<Repository<RaceResult>>(TYPES.RaceResultRepository).toDynamicValue(() => createRepository<RaceResult>(RaceResult)).inSingletonScope()
-container.bind<RaceResultService>(TYPES.RaceResultService).to(RaceResultService).inSingletonScope();
-container.bind<RaceResultController>(TYPES.RaceResultController).to(RaceResultController).inSingletonScope();
+container.bind<RaceResultService>(TYPES.RaceResultService).to(RaceResultService).inSingletonScope()
+container.bind<RaceResultController>(TYPES.RaceResultController).to(RaceResultController).inSingletonScope()
 
 /**
  * Utility function to create TypeORM repositories from their types through generics
  */
  function createRepository<T>(c: { new (): T }): Repository<T> {
-  return getConnection().getRepository(c);
+  return getConnection().getRepository(c)
 }
 
 export { container }

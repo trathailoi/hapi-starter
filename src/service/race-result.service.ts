@@ -11,8 +11,8 @@ class RaceResultService extends CrudService<RaceResult> {
     @inject(TYPES.RaceResultRepository) repository: Repository<RaceResult>,
     @inject(TYPES.Logger) logger: Logger
   ) {
-    super(repository, logger);
-    this.logger.info('Created RaceResultService');
+    super(repository, logger)
+    this.logger.info('Created RaceResultService')
   }
 }
 

@@ -11,8 +11,8 @@ class AddressService extends CrudService<Address> {
     @inject(TYPES.AddressRepository) repository: Repository<Address>,
     @inject(TYPES.Logger) logger: Logger
   ) {
-    super(repository, logger);
-    this.logger.info('Created AddressService');
+    super(repository, logger)
+    this.logger.info('Created AddressService')
   }
 }
 

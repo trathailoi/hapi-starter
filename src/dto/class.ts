@@ -1,4 +1,4 @@
 export class ClassModel {
-    id?: string;
-    name?: string;
+    id?: string
+    name?: string
 }

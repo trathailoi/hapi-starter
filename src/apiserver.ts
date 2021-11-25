@@ -1,17 +1,17 @@
-import { Server, ServerRegisterPluginObject } from "@hapi/hapi";
-import * as Boom from '@hapi/boom';
-import { inject, injectable } from "inversify";
-import { Controllers } from "./api/controllers";
-import { Logger } from "winston";
-import { plugins } from "./helpers/plugins";
-import { TYPES } from "./ioc/types";
+import { Server, ServerRegisterPluginObject } from '@hapi/hapi'
+import * as Boom from '@hapi/boom'
+import { inject, injectable } from 'inversify'
+import { Controllers } from './api/controllers'
+import { Logger } from 'winston'
+import { plugins } from './helpers/plugins'
+import { TYPES } from './ioc/types'
 
 /**
  * This class encapsulates the HAPI server instance, and is responsible for startup and configuration
  */
 @injectable()
 class ApiServer {
-    private hapiServer: Server;
+    private hapiServer: Server
 
     constructor(
         @inject(TYPES.Configue) private configue: any,
@@ -42,7 +42,7 @@ class ApiServer {
               }
             }
         })
-        this.hapiServer.validator(require('@hapi/joi'));
+        this.hapiServer.validator(require('@hapi/joi'))
 
         /**
          * Here we are using our injected controllers class to generate all of the 
@@ -50,7 +50,7 @@ class ApiServer {
          * add metadata to your route handlers in your controller and add your controller
          * to the controllers class in order to add a route
          */        
-        this.hapiServer.route(controllers.getRoutes());
+        this.hapiServer.route(controllers.getRoutes())
 
         /**
          * Register HAPI Plugins.  If you want to add a plugin, add its metadata 
@@ -58,9 +58,9 @@ class ApiServer {
          */
         Promise.all(plugins.map((p: any) => this.hapiServer.register(p)))
             .then(() => {
-                this.hapiServer.start();
-                this.logger.info('Server started.');
-            });
+                this.hapiServer.start()
+                this.logger.info('Server started.')
+            })
     }
 }
 

@@ -1,5 +1,5 @@
-import 'automapper-ts';
-import { injectable } from 'inversify';
+import 'automapper-ts'
+import { injectable } from 'inversify'
 
 import { Address } from '../entity/address'
 import { AddressModel } from '../dto/address'
@@ -17,8 +17,8 @@ import { TeamModel } from '../dto/team'
 class Mapper {
 
     /**
-     * Helper method, shorthand for "map all properties of the source to the same properties in
-     * the destination".  This is useful when your model and entity share the same structuer.
+     * Helper method, shorthand for 'map all properties of the source to the same properties in
+     * the destination'.  This is useful when your model and entity share the same structuer.
      */
     private createDefaultMap(
         fromType: any, 
@@ -26,12 +26,12 @@ class Mapper {
         fields: Array<string>
     ): AutoMapperJs.ICreateMapFluentFunctions 
     {
-        const map = automapper.createMap(fromType, toType);
+        const map = automapper.createMap(fromType, toType)
         fields.forEach(key => {
-            map.forMember(key, (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom(key));
-        });
+            map.forMember(key, (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom(key))
+        })
 
-        return map;
+        return map
     }
 
     /** 
@@ -46,7 +46,7 @@ class Mapper {
         return [
             this.createDefaultMap(typeA, typeB, fields),
             this.createDefaultMap(typeB, typeA, fields)
-        ];
+        ]
     }
 
     constructor() {
@@ -69,7 +69,7 @@ class Mapper {
     }
 
     public map(source: any, destination: any, value: any): any {
-        return automapper.map(source, destination, value);
+        return automapper.map(source, destination, value)
     }
 }
 

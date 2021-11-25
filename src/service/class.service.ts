@@ -11,8 +11,8 @@ class ClassService extends CrudService<Class> {
     @inject(TYPES.ClassRepository) repository: Repository<Class>,
     @inject(TYPES.Logger) logger: Logger
   ) {
-    super(repository, logger);
-    this.logger.info('Created ClassService');
+    super(repository, logger)
+    this.logger.info('Created ClassService')
   }
 }
 

@@ -40,6 +40,6 @@ Commenting this out until there's a fix for an incompatibility between latest jo
         plugin: require('hapi-swagger')
     }
 */
-];
+]
 
 export { plugins }

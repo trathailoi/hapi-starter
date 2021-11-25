@@ -11,8 +11,8 @@ class DriverService extends CrudService<Driver> {
     @inject(TYPES.DriverRepository) repository: Repository<Driver>,
     @inject(TYPES.Logger) logger: Logger
   ) {
-    super(repository, logger);
-    this.logger.info('Created DriverService');
+    super(repository, logger)
+    this.logger.info('Created DriverService')
   }
 }
 
