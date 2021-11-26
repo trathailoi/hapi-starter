@@ -4,7 +4,7 @@ import { RaceResult } from './race-result'
 @Entity()
 class Race {
     @PrimaryGeneratedColumn('uuid')
-    id?: string
+    id!: string
 
     @Column('varchar', {
         nullable: false,
