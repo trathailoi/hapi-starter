@@ -14,6 +14,17 @@ class RaceService extends CrudService<Race> {
     super(repository, logger)
     this.logger.info('Created RaceService')
   }
+
+  public async getResults(id: string, queryObject?: {}): Promise<Race | undefined> {
+    const conditionsObject: {} = { id }
+    queryObject && Object.assign(conditionsObject, queryObject)
+    const result = await this.repository.findOne({
+      where: conditionsObject,
+      select: ['results'],
+      relations: ['results']
+    })
+    return result
+  }
 }
 
 export { RaceService }

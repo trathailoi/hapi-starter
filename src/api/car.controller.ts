@@ -210,7 +210,7 @@ class CarController extends HapiController implements ICarController {
   public async getCarResults(request: Request, toolkit: ResponseToolkit) {
     const filterObject: any = {}
     request.query.race && (filterObject.race = request.query.race)
-    const item = await this.service.findResultsById(request.params.id, filterObject || null)
+    const item = await this.service.getResults(request.params.id, filterObject || null)
     if (!item) {
       throw Boom.notFound()
     }

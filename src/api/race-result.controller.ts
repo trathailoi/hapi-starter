@@ -43,14 +43,22 @@ class RaceResultController extends HapiController implements IRaceResultControll
     method: 'GET',
     path: 'race-results/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Get a result detail by ID',
       tags: ['race-result',],
       auth: false
     }
   })
   public async getRaceResultById(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const item = await this.service.findById(request.params.id)
+    if (!item) {
+      throw Boom.notFound()
+    }
+    return toolkit.response(item)
   }
 // #endregion
 
@@ -62,14 +70,22 @@ class RaceResultController extends HapiController implements IRaceResultControll
     method: 'DELETE',
     path: 'race-results/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Delete a race result by ID',
       tags: ['race-result',],
       auth: false
     }
   })
   public async deleteRaceResult(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const result = await this.service.delete(request.params.id)
+    if (!result.affected) {
+      throw Boom.notFound()
+    }
+    return toolkit.response().code(204)
   }
 // #endregion
 

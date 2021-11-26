@@ -20,10 +20,8 @@ class CarService extends CrudService<Car> {
     return result
   }
 
-  public async findResultsById(id: string, queryObject?: {}): Promise<Car | undefined> {
-    const conditionsObject: {} = {
-      id
-    }
+  public async getResults(id: string, queryObject?: {}): Promise<Car | undefined> {
+    const conditionsObject: {} = { id }
     queryObject && Object.assign(conditionsObject, queryObject)
     const result = await this.repository.findOne({
       where: conditionsObject,
