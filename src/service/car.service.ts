@@ -14,6 +14,25 @@ class CarService extends CrudService<Car> {
     super(repository, logger)
     this.logger.info('Created CarService')
   }
+
+  public async findAll(queryObject?: {}): Promise<Array<Car>> {
+    const result = await this.repository.find(queryObject ? { where: queryObject } : {})
+    return result
+  }
+
+  public async findResultsById(id: string, queryObject?: {}): Promise<Car | undefined> {
+    const conditionsObject: {} = {
+      id
+    }
+    queryObject && Object.assign(conditionsObject, queryObject)
+    const result = await this.repository.findOne({
+      where: conditionsObject,
+      select: ['results'],
+      relations: ['results']
+    })
+    return result
+  }
+
 }
 
 export { CarService }

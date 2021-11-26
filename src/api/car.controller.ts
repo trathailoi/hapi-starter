@@ -43,14 +43,26 @@ class CarController extends HapiController implements ICarController {
     method: 'POST',
     path: 'cars',
     options: {
-      validate: { },
+      validate: {
+        payload: {
+          name: Joi.string().required(),
+          make: Joi.string().required(),
+          model: Joi.string().required(),
+          class: Joi.string().guid().required(),
+          team: Joi.string().guid().required(),
+          results: Joi.array().items(Joi.string().guid())
+        }
+      },
       description: 'Add a new car to the system',
       tags: ['car'],
       auth: false
     }
   })
   public async addCar(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const payload: Car = this.mapper.map(CarModel, Car, request.payload)
+    console.log('payload', payload)
+    const item = await this.service.save(payload)
+    return toolkit.response({id: item!.id}).code(201)
   }
 // #endregion
 
@@ -62,14 +74,22 @@ class CarController extends HapiController implements ICarController {
     method: 'GET',
     path: 'cars',
     options: {
-      validate: { },
+      validate: {
+        query: {
+          make: Joi.string().description('The make of the car'),
+          model: Joi.string().description('The model of the car'),
+        }
+      },
       description: 'Finds Cars',
       tags: ['car'],
       auth: false
     }
   })
   public async findCars(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const filterObject: any = {}
+    request.query.make && (filterObject.make = request.query.make)
+    request.query.model && (filterObject.model = request.query.model)
+    return toolkit.response(await this.service.findAll(filterObject || null))
   }
 // #endregion
 
@@ -81,14 +101,22 @@ class CarController extends HapiController implements ICarController {
     method: 'GET',
     path: 'cars/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Find car by ID',
       tags: ['car'],
       auth: false
     }
   })
   public async getCarById(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const item = await this.service.findById(request.params.id)
+    if (!item) {
+      throw Boom.notFound()
+    }
+    return toolkit.response(item)
   }
 // #endregion
 
@@ -100,14 +128,34 @@ class CarController extends HapiController implements ICarController {
     method: 'PATCH',
     path: 'cars/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        },
+        payload: {
+          name: Joi.string(),
+          make: Joi.string(),
+          model: Joi.string(),
+          class: Joi.string().guid(),
+          team: Joi.string().guid(),
+          results: Joi.array().items(Joi.string().guid())
+        }
+      },
       description: 'Updates an existing car by ID',
       tags: ['car'],
       auth: false
     }
   })
   public async updateCar(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const payload: Car = this.mapper.map(CarModel, Car, Object.assign({}, request.payload, request.params))
+
+    const item = await this.service.findById(payload.id)
+    if (!item) {
+      throw Boom.notFound()
+    }
+    console.log('payload', payload)
+    await this.service.save(payload)
+    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -119,14 +167,22 @@ class CarController extends HapiController implements ICarController {
     method: 'DELETE',
     path: 'cars/{id}',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Deletes a car by ID',
       tags: ['car'],
       auth: false
     }
   })
   public async deleteCar(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const result = await this.service.delete(request.params.id)
+    if (!result.affected) {
+      throw Boom.notFound()
+    }
+    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -138,14 +194,27 @@ class CarController extends HapiController implements ICarController {
     method: 'GET',
     path: 'cars/{id}/results',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        },
+        query: {
+          race: Joi.string().guid().description('of a specific race')
+        }
+      },
       description: 'Get a car\'s results',
       tags: ['car','race-result'],
       auth: false
     }
   })
   public async getCarResults(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response().code(501)
+    const filterObject: any = {}
+    request.query.race && (filterObject.race = request.query.race)
+    const item = await this.service.findResultsById(request.params.id, filterObject || null)
+    if (!item) {
+      throw Boom.notFound()
+    }
+    return toolkit.response(item)
   }
 // #endregion
 

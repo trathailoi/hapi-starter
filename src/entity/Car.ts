@@ -22,6 +22,12 @@ class Car {
         nullable: false,
         length: 40
     })
+    name?: string
+
+    @Column('varchar', {
+        nullable: false,
+        length: 40
+    })
     make?: string
 
     @Column('varchar', {

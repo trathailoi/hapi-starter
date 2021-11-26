@@ -13,6 +13,15 @@ import { TeamModel } from '../dto/team'
 import { Driver } from '../entity/driver'
 import { DriverModel } from '../dto/driver'
 
+import { Car } from '../entity/car'
+import { CarModel } from '../dto/car'
+
+import { Race } from '../entity/race'
+import { RaceModel } from '../dto/race'
+
+import { RaceResult } from '../entity/race-result'
+import { RaceResultModel } from '../dto/race-result'
+
 /**
  * Wrapper around automapper, for dependency injection convenience (static/global variables bad)
  */
@@ -73,6 +82,21 @@ class Mapper {
             DriverModel, 
             Driver,
             ['id', 'firstName', 'lastName', 'nationality', 'homeAddress', 'managementAddress', 'teams', 'results']
+        )
+        this.createDefaultBiDiMap(
+            CarModel, 
+            Car,
+            ['id', 'name', 'make', 'model', 'class', 'team', 'results']
+        )
+        this.createDefaultBiDiMap(
+            RaceModel, 
+            Race,
+            ['id', 'name', 'results']
+        )
+        this.createDefaultBiDiMap(
+            RaceResultModel, 
+            RaceResult,
+            ['id', 'car', 'carNumber', 'race', 'driver', 'class', 'startingPosition', 'finishingPosition', 'isFinished']
         )
     }
 

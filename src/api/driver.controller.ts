@@ -186,9 +186,13 @@ class DriverController extends HapiController implements IDriverController {
     method: 'GET',
     path: 'drivers/{id}/results',
     options: {
-      validate: { },
+      validate: {
+        params: {
+          id: Joi.string().guid().required()
+        }
+      },
       description: 'Get driver\'s results on races',
-      tags: ['driver','race-result'],
+      tags: ['driver', 'race-result'],
       auth: false
     }
   })

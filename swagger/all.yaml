@@ -524,7 +524,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: id
+        - name: carId
           in: query
           description: filter the results by a race id
           schema:
@@ -701,7 +701,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: id
+        - name: raceId
           in: query
           description: filter the results by a race id
           schema:
@@ -867,7 +867,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: id
+        - name: classId
           in: query
           description: get results for a specific class on the race
           schema:
@@ -1171,9 +1171,9 @@ components:
       type: object
       required:
         - name
-        - team
         - make
         - model
+        - team
         - class
       properties:
         name:
