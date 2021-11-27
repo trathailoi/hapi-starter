@@ -45,11 +45,7 @@ paths:
         required: true
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Class'
+          $ref: '#/components/responses/201Created'
         '400':
           $ref: '#/components/responses/400BadRequest'
     get:
@@ -59,62 +55,47 @@ paths:
       description: Finds all the classes
       # Multiple status values can be provided with comma separated strings
       operationId: findClasses
-      # parameters:
-      #   - name: limit
-      #     in: query
-      #     description: >-
-      #       Limit the number of cars returned.
-      #       For valid response try integer IDs with value >= 1 and <= 50.\ \ Other
-      #       values will generated exceptions
-      #     required: false
-      #     explode: true
-      #     schema:
-      #       type: integer
-      #       minimum: 1
-      #       maximum: 50
-      #     examples:
-      #       val1:
-      #         value: 1
-      #         summary: A sample min value
-      #       max:
-      #         value: 50
-      #         summary: A sample max value
-      #   - name: offset
-      #     in: query
-      #     description: offset the number of cars returned
-      #     schema:
-      #       type: integer
-      #       format: int32
-      #   - name: sort
-      #     in: query
-      #     description: sort the cars returned
-      #     schema:
-      #       type: string
-      #       default: '-createdAt'
-      #   # - name: status
-      #   #   in: query
-      #   #   description: Status values that need to be considered for filter
-      #   #   # required: true
-      #   #   explode: true
-      #   #   schema:
-      #   #     type: array
-      #   #     items:
-      #   #       type: string
-      #   #       enum:
-      #   #         - all
-      #   #         - active
-      #   #         - inactive
-      #   #         - archived
-      #   #       default: all
+      parameters:
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
+        # - name: sort
+        #   in: query
+        #   description: sort the cars returned
+        #   schema:
+        #     type: string
+        #     default: '-createdAt'
+        # - name: status
+        #   in: query
+        #   description: Status values that need to be considered for filter
+        #   # required: true
+        #   explode: true
+        #   schema:
+        #     type: array
+        #     items:
+        #       type: string
+        #       enum:
+        #         - all
+        #         - active
+        #         - inactive
+        #         - archived
+        #       default: all
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Class'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Class'
+                  count:
+                    type: integer
+                    format: int32
   '/classes/{id}':
     get:
       tags:
@@ -204,11 +185,7 @@ paths:
         description: form data object that contains fields to update a specific address in the system
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Address'
+          $ref: '#/components/responses/201Created'
         '400':
           $ref: '#/components/responses/400BadRequest'
     get:
@@ -217,15 +194,26 @@ paths:
       summary: Finds Addresses
       description: Finds all the addresses
       operationId: findAddresses
+      parameters:
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Address'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+                  count:
+                    type: integer
+                    format: int32
   '/addresses/{id}':
     get:
       tags:
@@ -311,11 +299,7 @@ paths:
         description: form data object that contains fields to update a specific team in the system
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TeamResponse'
+          $ref: '#/components/responses/201Created'
         '400':
           $ref: '#/components/responses/400BadRequest'
     get:
@@ -324,15 +308,26 @@ paths:
       summary: Finds Teams
       description: Finds all the teams
       operationId: findTeams
+      parameters:
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TeamResponse'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TeamResponse'
+                  count:
+                    type: integer
+                    format: int32
   '/teams/{id}':
     get:
       tags:
@@ -418,11 +413,7 @@ paths:
         description: form data object that contains fields to update a specific driver in the system
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DriverResponse'
+          $ref: '#/components/responses/201Created'
         '400':
           $ref: '#/components/responses/400BadRequest'
     get:
@@ -431,15 +422,26 @@ paths:
       summary: Finds Drivers
       description: Finds all the drivers
       operationId: findDrivers
+      parameters:
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/DriverResponse'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DriverResponse'
+                  count:
+                    type: integer
+                    format: int32
   '/drivers/{id}':
     get:
       tags:
@@ -534,15 +536,25 @@ paths:
           description: filter the results by a race id
           schema:
             $ref: '#/components/schemas/uuidFormat'
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RaceResultRespone'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RaceResultRespone'
+                  count:
+                    type: integer
+                    format: int32
         '404':
           $ref: '#/components/responses/404NotFound'
         '400':
@@ -563,11 +575,7 @@ paths:
         description: form data object that contains fields to update a specific car in the system
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarResponse'
+          $ref: '#/components/responses/201Created'
         '400':
           $ref: '#/components/responses/400BadRequest'
     get:
@@ -577,6 +585,10 @@ paths:
       description: Finds all the cars
       operationId: findCars
       parameters:
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
         - name: make
           in: query
           description: filter the cars returned by the make
@@ -619,9 +631,15 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CarResponse'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CarResponse'
+                  count:
+                    type: integer
+                    format: int32
   '/cars/{id}':
     get:
       tags:
@@ -716,15 +734,25 @@ paths:
           description: filter the results by a driver id
           schema:
             $ref: '#/components/schemas/uuidFormat'
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RaceResultRespone'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RaceResultRespone'
+                  count:
+                    type: integer
+                    format: int32
         '404':
           $ref: '#/components/responses/404NotFound'
         '400':
@@ -746,11 +774,7 @@ paths:
         description: You can add a new race to the system, as well as its results at once. The "results" field is optional.
       responses:
         '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Race'
+          $ref: '#/components/responses/201Created'
         '400':
           $ref: '#/components/responses/400BadRequest'
     get:
@@ -784,15 +808,25 @@ paths:
             example2:
               value: "5f36215d-f5c6-4896-087c-f30f3678f607"
               summary: "Example #2"
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Race'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Race'
+                  count:
+                    type: integer
+                    format: int32
   '/races/{id}':
     get:
       tags:
@@ -882,15 +916,25 @@ paths:
           description: get results for a specific class on the race
           schema:
             $ref: '#/components/schemas/uuidFormat'
+        - name: pageSize
+          $ref: '#/components/parameters/pageSizeParam'
+        - name: currentPage
+          $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RaceResultRespone'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RaceResultRespone'
+                  count:
+                    type: integer
+                    format: int32
         '404':
           $ref: '#/components/responses/404NotFound'
         '400':
@@ -1329,8 +1373,47 @@ components:
       minLength: 36
       maxLength: 36
       example: 5f36215d-f5c6-4896-087c-f30f3678f607
+  
+  parameters:
+    pageSizeParam: # Can be referenced as '#/components/parameters/pageSizeParam'
+      name: pageSize
+      in: query
+      description: aka items per page. Limit the number of resource returned. For valid response try integer IDs with value >= 1 and <= 50.\ \ Other values will generated exceptions
+      required: false
+      explode: true
+      schema:
+        type: integer
+        format: int32
+        default: 10
+        minimum: 1
+        maximum: 50
+      examples:
+        min:
+          value: 1
+          summary: A sample of min value
+        max:
+          value: 50
+          summary: A sample of max value
+    currentPageParam: # Can be referenced as '#/components/parameters/currentPageParam'
+      name: currentPage
+      in: query
+      description: offset for pagination
+      schema:
+        type: integer
+        format: int32
+        default: 1
+        minimum: 1
 
   responses:
+    201Created: # Can be referenced as '#/components/responses/201Created'
+      description: Created. The resource was created successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/uuidFormat'
     204NoContent: # Can be referenced as '#/components/responses/204NoContent'
       description: No Content
     404NotFound: # Can be referenced as '#/components/responses/404NotFound'

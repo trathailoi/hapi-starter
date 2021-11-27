@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
-import { RaceResult } from './race-result'
+// import { RaceResult } from './race-result'
 
 @Entity()
 class Race {
@@ -12,8 +12,8 @@ class Race {
     })
     name?: string
 
-    @OneToMany(() => RaceResult, raceResult => raceResult.race)
-    results?: RaceResult[]
+    // @OneToMany(() => RaceResult, raceResult => raceResult.race)
+    // results?: RaceResult[]
 }
 
 export { Race }

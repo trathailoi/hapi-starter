@@ -10,15 +10,6 @@ const TYPES = {
     Controllers: Symbol.for('Controllers'),
     HelloWorldController: Symbol.for('HelloWorldController'),
 
-    // AddressController: Symbol.for('AddressController'),
-    // AddressRepository: Symbol.for('AddressRepository'),
-    // AddressService: Symbol.for('AddressService'),
-
-    // ClassController: Symbol.for('ClassController'),
-    // ClassRepository: Symbol.for('ClassRepository'),
-    // ClassService: Symbol.for('ClassService'),
-
-
     ClassRepository: Symbol.for('ClassRepository'),
     ClassService: Symbol.for('ClassService'),
     ClassController: Symbol.for('ClassController'),

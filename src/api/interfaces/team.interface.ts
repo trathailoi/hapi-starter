@@ -14,27 +14,27 @@ interface ITeamController {
   /**
   * Add a new team to the system
   */
-  public async addTeam(request: Request, toolkit: ResponseToolkit)
+  addTeam(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Finds all the teams
   */
-  public async findTeams(request: Request, toolkit: ResponseToolkit)
+  findTeams(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Returns a single team
   */
-  public async getTeamById(request: Request, toolkit: ResponseToolkit)
+  getTeamById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing team by ID
   */
-  public async updateTeam(request: Request, toolkit: ResponseToolkit)
+  updateTeam(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Deletes a team by ID
   */
-  public async deleteTeam(request: Request, toolkit: ResponseToolkit)
+  deleteTeam(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

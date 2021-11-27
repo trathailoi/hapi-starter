@@ -1,7 +1,7 @@
 export class RaceResultModel {
     id?: string
     car?: string
-    carNumber?: string
+    carNumber?: number
     race?: string
     driver?: string
     class?: string

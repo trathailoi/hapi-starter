@@ -80,14 +80,24 @@ class AddressController extends HapiController implements IAddressController {
     method: 'GET',
     path: 'addresses',
     options: {
-      validate: { },
+      validate: {
+        query: {
+          currentPage: Joi.number().integer().min(1).optional().description('offset for pagination'),
+          pageSize: Joi.number().integer().min(1).optional().description('items per page')
+        }
+      },
       description: 'Finds Addresses',
       tags: ['address'],
       auth: false
     }
   })
   public async findAddresses(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response(await this.service.findAll())
+    return toolkit.response(await this.service.findAll({
+      pagination: {
+        pageSize: request.query.pageSize,
+        currentPage: request.query.currentPage
+      }
+    }))
   }
 // #endregion
 

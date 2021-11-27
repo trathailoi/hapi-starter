@@ -81,6 +81,8 @@ class CarController extends HapiController implements ICarController {
     options: {
       validate: {
         query: {
+          currentPage: Joi.number().integer().min(1).optional().description('offset for pagination'),
+          pageSize: Joi.number().integer().min(1).optional().description('items per page'),
           make: Joi.string().description('The make of the car'),
           model: Joi.string().description('The model of the car'),
         }
@@ -91,10 +93,21 @@ class CarController extends HapiController implements ICarController {
     }
   })
   public async findCars(request: Request, toolkit: ResponseToolkit) {
-    const filterObject: any = {}
-    request.query.make && (filterObject.make = request.query.make)
-    request.query.model && (filterObject.model = request.query.model)
-    return toolkit.response(await this.service.findAll(filterObject || null))
+    const queryObj: {
+      pagination?: {pageSize?: number, currentPage?: number},
+      where?: {make?: string, model?: string}
+    } = {
+      pagination: {
+        pageSize: request.query.pageSize,
+        currentPage: request.query.currentPage
+      }
+    }
+    if (request.query.make || request.query.model) {
+      queryObj.where = {}
+      request.query.make && (queryObj.where.make = request.query.make)
+      request.query.model && (queryObj.where.model = request.query.model)
+    }
+    return toolkit.response(await this.service.findAll(queryObj))
   }
 // #endregion
 
@@ -204,6 +217,8 @@ class CarController extends HapiController implements ICarController {
           id: Joi.string().guid().required()
         },
         query: {
+          currentPage: Joi.number().integer().min(1).optional().description('offset for pagination'),
+          pageSize: Joi.number().integer().min(1).optional().description('items per page'),
           raceId: Joi.string().guid().description('of a specific race'),
           driverId: Joi.string().guid().description('of a specific driver')
         }
@@ -214,14 +229,23 @@ class CarController extends HapiController implements ICarController {
     }
   })
   public async getCarResults(request: Request, toolkit: ResponseToolkit) {
-    const filterObject: any = { car: request.params.id }
-    request.query.raceId && (filterObject.race = request.query.raceId)
-    request.query.driverId && (filterObject.race = request.query.driverId)
-    const item = await this.raceResultService.findAll(filterObject)
-    if (!item) {
-      throw Boom.notFound()
+    const queryObj: {
+      pagination?: {pageSize?: number, currentPage?: number},
+      where: {car: string, race?: string, driver?: string}
+    } = {
+      pagination: {
+        pageSize: request.query.pageSize,
+        currentPage: request.query.currentPage
+      },
+      where: {
+        car: request.params.id
+      }
     }
-    return toolkit.response(item)
+    if (request.query.raceId || request.query.driverId) {
+      request.query.raceId && (queryObj.where.race = request.query.raceId)
+      request.query.driverId && (queryObj.where.driver = request.query.driverId)
+    }
+    return toolkit.response(await this.raceResultService.findAll(queryObj))
   }
 // #endregion
 

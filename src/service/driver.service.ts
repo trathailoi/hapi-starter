@@ -34,22 +34,8 @@ class DriverService extends CrudService<Driver> {
     return result
   }
 
-  public async findAll(): Promise<Array<Driver>> {
-    const result = await this.repository.find({
-      relations: ['homeAddress', 'managementAddress', 'teams', 'results']
-    })
-    return result
-  }
-
-  public async getResults(id: string, queryObject?: {}): Promise<Driver | undefined> {
-    let conditionsObject: {} = { id }
-    queryObject && (conditionsObject = Object.assign(conditionsObject, queryObject))
-    const result = await this.repository.findOne({
-      where: conditionsObject,
-      select: ['id', 'results'],
-      relations: ['results']
-    })
-    return result
+  public async findAll(queryObject?: {where?: {}, relations?: string[], pagination?: {}}): Promise<{data: Array<Driver>, count: number}> {
+    return super.findAll({ relations : ['homeAddress', 'managementAddress', 'teams', 'results'], ...queryObject })
   }
 }
 

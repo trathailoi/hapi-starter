@@ -14,27 +14,27 @@ interface IClassController {
   /**
   * Add a new class to the system
   */
-  public async addClass(request: Request, toolkit: ResponseToolkit)
+  addClass(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Finds all the classes
   */
-  public async findClasses(request: Request, toolkit: ResponseToolkit)
+  findClasses(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Returns a single class
   */
-  public async getClassById(request: Request, toolkit: ResponseToolkit)
+  getClassById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing class by ID
   */
-  public async updateClass(request: Request, toolkit: ResponseToolkit)
+  updateClass(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Deletes a class by ID
   */
-  public async deleteClass(request: Request, toolkit: ResponseToolkit)
+  deleteClass(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

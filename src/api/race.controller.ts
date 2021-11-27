@@ -57,8 +57,8 @@ class RaceController extends HapiController implements IRaceController {
               carNumber: Joi.string(),
               driver: Joi.string().guid().required(),
               class: Joi.string().guid().required(),
-              startingPosition: Joi.number().required(),
-              finishingPosition: Joi.number(),
+              startingPosition: Joi.number().integer().min(1).required(),
+              finishingPosition: Joi.number().integer().min(1),
               isFinished: Joi.boolean()
             })
           )
@@ -85,14 +85,24 @@ class RaceController extends HapiController implements IRaceController {
     method: 'GET',
     path: 'races',
     options: {
-      validate: { },
+      validate: {
+        query: {
+          currentPage: Joi.number().integer().min(1).optional().description('offset for pagination'),
+          pageSize: Joi.number().integer().min(1).optional().description('items per page')
+        }
+      },
       description: 'Finds Races',
       tags: ['race'],
       auth: false
     }
   })
   public async findRaces(request: Request, toolkit: ResponseToolkit) {
-    return toolkit.response(await this.service.findAll())
+    return toolkit.response(await this.service.findAll({
+      pagination: {
+        pageSize: request.query.pageSize,
+        currentPage: request.query.currentPage
+      }
+    }))
   }
 // #endregion
 
@@ -206,13 +216,22 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async getRaceResults(request: Request, toolkit: ResponseToolkit) {
-    const filterObject: any = { race: request.params.id }
-    request.query.classId && (filterObject.class = request.query.classId)
-    const item = await this.raceResultService.findAll(filterObject)
-    if (!item) {
-      throw Boom.notFound()
+    const queryObj: {
+      pagination?: {pageSize?: number, currentPage?: number},
+      where: {race: string, class?: string}
+    } = {
+      pagination: {
+        pageSize: request.query.pageSize,
+        currentPage: request.query.currentPage
+      },
+      where: {
+        race: request.params.id
+      }
     }
-    return toolkit.response(item)
+    if (request.query.classId) {
+      request.query.classId && (queryObj.where.class = request.query.classId)
+    }
+    return toolkit.response(await this.raceResultService.findAll(queryObj))
   }
 // #endregion
 
@@ -235,8 +254,8 @@ class RaceController extends HapiController implements IRaceController {
               carNumber: Joi.string(),
               driver: Joi.string().guid().required(),
               class: Joi.string().guid().required(),
-              startingPosition: Joi.number().required(),
-              finishingPosition: Joi.number(),
+              startingPosition: Joi.number().integer().min(1).required(),
+              finishingPosition: Joi.number().integer().min(1),
               isFinished: Joi.boolean()
             })
           )
@@ -249,15 +268,8 @@ class RaceController extends HapiController implements IRaceController {
   })
   public async addRaceResult(request: Request, toolkit: ResponseToolkit) {
     try {
-      const payload: Race = this.mapper.map(RaceModel, Race, request.payload)
-      const results = payload.results?.map(rs => {
-        const rResult = this.mapper.map(RaceResultModel, RaceResult, rs)
-        rResult.race = request.params.id
-        return rResult
-      }) as Race[]
-      console.log('results', results)
-      const items = await this.raceResultService.saveMany(results)
-      console.log('items', items)
+      const results = [] as Race[]
+      await this.raceResultService.saveMany(results)
       return toolkit.response().code(201)
     } catch (e) {
       throw Boom.badRequest(e as any)
@@ -283,8 +295,8 @@ class RaceController extends HapiController implements IRaceController {
           carNumber: Joi.string(),
           driver: Joi.string().guid(),
           class: Joi.string().guid(),
-          startingPosition: Joi.number(),
-          finishingPosition: Joi.number(),
+          startingPosition: Joi.number().integer().min(1),
+          finishingPosition: Joi.number().integer().min(1),
           isFinished: Joi.boolean()
         }
       },

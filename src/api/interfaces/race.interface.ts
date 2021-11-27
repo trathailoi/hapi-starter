@@ -14,42 +14,42 @@ interface IRaceController {
   /**
   * Add a new race (with its results) to the system
   */
-  public async addRace(request: Request, toolkit: ResponseToolkit)
+  addRace(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Finds all the races
   */
-  public async findRaces(request: Request, toolkit: ResponseToolkit)
+  findRaces(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Returns a single race
   */
-  public async getRaceById(request: Request, toolkit: ResponseToolkit)
+  getRaceById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing race by ID
   */
-  public async updateRace(request: Request, toolkit: ResponseToolkit)
+  updateRace(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Deletes a race by ID
   */
-  public async deleteRace(request: Request, toolkit: ResponseToolkit)
+  deleteRace(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Get a race's results
   */
-  public async getRaceResults(request: Request, toolkit: ResponseToolkit)
+  getRaceResults(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Add new race results for an existing race
   */
-  public async addRaceResult(request: Request, toolkit: ResponseToolkit)
+  addRaceResult(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing race result
   */
-  public async updateRaceResult(request: Request, toolkit: ResponseToolkit)
+  updateRaceResult(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

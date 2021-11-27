@@ -14,32 +14,32 @@ interface ICarController {
   /**
   * Add a new car to the system
   */
-  public async addCar(request: Request, toolkit: ResponseToolkit)
+  addCar(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Finds all the cars
   */
-  public async findCars(request: Request, toolkit: ResponseToolkit)
+  findCars(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Returns a single car
   */
-  public async getCarById(request: Request, toolkit: ResponseToolkit)
+  getCarById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing car by ID
   */
-  public async updateCar(request: Request, toolkit: ResponseToolkit)
+  updateCar(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Deletes a car by ID
   */
-  public async deleteCar(request: Request, toolkit: ResponseToolkit)
+  deleteCar(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Get a car's results
   */
-  public async getCarResults(request: Request, toolkit: ResponseToolkit)
+  getCarResults(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

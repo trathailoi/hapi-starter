@@ -14,27 +14,27 @@ interface IAddressController {
   /**
   * Add a new address to the system
   */
-  public async addAddress(request: Request, toolkit: ResponseToolkit)
+  addAddress(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Finds all the addresses
   */
-  public async findAddresses(request: Request, toolkit: ResponseToolkit)
+  findAddresses(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Returns a single address
   */
-  public async getAddressById(request: Request, toolkit: ResponseToolkit)
+  getAddressById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing address by ID
   */
-  public async updateAddress(request: Request, toolkit: ResponseToolkit)
+  updateAddress(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Delete an address by ID
   */
-  public async deleteAddress(request: Request, toolkit: ResponseToolkit)
+  deleteAddress(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

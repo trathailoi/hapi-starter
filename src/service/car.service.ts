@@ -23,22 +23,9 @@ class CarService extends CrudService<Car> {
     return result
   }
 
-  public async findAll(queryObject?: {}): Promise<Array<Car>> {
-    const result = await this.repository.find(queryObject ? { where: queryObject } : {})
-    return result
+  public async findAll(queryObject?: {where?: {}, relations?: string[], pagination?: {}}): Promise<{data: Array<Car>, count: number}> {
+    return super.findAll({ relations : ['class', 'team'], ...queryObject }) // , 'results'
   }
-
-  public async getResults(id: string, queryObject?: {}): Promise<Car | undefined> {
-    let conditionsObject: {} = { id }
-    queryObject && (conditionsObject = Object.assign(conditionsObject, queryObject))
-    const result = await this.repository.findOne({
-      where: conditionsObject,
-      select: ['id', 'results'],
-      relations: ['results']
-    })
-    return result
-  }
-
 }
 
 export { CarService }

@@ -134,18 +134,8 @@ container.bind<Mapper>(TYPES.Mapper).to(Mapper).inSingletonScope()
 container.bind<ApiServer>(TYPES.ApiServer).to(ApiServer).inSingletonScope()
 container.bind<Controllers>(TYPES.Controllers).to(Controllers).inSingletonScope()
 
-// // Repositories
-// container.bind<Repository<Address>>(TYPES.AddressRepository).toDynamicValue(() => createRepository<Address>(Address)).inSingletonScope()
-// container.bind<Repository<Address>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
-
-// // Services
-// container.bind<AddressService>(TYPES.AddressService).to(AddressService).inSingletonScope()
-// container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope()
-
 // Controllers
 container.bind<HelloWorldController>(TYPES.HelloWorldController).to(HelloWorldController).inSingletonScope()
-// container.bind<AddressController>(TYPES.AddressController).to(AddressController).inSingletonScope()
-// container.bind<ClassController>(TYPES.ClassController).to(ClassController).inSingletonScope()
 
 container.bind<Repository<Class>>(TYPES.ClassRepository).toDynamicValue(() => createRepository<Class>(Class)).inSingletonScope()
 container.bind<ClassService>(TYPES.ClassService).to(ClassService).inSingletonScope()
@@ -178,7 +168,7 @@ container.bind<RaceResultController>(TYPES.RaceResultController).to(RaceResultCo
 /**
  * Utility function to create TypeORM repositories from their types through generics
  */
- function createRepository<T>(c: { new (): T }): Repository<T> {
+function createRepository<T>(c: { new (): T }): Repository<T> {
   return getConnection().getRepository(c)
 }
 

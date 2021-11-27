@@ -14,32 +14,32 @@ interface IDriverController {
   /**
   * Add a new driver to the system
   */
-  public async addDriver(request: Request, toolkit: ResponseToolkit)
+  addDriver(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Finds all the drivers
   */
-  public async findDrivers(request: Request, toolkit: ResponseToolkit)
+  findDrivers(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Returns a single driver
   */
-  public async getDriverById(request: Request, toolkit: ResponseToolkit)
+  getDriverById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Updates an existing driver by ID
   */
-  public async updateDriver(request: Request, toolkit: ResponseToolkit)
+  updateDriver(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Deletes a driver by ID
   */
-  public async deleteDriver(request: Request, toolkit: ResponseToolkit)
+  deleteDriver(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Get driver's results on races
   */
-  public async getDriverRaceResults(request: Request, toolkit: ResponseToolkit)
+  getDriverRaceResults(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

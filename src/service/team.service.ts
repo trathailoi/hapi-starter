@@ -23,11 +23,6 @@ class TeamService extends CrudService<Team> {
     return result
   }
 
-  public async findByIds(ids: Team[]): Promise<Array<Team>> {
-    const result = await this.repository.findByIds(ids)
-    return result
-  }
-
 }
 
 export { TeamService }

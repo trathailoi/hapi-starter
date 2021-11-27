@@ -14,12 +14,12 @@ interface IRaceResultController {
   /**
   * Get a result detail by ID
   */
-  public async getRaceResultById(request: Request, toolkit: ResponseToolkit)
+  getRaceResultById(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
   /**
   * Delete a race result by ID
   */
-  public async deleteRaceResult(request: Request, toolkit: ResponseToolkit)
+  deleteRaceResult(request: Request, toolkit: ResponseToolkit) : Promise<any>
 
 }
 

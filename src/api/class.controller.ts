@@ -74,15 +74,24 @@ class ClassController extends HapiController implements IClassController {
     method: 'GET',
     path: 'classes',
     options: {
-      validate: { },
+      validate: {
+        query: {
+          currentPage: Joi.number().integer().min(1).optional().description('offset for pagination'),
+          pageSize: Joi.number().integer().min(1).optional().description('items per page')
+        }
+      },
       description: 'Finds Classes',
       tags: ['class'],
       auth: false
     }
   })
   public async findClasses(request: Request, toolkit: ResponseToolkit) {
-    const _classes = await this.service.findAll()
-    return toolkit.response(_classes)
+    return toolkit.response(await this.service.findAll({
+      pagination: {
+        pageSize: request.query.pageSize,
+        currentPage: request.query.currentPage
+      }
+    }))
   }
 // #endregion
 

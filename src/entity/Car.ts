@@ -37,10 +37,10 @@ class Car {
     model?: string
 
     @ManyToOne(() => Class)
-    class?: string
+    class?: Class
 
     @ManyToOne(() => Team)
-    team?: string
+    team?: Team
 
     @OneToMany(() => RaceResult, raceResult => raceResult.car)
     results?: RaceResult[]
