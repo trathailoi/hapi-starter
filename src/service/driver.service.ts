@@ -4,15 +4,26 @@ import { Repository } from 'typeorm'
 import { TYPES } from '../ioc/types'
 import { CrudService } from './crudservice'
 import { Driver } from '../entity/driver'
+import { TeamService } from './team.service'
 
 @injectable()
 class DriverService extends CrudService<Driver> {
   constructor(
     @inject(TYPES.DriverRepository) repository: Repository<Driver>,
+    @inject(TYPES.TeamService) private teamService: TeamService,
     @inject(TYPES.Logger) logger: Logger
   ) {
     super(repository, logger)
     this.logger.info('Created DriverService')
+  }
+
+  public async save(entity: Driver): Promise<Driver | undefined> {
+    if (entity.teams && entity.teams.length) {
+      const teams = await this.teamService.findByIds(entity.teams)
+      entity.teams = teams
+    }
+    const result = await this.repository.save(entity)
+    return result
   }
 
   public async findById(id: string): Promise<Driver | undefined> {
@@ -20,14 +31,25 @@ class DriverService extends CrudService<Driver> {
       where: { id },
       relations: ['homeAddress', 'managementAddress', 'teams', 'results']
     })
-    return result;
+    return result
   }
 
   public async findAll(): Promise<Array<Driver>> {
     const result = await this.repository.find({
       relations: ['homeAddress', 'managementAddress', 'teams', 'results']
-    });
-    return result;
+    })
+    return result
+  }
+
+  public async getResults(id: string, queryObject?: {}): Promise<Driver | undefined> {
+    let conditionsObject: {} = { id }
+    queryObject && (conditionsObject = Object.assign(conditionsObject, queryObject))
+    const result = await this.repository.findOne({
+      where: conditionsObject,
+      select: ['id', 'results'],
+      relations: ['results']
+    })
+    return result
   }
 }
 

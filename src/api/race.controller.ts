@@ -55,7 +55,6 @@ class RaceController extends HapiController implements IRaceController {
             Joi.object().keys({
               car: Joi.string().guid().required(),
               carNumber: Joi.string(),
-              race: Joi.string().guid().required(),
               driver: Joi.string().guid().required(),
               class: Joi.string().guid().required(),
               startingPosition: Joi.number().required(),
@@ -198,8 +197,7 @@ class RaceController extends HapiController implements IRaceController {
           id: Joi.string().guid().required()
         },
         query: {
-          car: Joi.string().guid().description('of a specific car'),
-          driver: Joi.string().guid().description('of a specific driver')
+          classId: Joi.string().guid().description('of a specific class')
         }
       },
       description: 'Get a race\'s results',
@@ -208,10 +206,9 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async getRaceResults(request: Request, toolkit: ResponseToolkit) {
-    const filterObject: any = {}
-    request.query.car && (filterObject.car = request.query.car)
-    request.query.driver && (filterObject.driver = request.query.driver)
-    const item = await this.service.getResults(request.params.id, filterObject || null)
+    const filterObject: any = { race: request.params.id }
+    request.query.classId && (filterObject.class = request.query.classId)
+    const item = await this.raceResultService.findAll(filterObject)
     if (!item) {
       throw Boom.notFound()
     }
@@ -236,7 +233,6 @@ class RaceController extends HapiController implements IRaceController {
             Joi.object().keys({
               car: Joi.string().guid().required(),
               carNumber: Joi.string(),
-              race: Joi.string().guid().required(),
               driver: Joi.string().guid().required(),
               class: Joi.string().guid().required(),
               startingPosition: Joi.number().required(),
@@ -252,10 +248,20 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async addRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const payload: Race = this.mapper.map(RaceModel, Race, request.payload)
-    console.log('payload', payload)
-    const item = await this.service.save(payload)
-    return toolkit.response({id: item!.id}).code(201)
+    try {
+      const payload: Race = this.mapper.map(RaceModel, Race, request.payload)
+      const results = payload.results?.map(rs => {
+        const rResult = this.mapper.map(RaceResultModel, RaceResult, rs)
+        rResult.race = request.params.id
+        return rResult
+      }) as Race[]
+      console.log('results', results)
+      const items = await this.raceResultService.saveMany(results)
+      console.log('items', items)
+      return toolkit.response().code(201)
+    } catch (e) {
+      throw Boom.badRequest(e as any)
+    }
   }
 // #endregion
 
@@ -275,7 +281,6 @@ class RaceController extends HapiController implements IRaceController {
         payload: {
           car: Joi.string().guid(),
           carNumber: Joi.string(),
-          race: Joi.string().guid(),
           driver: Joi.string().guid(),
           class: Joi.string().guid(),
           startingPosition: Joi.number(),
@@ -289,7 +294,8 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async updateRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const payload: RaceResult = this.mapper.map(RaceResultModel, RaceResult, Object.assign({}, request.payload, request.params))
+    const payload: RaceResult = this.mapper.map(RaceResultModel, RaceResult, Object.assign({}, request.payload, { id: request.params.raceResultId, race: request.params.id }))
+    console.log('payload', payload)
 
     const item = await this.raceResultService.findById(payload.id)
     if (!item) {

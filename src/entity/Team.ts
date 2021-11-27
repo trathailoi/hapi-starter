@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm'
 import { Address } from './address'
 import { Driver } from './driver'
 import { Car } from './car'
@@ -26,11 +26,12 @@ class Team {
     })
     nationality?: Nationality
 
-    @OneToOne(() => Address)
-    @JoinColumn()
+    @ManyToOne(() => Address)
     businessAddress?: Address
 
-    @ManyToMany(() => Driver)
+    @ManyToMany(() => Driver, driver => driver.teams, {
+        cascade: true
+    })
     @JoinTable()
     drivers?: Driver[]
 

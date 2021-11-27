@@ -18,8 +18,13 @@ class TeamService extends CrudService<Team> {
   public async findById(id: string): Promise<Team | undefined> {
     const result = await this.repository.findOne({
       where: { id },
-      relations: ['businessAddress', 'cars', 'cars.class']
+      relations: ['businessAddress', 'cars', 'cars.class', 'drivers', 'drivers.homeAddress', 'drivers.managementAddress', 'drivers.teams'] // , 'results'
     })
+    return result
+  }
+
+  public async findByIds(ids: Team[]): Promise<Array<Team>> {
+    const result = await this.repository.findByIds(ids)
     return result
   }
 

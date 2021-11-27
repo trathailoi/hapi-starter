@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToMany, OneToMany, JoinTable } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, ManyToMany, OneToMany, JoinTable } from 'typeorm'
 import { Address } from './address'
 import { Team } from './team'
 import { RaceResult } from './race-result'
@@ -32,16 +32,13 @@ class Driver {
     })
     nationality?: Nationality
 
-    @OneToOne(() => Address)
-    @JoinColumn()
+    @ManyToOne(() => Address)
     homeAddress?: Address
 
-    @OneToOne(() => Address)
-    @JoinColumn()
+    @ManyToOne(() => Address)
     managementAddress?: Address
 
-    @ManyToMany(() => Team)
-    @JoinTable()
+    @ManyToMany(() => Team, team => team.drivers)
     teams?: Team[]
 
     @OneToMany(() => RaceResult, raceResult => raceResult.driver)

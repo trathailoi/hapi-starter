@@ -1,10 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+import { Column, Entity, Unique, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import { Car } from './car'
 import { Race } from './race'
 import { Driver } from './driver'
 import { Class } from './class'
 
 @Entity()
+@Unique('index_name', ['car', 'race', 'driver'])
 class RaceResult {
     @PrimaryGeneratedColumn('uuid')
     id!: string
@@ -31,14 +32,10 @@ class RaceResult {
     })
     startingPosition?: number
 
-    @Column('int', {
-        nullable: false
-    })
+    @Column('int')
     finishingPosition?: number
 
-    @Column('bool', {
-        nullable: false
-    })
+    @Column('bool')
     isFinished?: boolean
 }
 

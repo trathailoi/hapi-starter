@@ -526,6 +526,11 @@ paths:
             $ref: '#/components/schemas/uuidFormat'
         - name: carId
           in: query
+          description: filter the results by a car id
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+        - name: raceId
+          in: query
           description: filter the results by a race id
           schema:
             $ref: '#/components/schemas/uuidFormat'
@@ -704,6 +709,11 @@ paths:
         - name: raceId
           in: query
           description: filter the results by a race id
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+        - name: driverId
+          in: query
+          description: filter the results by a driver id
           schema:
             $ref: '#/components/schemas/uuidFormat'
       responses:
@@ -902,9 +912,12 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/RaceResultFormData'
+              type: object
+              properties:
+                results:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RaceResultFormData'
         description: A results array. Each element is a result object.
       responses:
         '200':
@@ -1101,7 +1114,7 @@ components:
         - $ref: '#/components/schemas/TeamResponse'
         - type: object
           properties:
-            ownedCars:
+            cars:
               type: array
               items:
                 $ref: '#/components/schemas/CarResponse'
@@ -1262,7 +1275,7 @@ components:
         - carNumber
         - driver
         - class
-        - startPosition
+        - startingPosition
       properties:
         car:
           $ref: '#/components/schemas/uuidFormat'
@@ -1273,14 +1286,14 @@ components:
           $ref: '#/components/schemas/uuidFormat'
         class:
           $ref: '#/components/schemas/uuidFormat'
-        startPosition:
+        startingPosition:
           type: integer
           format: int32
           example: 15
         isFinished:
           type: boolean
           example: true
-        finishPosition:
+        finishingPosition:
           type: integer
           format: int32
           example: 3
@@ -1300,13 +1313,13 @@ components:
           $ref: '#/components/schemas/Driver'
         class:
           $ref: '#/components/schemas/Class'
-        startPosition:
+        startingPosition:
           type: integer
           example: 15
         isFinished:
           type: boolean
           example: true
-        finishPosition:
+        finishingPosition:
           type: integer
           example: 3
 
