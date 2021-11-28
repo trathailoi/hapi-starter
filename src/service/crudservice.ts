@@ -31,9 +31,17 @@ class CrudService<T> {
                 defaultPaginationConf.skip = defaultPaginationConf.take * (queryObject.pagination.currentPage - 1)
             }
             queryObj = { ...queryObj, ...defaultPaginationConf }
+            // just for reference: this.repository.find({ take, skip: take * (page - 1) });
         }
         if (queryObject?.order &&  Object.keys(queryObject?.order).length > 0) {
             queryObj = { ...queryObj, order: queryObject?.order }
+            // TODO: order by multiple fields
+            // this.repository.findAndCount({
+            //     order: {
+            //         name: 'ASC',
+            //         id: 'DESC'
+            //     }
+            // })
         }
         console.log('queryObj', queryObj)
         const result = await this.repository.findAndCount(queryObj)
