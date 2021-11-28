@@ -56,10 +56,8 @@ paths:
       # Multiple status values can be provided with comma separated strings
       operationId: findClasses
       parameters:
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
         # - name: sort
         #   in: query
         #   description: sort the cars returned
@@ -195,10 +193,8 @@ paths:
       description: Finds all the addresses
       operationId: findAddresses
       parameters:
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -309,10 +305,8 @@ paths:
       description: Finds all the teams
       operationId: findTeams
       parameters:
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -423,10 +417,8 @@ paths:
       description: Finds all the drivers
       operationId: findDrivers
       parameters:
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -536,10 +528,8 @@ paths:
           description: filter the results by a race id
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -585,10 +575,8 @@ paths:
       description: Finds all the cars
       operationId: findCars
       parameters:
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
         - name: make
           in: query
           description: filter the cars returned by the make
@@ -734,10 +722,8 @@ paths:
           description: filter the results by a driver id
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -784,10 +770,8 @@ paths:
       description: Finds all the races
       operationId: findRaces
       parameters:
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -892,10 +876,8 @@ paths:
           description: get results for a specific class on the race
           schema:
             $ref: '#/components/schemas/uuidFormat'
-        - name: pageSize
-          $ref: '#/components/parameters/pageSizeParam'
-        - name: currentPage
-          $ref: '#/components/parameters/currentPageParam'
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
       responses:
         '200':
           description: OK
@@ -986,81 +968,80 @@ paths:
           $ref: '#/components/responses/400BadRequest'
 
   # RaceResults
-  # /race-results:
-  #   get:
-  #     tags:
-  #       - race-results
-  #     summary: Finds results
-  #     description: Finds all the results
-  #     operationId: findResults
-  #     parameters:
-  #       - name: raceId
-  #         in: query
-  #         description: filter the races returned by race id
-  #         schema:
-  #           type: string
-  #         examples:
-  #           example1:
-  #             value: "12345678-abcd-ef12–345a-12345678abcd"
-  #             summary: "Example #1"
-  #           example2:
-  #             value: "5f36215d-f5c6-4896-087c-f30f3678f607"
-  #             summary: "Example #2"
-  #       - name: carId
-  #         in: query
-  #         description: filter the races returned by car id
-  #         schema:
-  #           type: string
-  #         examples:
-  #           example1:
-  #             value: "12345678-abcd-ef12–345a-12345678abcd"
-  #             summary: "Example #1"
-  #           example2:
-  #             value: "5f36215d-f5c6-4896-087c-f30f3678f607"
-  #             summary: "Example #2"
-  #       - name: driverId
-  #         in: query
-  #         description: filter the races returned by the driver id
-  #         schema:
-  #           type: string
-  #         examples:
-  #           example1:
-  #             value: "12345678-abcd-ef12–345a-12345678abcd"
-  #             summary: "Example #1"
-  #           example2:
-  #             value: "5f36215d-f5c6-4896-087c-f30f3678f607"
-  #             summary: "Example #2"
-  #       - name: classId
-  #         in: query
-  #         description: filter the races returned by the class id
-  #         schema:
-  #           type: string
-  #         examples:
-  #           example1:
-  #             value: "12345678-abcd-ef12–345a-12345678abcd"
-  #             summary: "Example #1"
-  #           example2:
-  #             value: "5f36215d-f5c6-4896-087c-f30f3678f607"
-  #             summary: "Example #2"
-  #       - name: pageSize
-  #         $ref: '#/components/parameters/pageSizeParam'
-  #       - name: currentPage
-  #         $ref: '#/components/parameters/currentPageParam'
-  #     responses:
-  #       '200':
-  #         description: OK
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 data:
-  #                   type: array
-  #                   items:
-  #                     $ref: '#/components/schemas/Race'
-  #                 count:
-  #                   type: integer
-  #                   format: int32
+  /race-results:
+    get:
+      deprecated: true
+      tags:
+        - race-result
+      summary: Get all results
+      description: Finds all the results
+      operationId: findResults
+      parameters:
+        - name: raceId
+          in: query
+          description: filter the races returned by race id
+          schema:
+            type: string
+          examples:
+            example1:
+              value: "12345678-abcd-ef12–345a-12345678abcd"
+              summary: "Example #1"
+            example2:
+              value: "5f36215d-f5c6-4896-087c-f30f3678f607"
+              summary: "Example #2"
+        - name: carId
+          in: query
+          description: filter the races returned by car id
+          schema:
+            type: string
+          examples:
+            example1:
+              value: "12345678-abcd-ef12–345a-12345678abcd"
+              summary: "Example #1"
+            example2:
+              value: "5f36215d-f5c6-4896-087c-f30f3678f607"
+              summary: "Example #2"
+        - name: driverId
+          in: query
+          description: filter the races returned by the driver id
+          schema:
+            type: string
+          examples:
+            example1:
+              value: "12345678-abcd-ef12–345a-12345678abcd"
+              summary: "Example #1"
+            example2:
+              value: "5f36215d-f5c6-4896-087c-f30f3678f607"
+              summary: "Example #2"
+        - name: classId
+          in: query
+          description: filter the races returned by the class id
+          schema:
+            type: string
+          examples:
+            example1:
+              value: "12345678-abcd-ef12–345a-12345678abcd"
+              summary: "Example #1"
+            example2:
+              value: "5f36215d-f5c6-4896-087c-f30f3678f607"
+              summary: "Example #2"
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RaceResultRespone'
+                  count:
+                    type: integer
+                    format: int32
   '/race-results/{id}':
     get:
       tags:
