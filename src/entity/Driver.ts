@@ -32,13 +32,23 @@ class Driver {
     })
     nationality?: Nationality
 
-    @ManyToOne(() => Address)
+    @ManyToOne(() => Address, address => address.id, {
+        // cascade: true,
+        nullable: true,
+        onDelete: 'SET NULL'
+    })
     homeAddress?: Address
 
-    @ManyToOne(() => Address)
+    @ManyToOne(() => Address, address => address.id, {
+        // cascade: true,
+        nullable: true,
+        onDelete: 'SET NULL'
+    })
     managementAddress?: Address
 
-    @ManyToMany(() => Team, team => team.drivers)
+    @ManyToMany(() => Team, team => team.drivers, {
+        onDelete: 'CASCADE'
+    })
     teams?: Team[]
 
     @OneToMany(() => RaceResult, raceResult => raceResult.driver)

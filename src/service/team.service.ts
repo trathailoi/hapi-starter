@@ -23,6 +23,9 @@ class TeamService extends CrudService<Team> {
     return result
   }
 
+  // public async findAll(queryObject?: {where?: {}, relations?: string[], pagination?: {}}): Promise<{data: Array<Team>, count: number}> {
+  //   return super.findAll({ relations : ['businessAddress', 'cars', 'cars.class', 'drivers', 'drivers.homeAddress', 'drivers.managementAddress', 'drivers.teams'], ...queryObject })
+  // }
 }
 
 export { TeamService }

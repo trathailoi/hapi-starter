@@ -56,7 +56,6 @@ class TeamController extends HapiController implements ITeamController {
     }
   })
   public async addTeam(request: Request, toolkit: ResponseToolkit) {
-    console.log('request.payload', request.payload)
     const payload: Team = this.mapper.map(TeamModel, Team, request.payload)
     const team = await this.service.save(payload)
     return toolkit.response({id: team!.id}).code(201)

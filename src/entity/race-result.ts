@@ -5,27 +5,38 @@ import { Driver } from './driver'
 import { Class } from './class'
 
 @Entity()
-@Unique('index_name', ['car', 'race', 'driver'])
+@Unique('unique_result_index', ['car', 'race', 'driver'])
 class RaceResult {
     @PrimaryGeneratedColumn('uuid')
     id!: string
 
-    @ManyToOne(() => Car)
-    car?: Car
-
-    @Column('int', {
-        nullable: false
-    })
+    @Column('int')
     carNumber?: number
 
-    @ManyToOne(() => Race)
+    @ManyToOne(() => Race, race => race.results, {
+        // cascade: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        nullable: false
+    })
     race?: Race
 
-    @ManyToOne(() => Driver)
-    driver?: Driver
-
-    @ManyToOne(() => Class)
+    @ManyToOne(() => Class, _class => _class.results, {
+        nullable: false
+    })
     class?: Class
+
+    @ManyToOne(() => Car, car => car.results, {
+        nullable: false
+    })
+    car?: Car
+
+    @ManyToOne(() => Driver, driver => driver.results, {
+        // cascade: true,
+        onDelete: 'CASCADE',
+        nullable: false
+    })
+    driver?: Driver
 
     @Column('int', {
         nullable: false

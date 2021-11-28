@@ -152,7 +152,6 @@ class DriverController extends HapiController implements IDriverController {
   })
   public async updateDriver(request: Request, toolkit: ResponseToolkit) {
     const payload: Driver = this.mapper.map(DriverModel, Driver, Object.assign({}, request.payload, request.params))
-    console.log('payload', payload)
     const item = await this.service.findById(payload.id)
     if (!item) {
       throw Boom.notFound()

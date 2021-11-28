@@ -54,7 +54,7 @@ class RaceController extends HapiController implements IRaceController {
           results: Joi.array().items(
             Joi.object().keys({
               car: Joi.string().guid().required(),
-              carNumber: Joi.string(),
+              carNumber: Joi.number().positive(),
               driver: Joi.string().guid().required(),
               class: Joi.string().guid().required(),
               startingPosition: Joi.number().integer().min(1).required(),
@@ -70,10 +70,13 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async addRace(request: Request, toolkit: ResponseToolkit) {
-    const payload: Race = this.mapper.map(RaceModel, Race, request.payload)
-    console.log('payload', payload)
-    const item = await this.service.save(payload)
-    return toolkit.response({id: item!.id}).code(201)
+    try {
+      const payload: Race = this.mapper.map(RaceModel, Race, request.payload)
+      const item = await this.service.save(payload)
+      return toolkit.response({id: item!.id}).code(201)
+    } catch (e) {
+      throw Boom.badRequest(e as any)
+    }
   }
 // #endregion
 
@@ -161,7 +164,6 @@ class RaceController extends HapiController implements IRaceController {
     if (!item) {
       throw Boom.notFound()
     }
-    console.log('payload', payload)
     await this.service.save(payload)
     return toolkit.response().code(204)
   }
@@ -253,7 +255,7 @@ class RaceController extends HapiController implements IRaceController {
           results: Joi.array().items(
             Joi.object().keys({
               car: Joi.string().guid().required(),
-              carNumber: Joi.string(),
+              carNumber: Joi.number().positive(),
               driver: Joi.string().guid().required(),
               class: Joi.string().guid().required(),
               startingPosition: Joi.number().integer().min(1).required(),
@@ -270,8 +272,10 @@ class RaceController extends HapiController implements IRaceController {
   })
   public async addRaceResult(request: Request, toolkit: ResponseToolkit) {
     try {
-      const results = [] as Race[]
-      await this.raceResultService.saveMany(results)
+      const payload = request.payload as { results: [] }
+      const results: RaceResult[] = payload.results.map(rs => this.mapper.map(RaceResultModel, RaceResult, Object.assign({}, rs, { race: request.params.id })))
+
+      const items = await this.raceResultService.saveMany(results)
       return toolkit.response().code(201)
     } catch (e) {
       throw Boom.badRequest(e as any)
@@ -294,7 +298,7 @@ class RaceController extends HapiController implements IRaceController {
         },
         payload: {
           car: Joi.string().guid(),
-          carNumber: Joi.string(),
+          carNumber: Joi.number().positive(),
           driver: Joi.string().guid(),
           class: Joi.string().guid(),
           startingPosition: Joi.number().integer().min(1),
@@ -308,16 +312,18 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async updateRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const payload: RaceResult = this.mapper.map(RaceResultModel, RaceResult, Object.assign({}, request.payload, { id: request.params.raceResultId, race: request.params.id }))
-    console.log('payload', payload)
+    try {
+      const payload: RaceResult = this.mapper.map(RaceResultModel, RaceResult, Object.assign({}, request.payload, { id: request.params.raceResultId, race: request.params.id }))
 
-    const item = await this.raceResultService.findById(payload.id)
-    if (!item) {
-      throw Boom.notFound()
+      const item = await this.raceResultService.findById(payload.id)
+      if (!item) {
+        throw Boom.notFound()
+      }
+      await this.raceResultService.save(payload)
+      return toolkit.response().code(204)
+    } catch (e) {
+      throw Boom.badRequest(e as any)
     }
-    console.log('payload', payload)
-    await this.raceResultService.save(payload)
-    return toolkit.response().code(204)
   }
 // #endregion
 

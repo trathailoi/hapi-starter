@@ -26,7 +26,11 @@ class Team {
     })
     nationality?: Nationality
 
-    @ManyToOne(() => Address)
+    @ManyToOne(() => Address, address => address.id, {
+        // cascade: true,
+        nullable: true,
+        onDelete: 'SET NULL'
+    })
     businessAddress?: Address
 
     @ManyToMany(() => Driver, driver => driver.teams, {

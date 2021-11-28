@@ -65,7 +65,6 @@ class CarController extends HapiController implements ICarController {
   })
   public async addCar(request: Request, toolkit: ResponseToolkit) {
     const payload: Car = this.mapper.map(CarModel, Car, request.payload)
-    console.log('payload', payload)
     const item = await this.service.save(payload)
     return toolkit.response({id: item!.id}).code(201)
   }
@@ -171,7 +170,6 @@ class CarController extends HapiController implements ICarController {
     if (!item) {
       throw Boom.notFound()
     }
-    console.log('payload', payload)
     await this.service.save(payload)
     return toolkit.response().code(204)
   }
