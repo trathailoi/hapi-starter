@@ -1,8 +1,9 @@
 version: '3'
 
 services:
-  postgres:
+  postgres_loi_exercise:
     image: postgres:9.6
+    container_name: postgres_loi_exercise
     environment:
       POSTGRES_USER: sevenmiles
       POSTGRES_PASSWORD: Passw0rd!
@@ -10,5 +11,5 @@ services:
     # volumes:
     #   - ./data/postgres:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     restart: always

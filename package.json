@@ -6,7 +6,7 @@
   "scripts": {
     "db:start": "docker-compose -f database/docker-compose.yml up -d",
     "db:stop": "docker-compose -f database/docker-compose.yml down",
-    "db:seed": "npm run db:start && npm run copy-files && nodemon --exec ./node_modules/.bin/ts-node -- ./database/seed.ts",
+    "db:seed": "npm run db:start && npm run copy-files && ts-node -- ./database/seed.ts",
     "db:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
     "dev": "npm run db:start && npm run nodemon:build",
     "build": "tsc && npm run copy-files",

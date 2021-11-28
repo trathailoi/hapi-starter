@@ -207,6 +207,8 @@ class RaceController extends HapiController implements IRaceController {
           id: Joi.string().guid().required()
         },
         query: {
+          currentPage: Joi.number().integer().min(1).optional().description('offset for pagination'),
+          pageSize: Joi.number().integer().min(1).optional().description('items per page'),
           classId: Joi.string().guid().description('of a specific class')
         }
       },

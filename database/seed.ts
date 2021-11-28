@@ -256,4 +256,5 @@ import { RaceResult } from '../src/entity/race-result'
     const raceResultsResp = await raceResultRepository.save(raceResults)
     console.log('raceResultsResp', raceResultsResp)
 
+    process.exit(0)
 })()
