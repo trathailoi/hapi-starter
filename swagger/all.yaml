@@ -17,12 +17,12 @@ tags:
     description: Classes of races and cars
   - name: address
     description: Addresses of teams and drivers
-  - name: team
-    description: Teams
-  - name: car
-    description: Cars
   - name: driver
     description: Drivers
+  - name: car
+    description: Cars
+  - name: team
+    description: Teams
   - name: race
     description: Races
   - name: race-result
@@ -34,7 +34,7 @@ paths:
     post:
       tags:
         - class
-      summary: Add a new class to the system
+      summary: Create new class
       operationId: addClass
       requestBody:
         content:
@@ -51,7 +51,7 @@ paths:
     get:
       tags:
         - class
-      summary: Finds Classes # with or w/o conditions
+      summary: Find classes
       description: Finds all the classes
       # Multiple status values can be provided with comma separated strings
       operationId: findClasses
@@ -122,7 +122,7 @@ paths:
     patch:
       tags:
         - class
-      summary: Updates an existing class by ID
+      summary: Update class by ID
       operationId: updateClass
       parameters:
         - name: id
@@ -173,7 +173,7 @@ paths:
     post:
       tags:
         - address
-      summary: Add a new address to the system
+      summary: Create new address
       operationId: addAddress
       requestBody:
         content:
@@ -189,7 +189,7 @@ paths:
     get:
       tags:
         - address
-      summary: Finds Addresses
+      summary: Find addresses
       description: Finds all the addresses
       operationId: findAddresses
       parameters:
@@ -238,7 +238,7 @@ paths:
     patch:
       tags:
         - address
-      summary: Updates an existing address by ID
+      summary: Update address by ID
       operationId: updateAddress
       parameters:
         - name: id
@@ -280,124 +280,12 @@ paths:
         '400':
           $ref: '#/components/responses/400BadRequest'
 
-  # Teams
-  /teams:
-    post:
-      tags:
-        - team
-      summary: Add a new team to the system
-      operationId: addTeam
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TeamFormData'
-        description: form data object that contains fields to update a specific team in the system
-      responses:
-        '201':
-          $ref: '#/components/responses/201Created'
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-    get:
-      tags:
-        - team
-      summary: Finds Teams
-      description: Finds all the teams
-      operationId: findTeams
-      parameters:
-        - $ref: '#/components/parameters/pageSizeParam'
-        - $ref: '#/components/parameters/currentPageParam'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TeamResponse'
-                  count:
-                    type: integer
-                    format: int32
-  '/teams/{id}':
-    get:
-      tags:
-        - team
-      summary: Find team by ID
-      description: Returns a single team
-      operationId: getTeamById
-      parameters:
-        - name: id
-          in: path
-          description: ID of team to return
-          required: true
-          schema:
-            $ref: '#/components/schemas/uuidFormat'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TeamDetailResponse'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-    patch:
-      tags:
-        - team
-      summary: Updates an existing team by ID
-      operationId: updateTeam
-      parameters:
-        - name: id
-          in: path
-          description: ID of the team that needs to be updated
-          required: true
-          schema:
-            $ref: '#/components/schemas/uuidFormat'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TeamFormData'
-        description: form data object that contains fields to update a specific team in the system
-      responses:
-        '204':
-          $ref: '#/components/responses/204NoContent'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-    delete:
-      tags:
-        - team
-      summary: Deletes a team by ID
-      operationId: deleteTeam
-      parameters:
-        - name: id
-          in: path
-          description: Team id to delete
-          required: true
-          schema:
-            $ref: '#/components/schemas/uuidFormat'
-      responses:
-        '204':
-          $ref: '#/components/responses/204NoContent'
-        '404':
-          $ref: '#/components/responses/404NotFound'
-        '400':
-          $ref: '#/components/responses/400BadRequest'
-
   # Drivers
   /drivers:
     post:
       tags:
         - driver
-      summary: Add a new driver to the system
+      summary: Create new driver
       operationId: addDriver
       requestBody:
         content:
@@ -413,7 +301,7 @@ paths:
     get:
       tags:
         - driver
-      summary: Finds Drivers
+      summary: Find drivers
       description: Finds all the drivers
       operationId: findDrivers
       parameters:
@@ -462,7 +350,7 @@ paths:
     patch:
       tags:
         - driver
-      summary: Updates an existing driver by ID
+      summary: Update driver by ID
       operationId: updateDriver
       parameters:
         - name: id
@@ -555,7 +443,7 @@ paths:
     post:
       tags:
         - car
-      summary: Add a new car to the system
+      summary: Create new car
       operationId: addCar
       requestBody:
         content:
@@ -571,7 +459,7 @@ paths:
     get:
       tags:
         - car
-      summary: Finds Cars
+      summary: Find cars
       description: Finds all the cars
       operationId: findCars
       parameters:
@@ -656,7 +544,7 @@ paths:
     patch:
       tags:
         - car
-      summary: Updates an existing car by ID
+      summary: Update car by ID
       operationId: updateCar
       parameters:
         - name: id
@@ -744,13 +632,125 @@ paths:
         '400':
           $ref: '#/components/responses/400BadRequest'
 
+  # Teams
+  /teams:
+    post:
+      tags:
+        - team
+      summary: Create new team
+      operationId: addTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamFormData'
+        description: form data object that contains fields to update a specific team in the system
+      responses:
+        '201':
+          $ref: '#/components/responses/201Created'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+    get:
+      tags:
+        - team
+      summary: Find teams
+      description: Finds all the teams
+      operationId: findTeams
+      parameters:
+        - $ref: '#/components/parameters/pageSizeParam'
+        - $ref: '#/components/parameters/currentPageParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TeamResponse'
+                  count:
+                    type: integer
+                    format: int32
+  '/teams/{id}':
+    get:
+      tags:
+        - team
+      summary: Find team by ID
+      description: Returns a single team
+      operationId: getTeamById
+      parameters:
+        - name: id
+          in: path
+          description: ID of team to return
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDetailResponse'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+    patch:
+      tags:
+        - team
+      summary: Update team by ID
+      operationId: updateTeam
+      parameters:
+        - name: id
+          in: path
+          description: ID of the team that needs to be updated
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamFormData'
+        description: form data object that contains fields to update a specific team in the system
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+    delete:
+      tags:
+        - team
+      summary: Deletes a team by ID
+      operationId: deleteTeam
+      parameters:
+        - name: id
+          in: path
+          description: Team id to delete
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuidFormat'
+      responses:
+        '204':
+          $ref: '#/components/responses/204NoContent'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+
   # Races
   /races:
     post:
       tags:
         - race
         - race-result
-      summary: Add a new race (with its results) to the system
+      summary: Create new race (with its results)
       operationId: addRace
       requestBody:
         content:
@@ -766,7 +766,7 @@ paths:
     get:
       tags:
         - race
-      summary: Finds Races
+      summary: Find races
       description: Finds all the races
       operationId: findRaces
       parameters:
@@ -815,7 +815,7 @@ paths:
     patch:
       tags:
         - race
-      summary: Updates an existing race by ID
+      summary: Update race by ID
       operationId: updateRace
       parameters:
         - name: id
@@ -938,7 +938,7 @@ paths:
       tags:
         - race
         - race-result
-      summary: Updates an existing race result
+      summary: Update race result
       operationId: updateRaceResult
       parameters:
         - name: id

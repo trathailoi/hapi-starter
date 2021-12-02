@@ -85,6 +85,41 @@ import { RaceResult } from '../src/entity/race-result'
     console.log('addressesResp', addressesResp)
 
     /**
+     * Driver
+     */
+    const drivers: Driver[] = [
+        {
+            firstName: 'Nguyễn',
+            lastName: 'Văn A',
+            nationality: 'USA',
+            homeAddress: addressesResp[0],
+            managementAddress: addressesResp[0],
+            // teams: Team[],
+            // results: RaceResult[]
+        } as Driver,
+        {
+            firstName: 'Tommy',
+            lastName: 'Tèo',
+            nationality: 'Viet Nam',
+            homeAddress: addressesResp[1],
+            managementAddress: addressesResp[1],
+            // teams: Team[],
+            // results: RaceResult[]
+        } as Driver,
+        {
+            firstName: 'Johnny',
+            lastName: 'Tí',
+            nationality: 'USA',
+            homeAddress: addressesResp[0],
+            managementAddress: addressesResp[0],
+            // teams: Team[],
+            // results: RaceResult[]
+        } as Driver
+    ]
+    const driversResp = await driverRepository.save(drivers)
+    console.log('driversResp', driversResp)
+
+    /**
      * Car
      */
     const cars: Car[] = [
@@ -131,41 +166,6 @@ import { RaceResult } from '../src/entity/race-result'
     ]
     const carsResp = await carRepository.save(cars)
     console.log('carsResp', carsResp)
-
-    /**
-     * Driver
-     */
-    const drivers: Driver[] = [
-        {
-            firstName: 'Nguyễn',
-            lastName: 'Văn A',
-            nationality: 'USA',
-            homeAddress: addressesResp[0],
-            managementAddress: addressesResp[0],
-            // teams: Team[],
-            // results: RaceResult[]
-        } as Driver,
-        {
-            firstName: 'Tommy',
-            lastName: 'Tèo',
-            nationality: 'Viet Nam',
-            homeAddress: addressesResp[1],
-            managementAddress: addressesResp[1],
-            // teams: Team[],
-            // results: RaceResult[]
-        } as Driver,
-        {
-            firstName: 'Johnny',
-            lastName: 'Tí',
-            nationality: 'USA',
-            homeAddress: addressesResp[0],
-            managementAddress: addressesResp[0],
-            // teams: Team[],
-            // results: RaceResult[]
-        } as Driver
-    ]
-    const driversResp = await driverRepository.save(drivers)
-    console.log('driversResp', driversResp)
 
     /**
      * Team
