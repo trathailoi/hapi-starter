@@ -81,11 +81,15 @@ class RaceResultController extends HapiController implements IRaceResultControll
     }
   })
   public async deleteRaceResult(request: Request, toolkit: ResponseToolkit) {
-    const result = await this.service.delete(request.params.id)
-    if (!result.affected) {
-      throw Boom.notFound()
+    try {
+      const result = await this.service.delete(request.params.id)
+      if (!result.affected) {
+        return Boom.notFound()
+      }
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    return toolkit.response().code(204)
   }
 // #endregion
 

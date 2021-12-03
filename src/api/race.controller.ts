@@ -188,11 +188,15 @@ class RaceController extends HapiController implements IRaceController {
     }
   })
   public async deleteRace(request: Request, toolkit: ResponseToolkit) {
-    const result = await this.service.delete(request.params.id)
-    if (!result.affected) {
-      throw Boom.notFound()
+    try {
+      const result = await this.service.delete(request.params.id)
+      if (!result.affected) {
+        return Boom.notFound()
+      }
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -276,7 +280,8 @@ class RaceController extends HapiController implements IRaceController {
       const results: RaceResult[] = payload.results.map(rs => this.mapper.map(RaceResultModel, RaceResult, Object.assign({}, rs, { race: request.params.id })))
 
       const items = await this.raceResultService.saveMany(results)
-      return toolkit.response().code(201)
+      const ids = items.map(item => item.id)
+      return toolkit.response({ ids }).code(201)
     } catch (e) {
       throw Boom.badRequest(e as any)
     }
@@ -317,7 +322,7 @@ class RaceController extends HapiController implements IRaceController {
 
       const item = await this.raceResultService.findById(payload.id)
       if (!item) {
-        throw Boom.notFound()
+        return Boom.notFound()
       }
       await this.raceResultService.save(payload)
       return toolkit.response().code(204)

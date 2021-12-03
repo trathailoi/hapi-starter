@@ -60,9 +60,13 @@ class ClassController extends HapiController implements IClassController {
     }
   })
   public async addClass(request: Request, toolkit: ResponseToolkit) {
-    const payload: Class = this.mapper.map(ClassModel, Class, request.payload)
-    const _class = await this.service.save(payload)
-    return toolkit.response({id: _class!.id}).code(201)
+    try {
+      const payload: Class = this.mapper.map(ClassModel, Class, request.payload)
+      const _class = await this.service.save(payload)
+      return toolkit.response({id: _class!.id}).code(201)
+    } catch (error) {
+      throw Boom.badRequest(error as any) 
+    }
   }
 // #endregion
 
@@ -144,14 +148,18 @@ class ClassController extends HapiController implements IClassController {
     }
   })
   public async updateClass(request: Request, toolkit: ResponseToolkit) {
-    const payload: Class = this.mapper.map(ClassModel, Class, Object.assign({}, request.payload, request.params))
+    try {
+      const payload: Class = this.mapper.map(ClassModel, Class, Object.assign({}, request.payload, request.params))
 
-    const item = await this.service.findById(payload.id)
-    if (!item) {
-      throw Boom.notFound()
+      const item = await this.service.findById(payload.id)
+      if (!item) {
+        return Boom.notFound()
+      }
+      await this.service.save(payload)
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    await this.service.save(payload)
-    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -174,11 +182,15 @@ class ClassController extends HapiController implements IClassController {
     }
   })
   public async deleteClass(request: Request, toolkit: ResponseToolkit) {
-    const result = await this.service.delete(request.params.id)
-    if (!result.affected) {
-      throw Boom.notFound()
+    try {
+      const result = await this.service.delete(request.params.id)
+      if (!result.affected) {
+        return Boom.notFound()
+      }
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    return toolkit.response().code(204)
   }
 // #endregion
 

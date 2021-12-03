@@ -64,9 +64,13 @@ class CarController extends HapiController implements ICarController {
     }
   })
   public async addCar(request: Request, toolkit: ResponseToolkit) {
-    const payload: Car = this.mapper.map(CarModel, Car, request.payload)
-    const item = await this.service.save(payload)
-    return toolkit.response({id: item!.id}).code(201)
+    try {
+      const payload: Car = this.mapper.map(CarModel, Car, request.payload)
+      const item = await this.service.save(payload)
+      return toolkit.response({id: item!.id}).code(201)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
+    }
   }
 // #endregion
 
@@ -164,14 +168,18 @@ class CarController extends HapiController implements ICarController {
     }
   })
   public async updateCar(request: Request, toolkit: ResponseToolkit) {
-    const payload: Car = this.mapper.map(CarModel, Car, Object.assign({}, request.payload, request.params))
+    try {
+      const payload: Car = this.mapper.map(CarModel, Car, Object.assign({}, request.payload, request.params))
 
-    const item = await this.service.findById(payload.id)
-    if (!item) {
-      throw Boom.notFound()
+      const item = await this.service.findById(payload.id)
+      if (!item) {
+        return Boom.notFound()
+      }
+      await this.service.save(payload)
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    await this.service.save(payload)
-    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -194,11 +202,15 @@ class CarController extends HapiController implements ICarController {
     }
   })
   public async deleteCar(request: Request, toolkit: ResponseToolkit) {
-    const result = await this.service.delete(request.params.id)
-    if (!result.affected) {
-      throw Boom.notFound()
+    try {
+      const result = await this.service.delete(request.params.id)
+      if (!result.affected) {
+        return Boom.notFound()
+      }
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    return toolkit.response().code(204)
   }
 // #endregion
 

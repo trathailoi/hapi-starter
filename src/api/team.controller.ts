@@ -56,9 +56,13 @@ class TeamController extends HapiController implements ITeamController {
     }
   })
   public async addTeam(request: Request, toolkit: ResponseToolkit) {
-    const payload: Team = this.mapper.map(TeamModel, Team, request.payload)
-    const team = await this.service.save(payload)
-    return toolkit.response({id: team!.id}).code(201)
+    try {
+      const payload: Team = this.mapper.map(TeamModel, Team, request.payload)
+      const team = await this.service.save(payload)
+      return toolkit.response({id: team!.id}).code(201)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
+    }
   }
 // #endregion
 
@@ -142,14 +146,18 @@ class TeamController extends HapiController implements ITeamController {
     }
   })
   public async updateTeam(request: Request, toolkit: ResponseToolkit) {
-    const payload: Team = this.mapper.map(TeamModel, Team, Object.assign({}, request.payload, request.params))
-
-    const item = await this.service.findById(payload.id)
-    if (!item) {
-      throw Boom.notFound()
+    try {
+      const payload: Team = this.mapper.map(TeamModel, Team, Object.assign({}, request.payload, request.params))
+  
+      const item = await this.service.findById(payload.id)
+      if (!item) {
+        return Boom.notFound()
+      }
+      await this.service.save(payload)
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    await this.service.save(payload)
-    return toolkit.response().code(204)
   }
 // #endregion
 
@@ -172,11 +180,15 @@ class TeamController extends HapiController implements ITeamController {
     }
   })
   public async deleteTeam(request: Request, toolkit: ResponseToolkit) {
-    const result = await this.service.delete(request.params.id)
-    if (!result.affected) {
-      throw Boom.notFound()
+    try {
+      const result = await this.service.delete(request.params.id)
+      if (!result.affected) {
+        return Boom.notFound()
+      }
+      return toolkit.response().code(204)
+    } catch (error) {
+      throw Boom.badRequest(error as any)
     }
-    return toolkit.response().code(204)
   }
 // #endregion
 
